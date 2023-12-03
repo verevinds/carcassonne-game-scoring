@@ -1,57 +1,13 @@
-import { Link } from 'expo-router';
 import { Dimensions, StyleSheet, Text, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
-import ArrowIcon from 'assets/icons/arrow';
 import HeaderIcon from 'assets/icons/header';
-import PlayerIcon from 'assets/icons/player';
-import Button from 'components/button';
 import CustomExitButton from 'components/button-exit';
-import { COLORS, PLAYER_COLOR_NAME, TYPOGRAPHY } from 'themes/constants';
+import Button from 'components/button-tangled';
+import CardNavigation from 'components/card-navigation';
+import { PLAYER_COLOR_NAME, TYPOGRAPHY } from 'themes/constants';
 const { height, width } = Dimensions.get('window');
 
-function Card({
-  name,
-  position,
-  points,
-}: {
-  name: PLAYER_COLOR_NAME;
-  position: number;
-  points: number;
-}) {
-  return (
-    <Link
-      href={{
-        pathname: '/game/[name]',
-        params: { name },
-      }}
-      style={{
-        marginBottom: 10,
-        shadowColor: COLORS.SHADOW_1,
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 1,
-        shadowRadius: 3,
-        elevation: 10,
-      }}
-    >
-      <View style={styles.cardContainer}>
-        <View style={styles.iconContainer}>
-          <PlayerIcon variant={name} />
-        </View>
-        <View style={styles.content}>
-          <View>
-            <Text style={styles.cardTitle}>{name} player</Text>
-            <Text style={styles.cardPosition}>position {position}</Text>
-          </View>
-          <Text style={styles.cardPoints}>points: {points}</Text>
-        </View>
-        <View style={styles.cardNavigation}>
-          <ArrowIcon mirror />
-        </View>
-      </View>
-    </Link>
-  );
-}
 export default function GameScreen() {
   return (
     <View style={styles.container}>
@@ -61,7 +17,6 @@ export default function GameScreen() {
       <View style={styles.body}>
         <HeaderIcon style={{ marginTop: -65 }} />
         <Text style={styles.title}>Select a Player to Enter Points</Text>
-
         <FlatList
           contentContainerStyle={{
             justifyContent: 'center',
@@ -76,7 +31,7 @@ export default function GameScreen() {
             { name: PLAYER_COLOR_NAME.YELLOW, points: 2, position: 2 },
           ]}
           renderItem={({ item }) => (
-            <Card
+            <CardNavigation
               name={item.name}
               points={item.points}
               position={item.position}

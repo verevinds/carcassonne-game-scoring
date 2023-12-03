@@ -2,7 +2,7 @@ import { useFonts } from 'expo-font';
 import { StyleSheet, Text, View } from 'react-native';
 
 import SvgComponent from 'assets/icons/farme';
-import Button from 'components/button';
+import Button from 'components/button-tangled';
 import { TYPOGRAPHY } from 'themes/constants';
 
 export default function Page() {

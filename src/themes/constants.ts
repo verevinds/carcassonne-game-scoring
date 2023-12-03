@@ -4,6 +4,8 @@ export const COLORS = {
   PRIMARY_15: 'rgba(5, 47, 70, 1)',
   PRIMARY_20: 'rgba(7, 64, 95, 1)',
   SECONDARY_15: 'rgba(5, 47, 70, 1)',
+  SECONDARY_64: '#A87257',
+  BACKGROUND_90: '#EDE9DE',
   BACKGROUND_95: 'rgba(246, 244, 238, 1)',
   SHADOW_1: 'rgba(0, 0, 0, 0.25)',
   TRANSPARENT: 'transparent',
@@ -124,13 +126,13 @@ export const BASE_HIT_SLOP = {
   left: HIT_SLOP_PADDING,
 };
 
-// export const SHADOW_1 = {
-//   shadowColor: COLORS.SHADOW_1,
-//   shadowOffset: { width: 0, height: 16 },
-//   shadowOpacity: 1,
-//   shadowRadius: 24,
-//   elevation: 10,
-// };
+export const SHADOW_1 = {
+  shadowColor: COLORS.SHADOW_1,
+  shadowOffset: { width: 0, height: 16 },
+  shadowOpacity: 1,
+  shadowRadius: 24,
+  elevation: 10,
+};
 
 // export const SHADOW_2 = {
 //   ...Platform.select({

@@ -2,9 +2,9 @@ import { StyleSheet, Text, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
 import PlayerIcon from 'assets/icons/player';
-import Button from 'components/button';
 import CustomBackButton from 'components/button-back';
-import { Card } from 'components/card';
+import Button from 'components/button-tangled';
+import { Card } from 'components/card-select';
 import { PLAYER_COLOR_NAME, TYPOGRAPHY } from 'themes/constants';
 
 export default function PlayersScreen() {

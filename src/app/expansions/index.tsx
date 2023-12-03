@@ -6,8 +6,8 @@ import CastleIcon from 'assets/icons/castle';
 import CastleRiverIcon from 'assets/icons/castle-river';
 import CathedralIcon from 'assets/icons/cathedral';
 import DragonIcon from 'assets/icons/dragon';
-import Button from 'components/button';
-import { Card } from 'components/card';
+import Button from 'components/button-tangled';
+import { Card } from 'components/card-select';
 import { TYPOGRAPHY } from 'themes/constants';
 
 export default function ExpansionsScreen() {

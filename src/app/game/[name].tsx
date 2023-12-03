@@ -1,8 +1,14 @@
 import { useLocalSearchParams } from 'expo-router';
 import { Dimensions, StyleSheet, Text, View } from 'react-native';
+import { FlatList } from 'react-native-gesture-handler';
 
+import AbbotIcon from 'assets/icons/abbot';
+import CityIcon from 'assets/icons/city';
 import HeaderIcon from 'assets/icons/header';
+import MonasteryIcon from 'assets/icons/monastery';
+import RoadIcon from 'assets/icons/road';
 import CustomBackButton from 'components/button-back';
+import CardPoints from 'components/card-points';
 import { TYPOGRAPHY } from 'themes/constants';
 
 const { height, width } = Dimensions.get('window');
@@ -20,7 +26,55 @@ export default function EnterPoints() {
           Enter Points for{' '}
           <Text style={{ textTransform: 'capitalize' }}>{name}</Text> Player
         </Text>
-        <View style={styles.list} />
+        <FlatList
+          contentContainerStyle={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginTop: 20,
+            paddingBottom: 130,
+          }}
+          data={[
+            {
+              icon: <RoadIcon />,
+              title: 'The roads',
+              points: 1,
+              description: '1 point per tile, when road is completed.',
+            },
+
+            {
+              icon: <MonasteryIcon />,
+              title: 'The monasteries',
+              points: 9,
+              description: '9 points for fully surrounded monastery.',
+            },
+            {
+              icon: <CityIcon />,
+              title: 'The cities',
+              points: 2,
+              layoutProps: { withShild: true },
+              description:
+                '2 points per tile, +2 for coat of arms, if city is completed.',
+            },
+            {
+              icon: <AbbotIcon />,
+              title: 'The abbots',
+              points: 1,
+              description: `1 point for each adjacent tile, including the Abbot's tile, anytime or end.`,
+            },
+          ]}
+          renderItem={({ item }) => (
+            <CardPoints
+              LayoutProps={item.layoutProps}
+              description={item.description}
+              icon={item.icon}
+              points={item.points}
+              title={item.title}
+            />
+          )}
+          style={{
+            width,
+          }}
+        />
       </View>
     </View>
   );
