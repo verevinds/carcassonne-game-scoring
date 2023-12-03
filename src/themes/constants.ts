@@ -9,6 +9,22 @@ export const COLORS = {
   TRANSPARENT: 'transparent',
 };
 
+export enum PLAYER_COLOR_NAME {
+  BLUE = 'BLUE',
+  GREEN = 'GREEN',
+  GREY = 'GREY',
+  PINK = 'PINK',
+  RED = 'RED',
+  YELLOW = 'YELLOW',
+}
+export const PLAYER_COLORS = {
+  [PLAYER_COLOR_NAME.RED]: '#D0212A',
+  [PLAYER_COLOR_NAME.BLUE]: '#1665A4',
+  [PLAYER_COLOR_NAME.YELLOW]: '#DDC222',
+  [PLAYER_COLOR_NAME.GREEN]: '#0A8E45',
+  [PLAYER_COLOR_NAME.GREY]: '#939597',
+  [PLAYER_COLOR_NAME.PINK]: '#D9A8C4',
+};
 export const TYPOGRAPHY = StyleSheet.create({
   ACCENT_1: {
     fontFamily: 'Roboto-Bold',
