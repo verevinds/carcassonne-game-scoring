@@ -5,24 +5,19 @@ import { TYPOGRAPHY, COLORS } from 'themes/constants';
 export const styles = StyleSheet.create({
   cardTitle: {
     ...TYPOGRAPHY.SUBTITLE_1,
-    width: 220,
-    // backgroundColor: '#0604EE',
+    maxWidth: 220,
   },
   cardContainerHighlight: {
     backgroundColor: '#A87257',
   },
-  // cardContentHighlight: {
-  //   padding: -4,
-  // },
   cardContent: {
-    // backgroundColor: '#0DE9DE',
-    width: '100%',
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
   },
   outerContainer: {
-    width: 350,
+    maxWidth: 350,
     height: 100,
     padding: 4,
     backgroundColor: '#F6F4EE',
@@ -37,7 +32,7 @@ export const styles = StyleSheet.create({
   innerContainer: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'stretch',
     backgroundColor: '#F6F4EE',
     paddingHorizontal: 20,
     borderRadius: 10,

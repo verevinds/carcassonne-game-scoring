@@ -36,7 +36,7 @@ export default function ExpansionsScreen() {
           />
         </View>
       </View>
-      <Button href="/players" />
+      <Button href="/players">Select Players</Button>
     </View>
   );
 }
@@ -61,7 +61,6 @@ const styles = StyleSheet.create({
     ...TYPOGRAPHY.HEADING_2,
   },
   body: {
-    // backgroundColor: '#0604EE',
     marginTop: 50,
   },
 });

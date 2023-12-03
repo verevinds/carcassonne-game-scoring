@@ -12,8 +12,8 @@ export default function PlayersScreen() {
     <View style={styles.container}>
       <CustomBackButton />
       <View style={styles.main}>
-        <Text style={styles.title}>Choose your</Text>
-        <Text style={styles.subtitle}>Game Player</Text>
+        <Text style={styles.title}>Select your</Text>
+        <Text style={styles.subtitle}>Game Players</Text>
         <View style={styles.body}>
           <FlatList
             contentContainerStyle={{
@@ -49,7 +49,7 @@ export default function PlayersScreen() {
         </View>
       </View>
 
-      <Button href="/game" />
+      <Button href="/game">Start Game</Button>
     </View>
   );
 }
