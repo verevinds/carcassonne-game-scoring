@@ -1,16 +1,8 @@
 import { StyleSheet, Text, View } from 'react-native';
-import { Image } from 'expo-image';
-import {
-  SafeAreaView,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
+
 import Button from 'components/button';
-import { BASE_PADDING } from 'themes/constants';
-import { useFonts } from 'expo-font';
-import { TYPOGRAPHY } from 'themes/constants';
-import SvgComponent from 'assets/icons/farme';
-import { Stack } from 'expo-router';
 import CustomBackButton from 'components/button-back';
+import { TYPOGRAPHY } from 'themes/constants';
 
 export default function PlayersScreen() {
   return (
@@ -20,7 +12,7 @@ export default function PlayersScreen() {
         <Text style={styles.title}>Choose your</Text>
         <Text style={styles.subtitle}>Game Player</Text>
       </View>
-      <Button href="/game"></Button>
+      <Button href="/game" />
     </View>
   );
 }

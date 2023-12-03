@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-// import { BASE_PADDING } from 'themes/constants';
+
 import { TYPOGRAPHY } from 'themes/constants';
 
 export const styles = StyleSheet.create({
@@ -19,5 +19,5 @@ export const styles = StyleSheet.create({
   },
   text: {
     ...TYPOGRAPHY.BUTTON_LABEL,
-  }
+  },
 });

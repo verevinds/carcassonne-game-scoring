@@ -1,5 +1,4 @@
-import { Platform, StyleSheet } from 'react-native';
-// import { DefaultTheme as DefaultNavigationTheme } from '@react-navigation/native';
+import { StyleSheet } from 'react-native';
 
 export const COLORS = {
   PRIMARY_15: 'rgba(5, 47, 70, 1)',

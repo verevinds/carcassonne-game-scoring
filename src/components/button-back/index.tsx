@@ -1,5 +1,6 @@
-import { View, Text, TouchableOpacity } from 'react-native';
-import { Stack, useNavigation } from 'expo-router';
+import { useNavigation } from 'expo-router';
+import { View, TouchableOpacity } from 'react-native';
+
 import ArrowIcon from 'assets/icons/arrow';
 
 export default function CustomBackButton() {

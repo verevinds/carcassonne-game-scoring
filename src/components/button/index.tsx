@@ -1,9 +1,10 @@
 import { Link } from 'expo-router';
 import { LinkProps } from 'expo-router/build/link/Link';
-import { styles } from './index.styles';
 import { View, Text } from 'react-native';
 
-const Button = (props: LinkProps) => {
+import { styles } from './index.styles';
+
+const Button = (props: LinkProps): JSX.Element => {
   return (
     <Link {...props} style={[styles.button, props.style]}>
       <View style={styles.container}>

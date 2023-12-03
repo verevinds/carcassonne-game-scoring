@@ -1,40 +1,14 @@
-import {
-  Dimensions,
-  ListRenderItemInfo,
-  StyleSheet,
-  Text,
-  Touchable,
-  TouchableOpacity,
-  View,
-  VirtualizedListProps,
-} from 'react-native';
-import { Image } from 'expo-image';
-import {
-  SafeAreaView,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
-import Button from 'components/button';
-import { BASE_PADDING, COLORS } from 'themes/constants';
-import { useFonts } from 'expo-font';
-import { TYPOGRAPHY } from 'themes/constants';
-import SvgComponent from 'assets/icons/farme';
-import { Stack } from 'expo-router';
-import CustomBackButton from 'components/button-back';
-import CastleIcon from 'assets/icons/castle';
+import { StyleSheet, Text, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
-import {
-  JSXElementConstructor,
-  ReactElement,
-  ReactNode,
-  useState,
-} from 'react';
-import { SvgProps } from 'react-native-svg';
+
+import BuilderAndTraderIcon from 'assets/icons/builder-and-trader';
+import CastleIcon from 'assets/icons/castle';
 import CastleRiverIcon from 'assets/icons/castle-river';
 import CathedralIcon from 'assets/icons/cathedral';
-import BuilderAndTraderIcon from 'assets/icons/builder-and-trader';
 import DragonIcon from 'assets/icons/dragon';
+import Button from 'components/button';
 import { Card } from 'components/card';
-const { height: windowHeight, width: windowWidth } = Dimensions.get('screen');
+import { TYPOGRAPHY, COLORS } from 'themes/constants';
 
 export default function ExpansionsScreen() {
   return (
@@ -43,16 +17,12 @@ export default function ExpansionsScreen() {
       <View style={styles.main}>
         <Text style={styles.title}>Choose your</Text>
         <Text style={styles.subtitle}>Expansions</Text>
-        <View style={styles.svgContainer}></View>
+        <View style={styles.svgContainer} />
         <View style={styles.body}>
           <FlatList
             contentContainerStyle={{
               paddingBottom: 330,
             }}
-            showsVerticalScrollIndicator={false}
-            renderItem={(props) => (
-              <Card icon={props.item.icon} text={props.item.text} />
-            )}
             data={[
               { text: 'Basic version', icon: <CastleIcon /> },
               { text: 'Basic version 2.0', icon: <CastleRiverIcon /> },
@@ -60,10 +30,14 @@ export default function ExpansionsScreen() {
               { text: 'Traders & Builders', icon: <BuilderAndTraderIcon /> },
               { text: 'The Princess & The Dragon', icon: <DragonIcon /> },
             ]}
+            renderItem={(props) => (
+              <Card icon={props.item.icon} text={props.item.text} />
+            )}
+            showsVerticalScrollIndicator={false}
           />
         </View>
       </View>
-      <Button href="/players"></Button>
+      <Button href="/players" />
     </View>
   );
 }

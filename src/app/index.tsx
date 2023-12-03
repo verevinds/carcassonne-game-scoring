@@ -1,17 +1,9 @@
-import { StyleSheet, Text, View } from 'react-native';
-import { Image } from 'expo-image';
-import {
-  SafeAreaView,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
-import Button from 'components/button';
-import { BASE_PADDING } from 'themes/constants';
 import { useFonts } from 'expo-font';
-import { TYPOGRAPHY } from 'themes/constants';
-import SvgComponent from 'assets/icons/farme';
+import { StyleSheet, Text, View } from 'react-native';
 
-const blurhash =
-  '|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[';
+import SvgComponent from 'assets/icons/farme';
+import Button from 'components/button';
+import { TYPOGRAPHY } from 'themes/constants';
 
 export default function Page() {
   const [fontReaded] = useFonts({
@@ -30,7 +22,7 @@ export default function Page() {
           <SvgComponent />
         </View>
       </View>
-      <Button href="/expansions"></Button>
+      <Button href="/expansions" />
     </View>
   );
 }

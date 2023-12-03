@@ -1,4 +1,5 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
+
 import { TYPOGRAPHY, COLORS } from 'themes/constants';
 
 export const styles = StyleSheet.create({
