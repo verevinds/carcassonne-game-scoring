@@ -38,7 +38,6 @@ const { height: windowHeight, width: windowWidth } = Dimensions.get('screen');
 
 export function Card(props: { text: string; icon: JSX.Element | undefined }) {
   const [isSelected, setSelected] = useState(false);
-  console.log({ isSelected });
   return (
     <TouchableOpacity onPress={() => setSelected((prev) => !prev)}>
       <View
