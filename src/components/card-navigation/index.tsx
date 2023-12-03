@@ -1,5 +1,6 @@
 import { Link } from 'expo-router';
 import { Text, View } from 'react-native';
+import { useStore } from 'stores';
 
 import ArrowIcon from 'assets/icons/arrow';
 import PlayerIcon from 'assets/icons/player';
@@ -7,15 +8,9 @@ import { COLORS, PLAYER_COLOR_NAME } from 'themes/constants';
 
 import { styles } from './index.styles';
 
-function CardNavigation({
-  name,
-  position,
-  points,
-}: {
-  name: PLAYER_COLOR_NAME;
-  position: number;
-  points: number;
-}) {
+function CardNavigation({ name }: { name: PLAYER_COLOR_NAME }) {
+  const store = useStore();
+  const player = store.playersStore.getPlayer(name);
   return (
     <Link
       href={{
@@ -38,9 +33,9 @@ function CardNavigation({
         <View style={styles.content}>
           <View>
             <Text style={styles.title}>{name} player</Text>
-            <Text style={styles.position}>position {position}</Text>
+            <Text style={styles.position}>position {player.position}</Text>
           </View>
-          <Text style={styles.points}>points: {points}</Text>
+          <Text style={styles.points}>points: {player.points}</Text>
         </View>
         <View style={styles.navigation}>
           <ArrowIcon mirror />

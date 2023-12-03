@@ -25,18 +25,12 @@ export default function GameScreen() {
             paddingBottom: 130,
           }}
           data={[
-            { name: PLAYER_COLOR_NAME.RED, points: 2, position: 2 },
-            { name: PLAYER_COLOR_NAME.BLUE, points: 2, position: 2 },
-            { name: PLAYER_COLOR_NAME.GREEN, points: 2, position: 2 },
-            { name: PLAYER_COLOR_NAME.YELLOW, points: 2, position: 2 },
+            { name: PLAYER_COLOR_NAME.RED },
+            { name: PLAYER_COLOR_NAME.BLUE },
+            { name: PLAYER_COLOR_NAME.GREEN },
+            { name: PLAYER_COLOR_NAME.YELLOW },
           ]}
-          renderItem={({ item }) => (
-            <CardNavigation
-              name={item.name}
-              points={item.points}
-              position={item.position}
-            />
-          )}
+          renderItem={({ item }) => <CardNavigation name={item.name} />}
           style={{
             width,
           }}

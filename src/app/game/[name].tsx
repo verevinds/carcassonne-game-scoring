@@ -1,6 +1,8 @@
 import { useLocalSearchParams } from 'expo-router';
+import { observer } from 'mobx-react';
 import { Dimensions, StyleSheet, Text, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
+import { useStore } from 'stores';
 
 import AbbotIcon from 'assets/icons/abbot';
 import CityIcon from 'assets/icons/city';
@@ -13,8 +15,48 @@ import { TYPOGRAPHY } from 'themes/constants';
 
 const { height, width } = Dimensions.get('window');
 
-export default function EnterPoints() {
+function EnterPoints() {
   const { name } = useLocalSearchParams<{ name: string }>();
+
+  const store = useStore();
+  const player = store.playersStore.getPlayer(name);
+  const data = [
+    {
+      icon: <RoadIcon />,
+      title: 'The roads',
+      description: '1 point per tile, when road is completed.',
+      feature: player.road,
+      onMinusPress: () => player.road?.minus(),
+      onPlusPress: () => player.road?.plus(),
+    },
+    {
+      icon: <MonasteryIcon />,
+      title: 'The monasteries',
+      description: '9 points for fully surrounded monastery.',
+      feature: player.monastery,
+      onMinusPress: () => player.monastery?.minus(),
+      onPlusPress: () => player.monastery?.plus(),
+    },
+    {
+      icon: <CityIcon />,
+      title: 'The cities',
+      layoutProps: { withShild: true },
+      description:
+        '2 points per tile, +2 for coat of arms, if city is completed.',
+      feature: player.city,
+      onMinusPress: () => player.city?.minus(),
+      onPlusPress: () => player.city?.plus(),
+    },
+    {
+      icon: <AbbotIcon />,
+      title: 'The abbots',
+      description: `1 point for each adjacent tile, including the Abbot's tile, anytime or end.`,
+      feature: player.abbot,
+      onMinusPress: () => player.abbot?.minus(),
+      onPlusPress: () => player.abbot?.plus(),
+    },
+  ];
+
   return (
     <View style={styles.container}>
       <View style={styles.navigation}>
@@ -33,42 +75,16 @@ export default function EnterPoints() {
             marginTop: 20,
             paddingBottom: 130,
           }}
-          data={[
-            {
-              icon: <RoadIcon />,
-              title: 'The roads',
-              points: 1,
-              description: '1 point per tile, when road is completed.',
-            },
-
-            {
-              icon: <MonasteryIcon />,
-              title: 'The monasteries',
-              points: 9,
-              description: '9 points for fully surrounded monastery.',
-            },
-            {
-              icon: <CityIcon />,
-              title: 'The cities',
-              points: 2,
-              layoutProps: { withShild: true },
-              description:
-                '2 points per tile, +2 for coat of arms, if city is completed.',
-            },
-            {
-              icon: <AbbotIcon />,
-              title: 'The abbots',
-              points: 1,
-              description: `1 point for each adjacent tile, including the Abbot's tile, anytime or end.`,
-            },
-          ]}
+          data={data}
           renderItem={({ item }) => (
             <CardPoints
               LayoutProps={item.layoutProps}
               description={item.description}
+              feature={item?.feature}
               icon={item.icon}
-              points={item.points}
               title={item.title}
+              onMinusPress={item.onMinusPress}
+              onPlusPress={item.onPlusPress}
             />
           )}
           style={{
@@ -150,3 +166,5 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
   },
 });
+
+export default observer(EnterPoints);

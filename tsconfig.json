@@ -4,7 +4,8 @@
     "baseUrl": "./src",
     "paths": {
       "assets": ["./assets/*"]
-    }
+    },
+    "experimentalDecorators": false
   },
   "extends": "expo/tsconfig.base"
 }

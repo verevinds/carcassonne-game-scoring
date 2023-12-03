@@ -2,9 +2,16 @@ import * as React from 'react';
 
 import Svg, { Path, SvgProps, Rect } from 'react-native-svg';
 
-export default function MinusIcon(props: SvgProps) {
+export default function MinusIcon({ disabled, ...props }: SvgProps) {
   return (
-    <Svg fill="none" height="36" viewBox="0 0 36 36" width="36" {...props}>
+    <Svg
+      fill="none"
+      height="36"
+      style={{ opacity: disabled ? 0.5 : 1 }}
+      viewBox="0 0 36 36"
+      width="36"
+      {...props}
+    >
       <Rect fill="#A87257" height="30" rx="15" width="30" x="3" y="2" />
       <Path
         d="M24 17.0001L12 17"
