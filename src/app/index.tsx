@@ -4,7 +4,7 @@ import {
   SafeAreaView,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
-import Button from 'components/button/button';
+import Button from 'components/button';
 import { BASE_PADDING } from 'themes/constants';
 import { useFonts } from 'expo-font';
 import { TYPOGRAPHY } from 'themes/constants';
