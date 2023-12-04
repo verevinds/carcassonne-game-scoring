@@ -6,6 +6,7 @@ import { PlayersStore } from './players-store';
 export class RootStore {
   playersStore = new PlayersStore();
   expansionsStore = new ExpansionsStore();
+  numberOfGames = 1;
   constructor() {
     makeAutoObservable(this);
     autorun(() => {
@@ -15,6 +16,14 @@ export class RootStore {
         });
       }
     });
+  }
+  restart() {
+    this.numberOfGames++;
+    this.playersStore = new PlayersStore();
+  }
+  reset() {
+    this.playersStore = new PlayersStore();
+    this.expansionsStore = new ExpansionsStore();
   }
 }
 

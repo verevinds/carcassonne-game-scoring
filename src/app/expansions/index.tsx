@@ -3,7 +3,6 @@ import { EXPANTIONS_NAME } from 'constants/expansions';
 import { observer } from 'mobx-react';
 import { StyleSheet, Text, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
-import { useStore } from 'stores';
 
 import BuilderAndTraderIcon from 'assets/icons/builder-and-trader';
 import CastleIcon from 'assets/icons/castle';
@@ -12,10 +11,12 @@ import CathedralIcon from 'assets/icons/cathedral';
 import DragonIcon from 'assets/icons/dragon';
 import Button from 'components/button-tangled';
 import CardSelectExpansions from 'components/card-select-expansions';
+import { useStore } from 'stores';
 import { TYPOGRAPHY } from 'themes/constants';
 
 function ExpansionsScreen() {
   const store = useStore();
+
   return (
     <View style={styles.container}>
       <View style={{ minHeight: 50 }} />
@@ -68,7 +69,6 @@ function ExpansionsScreen() {
   );
 }
 
-export default observer(ExpansionsScreen);
 const styles = StyleSheet.create({
   container: {
     position: 'relative',
@@ -76,7 +76,6 @@ const styles = StyleSheet.create({
     margin: 0,
     padding: 0,
     paddingHorizontal: 20,
-    // backgroundColor: '#ED0',
   },
   main: {
     padding: 0,
@@ -92,3 +91,5 @@ const styles = StyleSheet.create({
     marginTop: 50,
   },
 });
+
+export default observer(ExpansionsScreen);

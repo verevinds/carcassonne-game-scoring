@@ -1,19 +1,22 @@
 import { observer } from 'mobx-react';
 import { StyleSheet, Text, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
-import { useStore } from 'stores';
 
 import PlayerIcon from 'assets/icons/player';
-import CustomBackButton from 'components/button-back';
+import CustomExitButton from 'components/button-exit';
 import Button from 'components/button-tangled';
 import CardSelectPlayers from 'components/card-select-players';
+import { useStore } from 'stores';
 import { PLAYER_COLOR_NAME, TYPOGRAPHY } from 'themes/constants';
 
 function PlayersScreen() {
   const store = useStore();
+  function onExit() {
+    store.reset();
+  }
   return (
     <View style={styles.container}>
-      <CustomBackButton />
+      <CustomExitButton onPress={onExit} />
       <View style={styles.main}>
         <Text style={styles.title}>Select your</Text>
         <Text style={styles.subtitle}>Game Players</Text>

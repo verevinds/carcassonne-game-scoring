@@ -26,7 +26,7 @@ function PlayersScreen() {
         </View>
       </View>
 
-      <Button disabled={!store.playersStore.isPlayerSelected} href="/game">
+      <Button disabled={!store.playersStore.isPlayerSelected} href="/leadboard">
         Confirm
       </Button>
     </>

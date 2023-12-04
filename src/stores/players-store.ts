@@ -26,6 +26,15 @@ export class PlayersStore {
   get isPlayerSelected() {
     return this.players.size > 0;
   }
+  get leaderBoard() {
+    return Array.from(this.players.entries())
+      .sort((a, b) => b[1].points - a[1].points)
+      .map(([id, player]) => ({
+        name: id,
+        points: player.points,
+        position: player.position,
+      }));
+  }
 
   setPlayer(id: string) {
     this.players.set(id, new PlayerStore(id, this.options));

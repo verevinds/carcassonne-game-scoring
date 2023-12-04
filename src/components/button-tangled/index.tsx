@@ -7,7 +7,7 @@ import { View, Text, Animated } from 'react-native';
 import { styles } from './index.styles';
 
 const Button = (props: LinkProps): JSX.Element => {
-  const fadeAnim = useRef(new Animated.Value(1)).current;
+  const fadeAnim = useRef(new Animated.Value(props.disabled ? 0.5 : 1)).current;
 
   useEffect(() => {
     Animated.timing(fadeAnim, {
@@ -18,7 +18,7 @@ const Button = (props: LinkProps): JSX.Element => {
   }, [props.disabled]);
 
   return (
-    <Link {...props} style={[props.style, styles.link]}>
+    <Link {...props} style={[props.style, styles.link]} onPress={props.onPress}>
       <View style={styles.container}>
         <Animated.View
           style={{

@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 
 import { autorun } from 'mobx';
-import { useStore } from 'stores';
 
 import CardSelect from 'components/card-select';
+import { useStore } from 'stores';
 
 import type { CardSelectExpansionsProps } from './index.types';
 
@@ -18,6 +18,8 @@ function CardSelectExpansions(props: CardSelectExpansionsProps) {
           setIsSelected(true);
         }
       });
+      if (store.expansionsStore.nameExpansions.length === 0)
+        setIsSelected(false);
     });
   }, []);
 
