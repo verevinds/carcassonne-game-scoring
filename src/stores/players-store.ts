@@ -1,9 +1,17 @@
 import { ObservableMap, autorun, makeAutoObservable } from 'mobx';
 
-import { PlayerStore } from './player-store';
+import { Options, PlayerStore } from './player-store';
 
 export class PlayersStore {
   players = new ObservableMap();
+  options: Options = {
+    price: {
+      abbot: 0,
+      city: 0,
+      monastery: 0,
+      road: 0,
+    },
+  };
 
   constructor() {
     makeAutoObservable(this);
@@ -20,7 +28,7 @@ export class PlayersStore {
   }
 
   setPlayer(id: string) {
-    this.players.set(id, new PlayerStore(id));
+    this.players.set(id, new PlayerStore(id, this.options));
   }
   getPlayer(id: string | undefined) {
     return this.players.get(id);
@@ -41,5 +49,8 @@ export class PlayersStore {
     sortedPlayers.forEach(([_id, player], index) => {
       player.position = index + 1;
     });
+  }
+  setOptions(options: Options) {
+    this.options = options;
   }
 }

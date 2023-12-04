@@ -1,3 +1,5 @@
+import { EXPANTIONS_NAME } from 'constants/expansions';
+
 import { observer } from 'mobx-react';
 import { StyleSheet, Text, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
@@ -26,23 +28,27 @@ function ExpansionsScreen() {
               paddingBottom: 330,
             }}
             data={[
-              { text: 'Basic version', icon: <CastleIcon />, disabled: true },
               {
-                text: 'Basic version 2.0',
+                text: EXPANTIONS_NAME.BASIC_VERSION_2,
                 icon: <CastleRiverIcon />,
               },
               {
-                text: 'Inns & Cathedrals',
+                text: EXPANTIONS_NAME.BASIC_VERSION,
+                icon: <CastleIcon />,
+                disabled: true,
+              },
+              {
+                text: EXPANTIONS_NAME.INNS_AND_CATHEDRALS,
                 icon: <CathedralIcon />,
                 disabled: true,
               },
               {
-                text: 'Traders & Builders',
+                text: EXPANTIONS_NAME.TRADERS_AND_BUILDERS,
                 icon: <BuilderAndTraderIcon />,
                 disabled: true,
               },
               {
-                text: 'The Princess & The Dragon',
+                text: EXPANTIONS_NAME.THE_PRINCESS_AND_THE_DRAGON,
                 icon: <DragonIcon />,
                 disabled: true,
               },

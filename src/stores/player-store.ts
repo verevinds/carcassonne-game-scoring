@@ -3,16 +3,23 @@ import { makeAutoObservable } from 'mobx';
 import { CityFeatureStore } from './city-feature-store';
 import { FeatureStore } from './feature-store';
 
+export type Options = {
+  price: { road: number; monastery: number; city: number; abbot: number };
+};
 export class PlayerStore {
   name = '';
   position = 0;
-  road = new FeatureStore(1);
-  monastery = new FeatureStore(9);
-  city = new CityFeatureStore();
-  abbot = new FeatureStore(1);
+  road: FeatureStore;
+  monastery: FeatureStore;
+  city: FeatureStore;
+  abbot: FeatureStore;
 
-  constructor(name: string) {
+  constructor(name: string, options: Options) {
     this.name = name;
+    this.road = new FeatureStore(options.price.road);
+    this.monastery = new FeatureStore(options.price.monastery);
+    this.city = new CityFeatureStore(options.price.city);
+    this.abbot = new FeatureStore(options.price.abbot);
     makeAutoObservable(this);
   }
 

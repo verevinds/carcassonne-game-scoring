@@ -4,8 +4,8 @@ import { FeatureStore } from './feature-store';
 
 export class CityFeatureStore extends FeatureStore {
   shield = 0;
-  constructor() {
-    super(2);
+  constructor(price: number) {
+    super(price);
     makeObservable(this, {
       shield: observable,
       setShield: action,
