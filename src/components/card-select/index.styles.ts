@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 import { TYPOGRAPHY, COLORS } from 'themes/constants';
 
 export const styles = StyleSheet.create({
+  disabled: { opacity: 0.5 },
   cardTitle: {
     ...TYPOGRAPHY.SUBTITLE_1,
     maxWidth: 220,

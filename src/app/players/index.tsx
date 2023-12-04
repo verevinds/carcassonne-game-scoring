@@ -1,13 +1,16 @@
+import { observer } from 'mobx-react';
 import { StyleSheet, Text, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
+import { useStore } from 'stores';
 
 import PlayerIcon from 'assets/icons/player';
 import CustomBackButton from 'components/button-back';
 import Button from 'components/button-tangled';
-import { Card } from 'components/card-select';
+import CardSelectPlayers from 'components/card-select-players';
 import { PLAYER_COLOR_NAME, TYPOGRAPHY } from 'themes/constants';
 
-export default function PlayersScreen() {
+function PlayersScreen() {
+  const store = useStore();
   return (
     <View style={styles.container}>
       <CustomBackButton />
@@ -23,36 +26,42 @@ export default function PlayersScreen() {
               {
                 text: 'Red player',
                 icon: <PlayerIcon variant={PLAYER_COLOR_NAME.RED} />,
+                name: PLAYER_COLOR_NAME.RED,
               },
               {
                 text: 'Blue player',
                 icon: <PlayerIcon variant={PLAYER_COLOR_NAME.BLUE} />,
+                name: PLAYER_COLOR_NAME.BLUE,
               },
               {
                 text: 'Green player',
                 icon: <PlayerIcon variant={PLAYER_COLOR_NAME.GREEN} />,
+                name: PLAYER_COLOR_NAME.GREEN,
               },
               {
                 text: 'Yellow player',
                 icon: <PlayerIcon variant={PLAYER_COLOR_NAME.YELLOW} />,
+                name: PLAYER_COLOR_NAME.YELLOW,
               },
               {
                 text: 'Pink player',
                 icon: <PlayerIcon variant={PLAYER_COLOR_NAME.PINK} />,
+                name: PLAYER_COLOR_NAME.PINK,
               },
             ]}
-            renderItem={(props) => (
-              <Card icon={props.item.icon} text={props.item.text} />
-            )}
+            renderItem={({ item }) => <CardSelectPlayers {...item} />}
             showsVerticalScrollIndicator={false}
           />
         </View>
       </View>
 
-      <Button href="/game">Start Game</Button>
+      <Button disabled={!store.playersStore.isPlayerSelected} href="/game">
+        Start Game
+      </Button>
     </View>
   );
 }
+export default observer(PlayersScreen);
 
 const styles = StyleSheet.create({
   container: {

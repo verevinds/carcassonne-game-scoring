@@ -3,7 +3,8 @@ import { useState } from 'react';
 import { observer } from 'mobx-react';
 import { Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { ICityFeatureStore, IFeatureStore } from 'stores';
+import type { ICityFeatureStore } from 'stores/city-feature-store';
+import type { IFeatureStore } from 'stores/feature-store';
 
 import MinusIcon from 'assets/icons/minus';
 import PlusIcon from 'assets/icons/plus';

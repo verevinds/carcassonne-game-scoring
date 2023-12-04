@@ -1,18 +1,21 @@
 import { Dimensions, StyleSheet, Text, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
+import { useStore } from 'stores';
 
 import HeaderIcon from 'assets/icons/header';
-import CustomExitButton from 'components/button-exit';
+import CustomBackButton from 'components/button-back';
 import Button from 'components/button-tangled';
 import CardNavigation from 'components/card-navigation';
-import { PLAYER_COLOR_NAME, TYPOGRAPHY } from 'themes/constants';
+import { TYPOGRAPHY } from 'themes/constants';
 const { height, width } = Dimensions.get('window');
 
 export default function GameScreen() {
+  const store = useStore();
+
   return (
     <View style={styles.container}>
       <View style={styles.navigation}>
-        <CustomExitButton />
+        <CustomBackButton />
       </View>
       <View style={styles.body}>
         <HeaderIcon style={{ marginTop: -65 }} />
@@ -24,12 +27,7 @@ export default function GameScreen() {
             marginTop: 20,
             paddingBottom: 130,
           }}
-          data={[
-            { name: PLAYER_COLOR_NAME.RED },
-            { name: PLAYER_COLOR_NAME.BLUE },
-            { name: PLAYER_COLOR_NAME.GREEN },
-            { name: PLAYER_COLOR_NAME.YELLOW },
-          ]}
+          data={store.playersStore.namePlayers}
           renderItem={({ item }) => <CardNavigation name={item.name} />}
           style={{
             width,

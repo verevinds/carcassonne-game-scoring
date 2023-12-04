@@ -8,6 +8,7 @@ export const COLORS = {
   BACKGROUND_90: '#EDE9DE',
   BACKGROUND_95: 'rgba(246, 244, 238, 1)',
   SHADOW_1: 'rgba(0, 0, 0, 0.25)',
+  WHITE: '#FFFFFF',
   TRANSPARENT: 'transparent',
 };
 

@@ -10,15 +10,30 @@ export class PlayersStore {
     autorun(() => this.updatePlayerPositions());
   }
 
-  addPlayer(id: string) {
-    this.players.set(id, new PlayerStore());
+  get namePlayers() {
+    return Array.from(this.players.entries()).map(([id]) => ({
+      name: id,
+    }));
   }
-  getPlayer(id: string | undefined) {
-    if (!id) return null;
-    if (!this.players.has(id)) this.addPlayer(id);
-    return this.players.get(id);
+  get isPlayerSelected() {
+    return this.players.size > 0;
   }
 
+  setPlayer(id: string) {
+    this.players.set(id, new PlayerStore(id));
+  }
+  getPlayer(id: string | undefined) {
+    return this.players.get(id);
+  }
+  deletePlayer(id: string) {
+    this.players.delete(id);
+  }
+  togglePlayer(id: string) {
+    if (this.players.has(id)) {
+      return this.deletePlayer(id);
+    }
+    this.setPlayer(id);
+  }
   updatePlayerPositions() {
     const sortedPlayers = Array.from(this.players.entries()).sort(
       (a, b) => b[1].points - a[1].points,

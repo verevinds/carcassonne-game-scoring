@@ -1,5 +1,7 @@
+import { observer } from 'mobx-react';
 import { StyleSheet, Text, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
+import { useStore } from 'stores';
 
 import BuilderAndTraderIcon from 'assets/icons/builder-and-trader';
 import CastleIcon from 'assets/icons/castle';
@@ -7,10 +9,11 @@ import CastleRiverIcon from 'assets/icons/castle-river';
 import CathedralIcon from 'assets/icons/cathedral';
 import DragonIcon from 'assets/icons/dragon';
 import Button from 'components/button-tangled';
-import { Card } from 'components/card-select';
+import CardSelectExpansions from 'components/card-select-expansions';
 import { TYPOGRAPHY } from 'themes/constants';
 
-export default function ExpansionsScreen() {
+function ExpansionsScreen() {
+  const store = useStore();
   return (
     <View style={styles.container}>
       <View style={{ minHeight: 50 }} />
@@ -23,24 +26,43 @@ export default function ExpansionsScreen() {
               paddingBottom: 330,
             }}
             data={[
-              { text: 'Basic version', icon: <CastleIcon /> },
-              { text: 'Basic version 2.0', icon: <CastleRiverIcon /> },
-              { text: 'Inns & Cathedrals', icon: <CathedralIcon /> },
-              { text: 'Traders & Builders', icon: <BuilderAndTraderIcon /> },
-              { text: 'The Princess & The Dragon', icon: <DragonIcon /> },
+              { text: 'Basic version', icon: <CastleIcon />, disabled: true },
+              {
+                text: 'Basic version 2.0',
+                icon: <CastleRiverIcon />,
+              },
+              {
+                text: 'Inns & Cathedrals',
+                icon: <CathedralIcon />,
+                disabled: true,
+              },
+              {
+                text: 'Traders & Builders',
+                icon: <BuilderAndTraderIcon />,
+                disabled: true,
+              },
+              {
+                text: 'The Princess & The Dragon',
+                icon: <DragonIcon />,
+                disabled: true,
+              },
             ]}
-            renderItem={(props) => (
-              <Card icon={props.item.icon} text={props.item.text} />
-            )}
+            renderItem={({ item }) => <CardSelectExpansions {...item} />}
             showsVerticalScrollIndicator={false}
           />
         </View>
       </View>
-      <Button href="/players">Select Players</Button>
+      <Button
+        disabled={!store.expansionsStore.isExpansionSelected}
+        href="/players"
+      >
+        Select Players
+      </Button>
     </View>
   );
 }
 
+export default observer(ExpansionsScreen);
 const styles = StyleSheet.create({
   container: {
     position: 'relative',

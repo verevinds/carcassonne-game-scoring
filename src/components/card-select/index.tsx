@@ -1,17 +1,20 @@
-import { useState } from 'react';
-
 import { Text, TouchableOpacity, View } from 'react-native';
 
 import { styles } from './index.styles';
+import { CardSelectProps } from './index.types';
 
-export function Card(props: { text: string; icon: JSX.Element | undefined }) {
-  const [isSelected, setSelected] = useState(false);
+function CardSelect(props: CardSelectProps) {
+  function onPlayerSelect() {
+    props.onSelect?.();
+  }
+
   return (
-    <TouchableOpacity onPress={() => setSelected((prev) => !prev)}>
+    <TouchableOpacity disabled={props.disabled} onPress={onPlayerSelect}>
       <View
         style={[
           styles.outerContainer,
-          isSelected && styles.cardContainerHighlight,
+          props.selected && styles.cardContainerHighlight,
+          props.disabled && styles.disabled,
         ]}
       >
         <View style={styles.innerContainer}>
@@ -24,3 +27,5 @@ export function Card(props: { text: string; icon: JSX.Element | undefined }) {
     </TouchableOpacity>
   );
 }
+
+export default CardSelect;
