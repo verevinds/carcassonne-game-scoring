@@ -12,6 +12,7 @@ export type Options = {
     abbot: FeaturePrice;
   };
 };
+
 export class PlayerStore {
   name = '';
   position = 0;

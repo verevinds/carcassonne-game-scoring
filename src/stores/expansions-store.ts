@@ -6,6 +6,7 @@ import { Options } from './player-store';
 
 export class ExpansionsStore {
   expansions = new ObservableMap();
+
   constructor() {
     makeAutoObservable(this);
   }
@@ -18,7 +19,6 @@ export class ExpansionsStore {
   get isExpansionSelected() {
     return this.expansions.size > 0;
   }
-
   get price(): Options['price'] | null {
     if (this.expansions.has(EXPANTIONS_NAME.BASIC_VERSION_2)) {
       return {

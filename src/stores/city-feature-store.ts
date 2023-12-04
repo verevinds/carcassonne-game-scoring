@@ -6,6 +6,7 @@ import { FeaturePrice } from './player-store';
 export class CityFeatureStore extends FeatureStore {
   shield = 0;
   shieldIncomplete = 0;
+
   constructor(price: FeaturePrice) {
     super(price);
     makeObservable(this, {
@@ -15,6 +16,7 @@ export class CityFeatureStore extends FeatureStore {
       setShieldIncomplete: action,
     });
   }
+
   get points() {
     return (
       Number(this.count) * Number(this.price.complete) +
@@ -23,6 +25,7 @@ export class CityFeatureStore extends FeatureStore {
       Number(this.shieldIncomplete) * Number(this.price.incomplete)
     );
   }
+
   setShield(shield: number) {
     this.shield = shield;
   }

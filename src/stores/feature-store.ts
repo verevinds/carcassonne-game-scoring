@@ -6,6 +6,7 @@ export class FeatureStore {
   price: FeaturePrice = { complete: 0, incomplete: 0 };
   count = 0;
   countImcomplete = 0;
+
   constructor(price: FeaturePrice) {
     this.price = price;
     makeObservable(this, {
@@ -20,6 +21,7 @@ export class FeatureStore {
       setCountIncomplete: action,
     });
   }
+
   get points() {
     return (
       Number(this.count) * Number(this.price.complete) +
@@ -46,4 +48,5 @@ export class FeatureStore {
     this.countImcomplete = count;
   }
 }
+
 export type IFeatureStore = FeatureStore;
