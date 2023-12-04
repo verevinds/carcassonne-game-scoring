@@ -9,22 +9,24 @@ function CardSelect(props: CardSelectProps) {
   }
 
   return (
-    <TouchableOpacity disabled={props.disabled} onPress={onPlayerSelect}>
-      <View
-        style={[
-          styles.outerContainer,
-          props.selected && styles.cardContainerHighlight,
-          props.disabled && styles.disabled,
-        ]}
-      >
-        <View style={styles.innerContainer}>
-          <View style={styles.cardContent}>
-            <Text style={styles.cardTitle}>{props.text}</Text>
-            {props.icon}
+    <View style={styles.container}>
+      <TouchableOpacity disabled={props.disabled} onPress={onPlayerSelect}>
+        <View
+          style={[
+            styles.outerContainer,
+            props.selected && styles.cardContainerHighlight,
+            props.disabled && styles.disabled,
+          ]}
+        >
+          <View style={styles.innerContainer}>
+            <View style={styles.cardContent}>
+              <Text style={styles.cardTitle}>{props.text}</Text>
+              {props.icon}
+            </View>
           </View>
         </View>
-      </View>
-    </TouchableOpacity>
+      </TouchableOpacity>
+    </View>
   );
 }
 

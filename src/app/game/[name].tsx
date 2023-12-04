@@ -5,6 +5,7 @@ import { Dimensions, StyleSheet, Text, View } from 'react-native';
 import HeaderIcon from 'assets/icons/header';
 import CustomBackButton from 'components/button-back';
 import Features from 'components/features';
+import Pattern from 'components/pattern';
 import { useStore } from 'stores';
 import { TYPOGRAPHY } from 'themes/constants';
 
@@ -22,6 +23,7 @@ function EnterPoints() {
         <CustomBackButton />
       </View>
       <View style={styles.body}>
+        <Pattern />
         <HeaderIcon style={{ marginTop: -65 }} />
         <Text style={styles.title}>
           Enter Points for{' '}
@@ -42,14 +44,11 @@ const styles = StyleSheet.create({
   navigation: {
     paddingHorizontal: 20,
   },
-  window: {
-    flex: 1,
-    height: 128,
-  },
   title: {
     ...TYPOGRAPHY.HEADING_2,
   },
   body: {
+    position: 'relative',
     paddingHorizontal: 20,
     backgroundColor: '#EDE9DE',
     height: height - 327,

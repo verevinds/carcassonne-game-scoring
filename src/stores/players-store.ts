@@ -10,6 +10,7 @@ export class PlayersStore {
       city: { complete: 0, incomplete: 0 },
       monastery: { complete: 0, incomplete: 0 },
       road: { complete: 0, incomplete: 0 },
+      fields: { complete: 0, incomplete: 0 },
     },
   };
 

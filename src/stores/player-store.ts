@@ -10,6 +10,7 @@ export type Options = {
     monastery: FeaturePrice;
     city: FeaturePrice;
     abbot: FeaturePrice;
+    fields: FeaturePrice;
   };
 };
 
@@ -20,6 +21,7 @@ export class PlayerStore {
   monastery: FeatureStore;
   city: FeatureStore;
   abbot: FeatureStore;
+  fields: FeatureStore;
 
   constructor(name: string, options: Options) {
     this.name = name;
@@ -27,6 +29,7 @@ export class PlayerStore {
     this.monastery = new FeatureStore(options.price.monastery);
     this.city = new CityFeatureStore(options.price.city);
     this.abbot = new FeatureStore(options.price.abbot);
+    this.fields = new FeatureStore(options.price.fields);
     makeAutoObservable(this);
   }
 
@@ -35,7 +38,8 @@ export class PlayerStore {
       this.road.points +
       this.monastery.points +
       this.city.points +
-      this.abbot.points
+      this.abbot.points +
+      this.fields.points
     );
   }
 }

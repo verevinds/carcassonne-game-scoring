@@ -5,6 +5,7 @@ import HeaderIcon from 'assets/icons/header';
 import CustomBackButton from 'components/button-back';
 import Button from 'components/button-tangled';
 import CardNavigation from 'components/card-navigation';
+import Pattern from 'components/pattern';
 import { useStore } from 'stores';
 import { TYPOGRAPHY } from 'themes/constants';
 const { height, width } = Dimensions.get('window');
@@ -18,6 +19,7 @@ export default function GameScreen() {
         <CustomBackButton />
       </View>
       <View style={styles.body}>
+        <Pattern />
         <HeaderIcon style={{ marginTop: -65 }} />
         <Text style={styles.title}>Select a Player to Enter Points</Text>
         <FlatList

@@ -1,8 +1,11 @@
+import { useEffect } from 'react';
+
 import { observer } from 'mobx-react';
 import { FlatList } from 'react-native-gesture-handler';
 
 import AbbotIcon from 'assets/icons/abbot';
 import CityIcon from 'assets/icons/city';
+import FieldsIcon from 'assets/icons/fields';
 import MonasteryIcon from 'assets/icons/monastery';
 import RoadIcon from 'assets/icons/road';
 import CardPoints from 'components/card-points';
@@ -57,6 +60,18 @@ function Features(props: FeaturesProps) {
       feature: player.abbot,
     },
   ];
+
+  useEffect(() => {
+    if (isFinishGame) {
+      data.push({
+        icon: <FieldsIcon />,
+        title: 'The fields',
+        description: `${prices.fields.incomplete} points for each adjacent completed city.`,
+        LayoutProps: { withIndicator: props.LayoutProps?.withIndicator },
+        feature: player.fields,
+      });
+    }
+  }, [isFinishGame]);
 
   return (
     <FlatList

@@ -26,6 +26,7 @@ export class ExpansionsStore {
         city: { complete: 2, incomplete: 1 },
         monastery: { complete: 9, incomplete: 1 },
         road: { complete: 1, incomplete: 1 },
+        fields: { complete: 0, incomplete: 3 },
       };
     }
     return null;
