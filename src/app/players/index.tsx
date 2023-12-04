@@ -1,3 +1,6 @@
+import { useState } from 'react';
+
+import { useRouter } from 'expo-router';
 import { observer } from 'mobx-react';
 import { StyleSheet, Text, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
@@ -6,13 +9,25 @@ import PlayerIcon from 'assets/icons/player';
 import CustomExitButton from 'components/button-exit';
 import Button from 'components/button-tangled';
 import CardSelectPlayers from 'components/card-select-players';
+import WarningModal from 'components/warning-modal';
 import { useStore } from 'stores';
 import { PLAYER_COLOR_NAME, TYPOGRAPHY } from 'themes/constants';
 
 function PlayersScreen() {
+  const route = useRouter();
+
+  const [isOpenWarningModal, setIsOpenWarningModal] = useState(false);
   const store = useStore();
   function onExit() {
+    setIsOpenWarningModal(true);
+  }
+  function onConfirm() {
+    setIsOpenWarningModal(false);
     store.reset();
+    route.replace('/expansions');
+  }
+  function onClose() {
+    setIsOpenWarningModal(false);
   }
   return (
     <View style={styles.container}>
@@ -58,6 +73,11 @@ function PlayersScreen() {
         </View>
       </View>
 
+      <WarningModal
+        isOpen={isOpenWarningModal}
+        onClose={onClose}
+        onConfirm={onConfirm}
+      />
       <Button disabled={!store.playersStore.isPlayerSelected} href="/game">
         Start Game
       </Button>

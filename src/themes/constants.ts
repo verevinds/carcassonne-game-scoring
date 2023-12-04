@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 
 export const COLORS = {
   PRIMARY_15: 'rgba(5, 47, 70, 1)',
@@ -8,6 +8,7 @@ export const COLORS = {
   BACKGROUND_90: '#EDE9DE',
   BACKGROUND_95: 'rgba(246, 244, 238, 1)',
   SHADOW_1: 'rgba(0, 0, 0, 0.25)',
+  BLACK: '#000000',
   WHITE: '#FFFFFF',
   TRANSPARENT: 'transparent',
   RED: '#D0212A',
@@ -136,17 +137,17 @@ export const SHADOW_1 = {
   elevation: 10,
 };
 
-// export const SHADOW_2 = {
-//   ...Platform.select({
-//     ios: {
-//       shadowColor: COLORS.SHADOW_2,
-//     },
-//     android: {
-//       shadowColor: COLORS.DARK_50,
-//     },
-//   }),
-//   shadowOffset: { width: 0, height: 5 },
-//   shadowOpacity: 1,
-//   shadowRadius: 20,
-//   elevation: 25,
-// };
+export const SHADOW_2 = {
+  ...Platform.select({
+    ios: {
+      shadowColor: COLORS.SHADOW_1,
+    },
+    android: {
+      shadowColor: COLORS.SHADOW_1,
+    },
+  }),
+  shadowOffset: { width: 0, height: 3 },
+  shadowOpacity: 1,
+  shadowRadius: 4,
+  elevation: 10,
+};
