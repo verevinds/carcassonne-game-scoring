@@ -2,6 +2,8 @@ import { EXPANTIONS_NAME } from 'constants/expansions';
 
 import { ObservableMap, makeAutoObservable } from 'mobx';
 
+import { Options } from './player-store';
+
 export class ExpansionsStore {
   expansions = new ObservableMap();
   constructor() {
@@ -17,13 +19,13 @@ export class ExpansionsStore {
     return this.expansions.size > 0;
   }
 
-  get price() {
+  get price(): Options['price'] | null {
     if (this.expansions.has(EXPANTIONS_NAME.BASIC_VERSION_2)) {
       return {
-        abbot: 1,
-        city: 2,
-        monastery: 9,
-        road: 1,
+        abbot: { complete: 1, incomplete: 1 },
+        city: { complete: 2, incomplete: 1 },
+        monastery: { complete: 9, incomplete: 1 },
+        road: { complete: 1, incomplete: 1 },
       };
     }
     return null;

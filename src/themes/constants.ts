@@ -10,6 +10,7 @@ export const COLORS = {
   SHADOW_1: 'rgba(0, 0, 0, 0.25)',
   WHITE: '#FFFFFF',
   TRANSPARENT: 'transparent',
+  RED: '#D0212A',
 };
 
 export enum PLAYER_COLOR_NAME {
@@ -54,7 +55,7 @@ export const TYPOGRAPHY = StyleSheet.create({
     color: COLORS.PRIMARY_15,
   },
   SUBTITLE_1: {
-    fontFamily: 'Roboto-Regular',
+    fontFamily: 'Roboto-Medium',
     fontSize: 18,
     lineHeight: 22,
     color: COLORS.PRIMARY_15,

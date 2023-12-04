@@ -1,9 +1,9 @@
 import { Link } from 'expo-router';
 import { Text, View } from 'react-native';
-import { useStore } from 'stores';
 
 import ArrowIcon from 'assets/icons/arrow';
 import PlayerIcon from 'assets/icons/player';
+import { useStore } from 'stores';
 import { COLORS, PLAYER_COLOR_NAME } from 'themes/constants';
 
 import { styles } from './index.styles';

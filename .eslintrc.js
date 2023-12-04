@@ -33,7 +33,7 @@ module.exports = {
           },
           {
             pattern:
-              '{{api,assets,components,config,const,controllers,data,entry,hooks,localization,middlewares,pages,routes,store,themes,types,utils,views,websocket},{api,assets,components,config,const,controllers,data,entry,hooks,localization,middlewares,pages,routes,store,themes,types,utils,views,websocket}/**}',
+              '{{api,assets,components,config,const,controllers,data,entry,hooks,localization,middlewares,pages,routes,stores,themes,types,utils,views,websocket},{api,assets,components,config,const,controllers,data,entry,hooks,localization,middlewares,pages,routes,stores,themes,types,utils,views,websocket}/**}',
             patternOptions: { matchBase: true },
             group: 'internal',
             position: 'before',

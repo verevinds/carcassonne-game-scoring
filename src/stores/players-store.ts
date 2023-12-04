@@ -6,10 +6,10 @@ export class PlayersStore {
   players = new ObservableMap();
   options: Options = {
     price: {
-      abbot: 0,
-      city: 0,
-      monastery: 0,
-      road: 0,
+      abbot: { complete: 0, incomplete: 0 },
+      city: { complete: 0, incomplete: 0 },
+      monastery: { complete: 0, incomplete: 0 },
+      road: { complete: 0, incomplete: 0 },
     },
   };
 

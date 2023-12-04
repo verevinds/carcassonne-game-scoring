@@ -3,6 +3,7 @@ import { Slot } from 'expo-router';
 import { Dimensions } from 'react-native';
 
 import localImage from 'assets/splash.png';
+
 const { height } = Dimensions.get('window');
 export default function _Layout() {
   return (

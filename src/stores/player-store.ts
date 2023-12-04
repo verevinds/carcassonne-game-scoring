@@ -3,8 +3,14 @@ import { makeAutoObservable } from 'mobx';
 import { CityFeatureStore } from './city-feature-store';
 import { FeatureStore } from './feature-store';
 
+export type FeaturePrice = { complete: number; incomplete: number };
 export type Options = {
-  price: { road: number; monastery: number; city: number; abbot: number };
+  price: {
+    road: FeaturePrice;
+    monastery: FeaturePrice;
+    city: FeaturePrice;
+    abbot: FeaturePrice;
+  };
 };
 export class PlayerStore {
   name = '';

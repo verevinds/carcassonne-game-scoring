@@ -17,12 +17,15 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   container: {
+    position: 'relative',
     width: width - 40,
     backgroundColor: '#F6F4EE',
     flexDirection: 'row',
     borderRadius: 10,
     overflow: 'hidden',
     justifyContent: 'space-between',
+    margin: 0,
+    padding: 0,
     marginBottom: 10,
     shadowColor: COLORS.SHADOW_1,
     shadowOffset: { width: 0, height: 1 },
@@ -81,5 +84,17 @@ export const styles = StyleSheet.create({
     color: COLORS.PRIMARY_20,
     width: 30,
     textAlign: 'center',
+  },
+  indicator: {
+    position: 'absolute',
+    left: 0,
+    top: 20,
+    width: 2,
+    height: 20,
+    zIndex: 2,
+    borderEndEndRadius: 10,
+  },
+  indicatorRed: {
+    backgroundColor: COLORS.RED,
   },
 });

@@ -1,17 +1,17 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import { observer } from 'mobx-react';
 import { Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import type { ICityFeatureStore } from 'stores/city-feature-store';
-import type { IFeatureStore } from 'stores/feature-store';
 
 import MinusIcon from 'assets/icons/minus';
 import PlusIcon from 'assets/icons/plus';
 import ShieldIcon from 'assets/icons/shield';
 import ModalPicker from 'components/picker-modal';
+import { PLAYER_COLOR_NAME } from 'themes/constants';
 
 import { styles } from './index.styles';
+import { CardPointsProps } from './index.types';
 
 function CardPoints({
   feature,
@@ -19,30 +19,51 @@ function CardPoints({
   description,
   icon,
   LayoutProps,
-  onPlusPress,
-  onMinusPress,
-}: {
-  feature: ICityFeatureStore | IFeatureStore | undefined;
-  title: string | undefined;
-  description: string | undefined;
-  icon: JSX.Element;
-  LayoutProps?: { withShild?: boolean };
-  onPlusPress: () => void;
-  onMinusPress: () => void;
-}) {
+  player,
+}: CardPointsProps) {
   const [pickerVisible, setPickerVisible] = useState(false);
   const isButtons = LayoutProps?.withShild;
-  const countShields = feature && 'shield' in feature ? feature.shield : 0;
+  const isFinishGame = Boolean(LayoutProps?.withIndicator);
+  function getCountShields() {
+    if (feature && 'shield' in feature && 'shieldIncomplete' in feature) {
+      if (isFinishGame) return feature.shieldIncomplete;
+      return feature.shield;
+    }
+    return 0;
+  }
+  const countShields = getCountShields();
 
   function togglePicker() {
     setPickerVisible((prev) => !prev);
   }
   function onValueChange(val: number) {
-    if (feature && 'setShield' in feature) feature.setShield(val);
+    if (feature && 'setShield' in feature) {
+      if (isFinishGame) return feature.setShieldIncomplete(val);
+      feature.setShield(val);
+    }
   }
+  function onMinusPress() {
+    if (isFinishGame) return feature?.minusIncomplete();
+    feature?.minus();
+  }
+  function onPlusPress() {
+    if (isFinishGame) return feature?.plusIncomplete();
+    feature?.plus();
+  }
+  const indicatorModificator = useMemo(() => {
+    switch (player.name) {
+      case PLAYER_COLOR_NAME.RED:
+        return styles.indicatorRed;
+      default:
+        return undefined;
+    }
+  }, [player.name]);
 
   return (
     <View style={styles.container}>
+      {isFinishGame ? (
+        <View style={[styles.indicator, indicatorModificator]} />
+      ) : null}
       <View style={styles.iconContainer}>{icon}</View>
       <View style={styles.content}>
         <View style={styles.titleContainer}>
