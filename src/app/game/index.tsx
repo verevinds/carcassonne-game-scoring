@@ -31,6 +31,7 @@ export default function GameScreen() {
           }}
           data={store.playersStore.namePlayers}
           renderItem={({ item }) => <CardNavigation name={item.name} />}
+          showsVerticalScrollIndicator={false}
           style={{
             width,
           }}

@@ -32,6 +32,7 @@ function PlayerLeadboard() {
               <Text style={styles.points}>{item.points}</Text>
             </View>
           )}
+          showsVerticalScrollIndicator={false}
         />
       </View>
 

@@ -14,6 +14,9 @@ function PlayersScreen() {
       <View>
         <Text style={styles.title}>Confirm your</Text>
         <Text style={styles.subtitle}>Game Scoring</Text>
+        <Text style={styles.caption}>
+          Scoring all incomplete feature and the fields.
+        </Text>
         <View style={styles.body}>
           <FlatList
             contentContainerStyle={{
@@ -41,7 +44,10 @@ const styles = StyleSheet.create({
     ...TYPOGRAPHY.HEADING_2,
   },
   body: {
-    marginTop: 50,
+    marginTop: 20,
+  },
+  caption: {
+    ...TYPOGRAPHY.CAPTION_1,
   },
 });
 

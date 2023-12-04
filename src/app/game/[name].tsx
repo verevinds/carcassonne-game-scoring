@@ -29,7 +29,10 @@ function EnterPoints() {
           Enter Points for{' '}
           <Text style={{ textTransform: 'capitalize' }}>{name}</Text> Player
         </Text>
-        <Features player={player} />
+
+        <View style={{ marginBottom: 50 }}>
+          <Features player={player} />
+        </View>
       </View>
     </View>
   );

@@ -79,11 +79,11 @@ function Features(props: FeaturesProps) {
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 20,
-        paddingBottom: 130,
+        paddingBottom: 20,
       }}
       data={data}
       renderItem={({ item }) => <CardPoints {...item} player={player} />}
-      style={{}}
+      showsVerticalScrollIndicator={false}
     />
   );
 }

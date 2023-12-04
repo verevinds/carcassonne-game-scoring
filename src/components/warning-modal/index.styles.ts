@@ -37,8 +37,7 @@ export const styles = StyleSheet.create({
   buttonCancel: {
     height: 50,
     borderRadius: 10,
-    paddingHorizontal: 20,
-    paddingVertical: 10,
+    width: 130,
     backgroundColor: COLORS.PRIMARY_20,
     justifyContent: 'center',
     alignItems: 'center',
@@ -49,8 +48,7 @@ export const styles = StyleSheet.create({
   buttonConfirm: {
     height: 50,
     borderRadius: 10,
-    paddingHorizontal: 20,
-    paddingVertical: 10,
+    width: 130,
     borderWidth: 4,
     borderColor: COLORS.PRIMARY_20,
     backgroundColor: COLORS.BACKGROUND_95,

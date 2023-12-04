@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 
 import { observer } from 'mobx-react';
 import { Text, View } from 'react-native';
@@ -8,7 +8,7 @@ import MinusIcon from 'assets/icons/minus';
 import PlusIcon from 'assets/icons/plus';
 import ShieldIcon from 'assets/icons/shield';
 import ModalPicker from 'components/picker-modal';
-import { PLAYER_COLOR_NAME } from 'themes/constants';
+import { PLAYER_COLORS } from 'themes/constants';
 
 import { styles } from './index.styles';
 import { CardPointsProps } from './index.types';
@@ -50,19 +50,16 @@ function CardPoints({
     if (isFinishGame) return feature?.plusIncomplete();
     feature?.plus();
   }
-  const indicatorModificator = useMemo(() => {
-    switch (player.name) {
-      case PLAYER_COLOR_NAME.RED:
-        return styles.indicatorRed;
-      default:
-        return undefined;
-    }
-  }, [player.name]);
 
   return (
     <View style={styles.container}>
       {isFinishGame ? (
-        <View style={[styles.indicator, indicatorModificator]} />
+        <View
+          style={[
+            styles.indicator,
+            { backgroundColor: PLAYER_COLORS[player.name] },
+          ]}
+        />
       ) : null}
       <View style={styles.iconContainer}>{icon}</View>
       <View style={styles.content}>

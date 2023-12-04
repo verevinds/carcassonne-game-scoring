@@ -89,12 +89,28 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     left: 0,
     top: 20,
-    width: 2,
+    width: 4,
     height: 20,
     zIndex: 2,
-    borderEndEndRadius: 10,
+    borderTopRightRadius: 10,
+    borderBottomRightRadius: 10,
   },
   indicatorRed: {
+    backgroundColor: COLORS.RED,
+  },
+  indicatorBlue: {
+    backgroundColor: COLORS.RED,
+  },
+  indicatorGreen: {
+    backgroundColor: COLORS.RED,
+  },
+  indicatorYellow: {
+    backgroundColor: COLORS.RED,
+  },
+  indicatorPink: {
+    backgroundColor: COLORS.RED,
+  },
+  indicatorGrey: {
     backgroundColor: COLORS.RED,
   },
 });
