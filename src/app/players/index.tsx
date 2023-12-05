@@ -67,6 +67,11 @@ function PlayersScreen() {
                 name: PLAYER_COLOR_NAME.YELLOW,
               },
               {
+                text: 'Grey player',
+                icon: <PlayerIcon variant={PLAYER_COLOR_NAME.GREY} />,
+                name: PLAYER_COLOR_NAME.GREY,
+              },
+              {
                 text: 'Pink player',
                 icon: <PlayerIcon variant={PLAYER_COLOR_NAME.PINK} />,
                 name: PLAYER_COLOR_NAME.PINK,

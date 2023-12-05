@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { COLORS, TYPOGRAPHY } from 'themes/constants';
+import { COLORS, TYPOGRAPHY, SHADOW_2 } from 'themes/constants';
 
 const WIDHT = 300;
 const HEIGHT = 60;
@@ -13,11 +13,17 @@ export const styles = StyleSheet.create({
     padding: 0,
     margin: 0,
     alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    ...SHADOW_2,
+    shadowColor: COLORS.PRIMARY_15,
   },
   container: {
     backgroundColor: COLORS.WHITE,
     borderRadius: BORDER_RADIUS,
     overflow: 'hidden',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   button: {
     justifyContent: 'center',
@@ -28,8 +34,9 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   text: {
-    marginRight: 20,
+    textAlign: 'center',
     ...TYPOGRAPHY.BUTTON_LABEL,
   },
   disabled: { opacity: 0.5 },
+  icon: { marginLeft: 10 },
 });

@@ -7,6 +7,7 @@ import { BORDER_RADIUS, HEIGHT, WIDHT } from './index.constants';
 export const styles = StyleSheet.create({
   container: {
     ...SHADOW_2,
+    shadowColor: COLORS.PRIMARY_15,
   },
   text: {
     ...TYPOGRAPHY.BUTTON_LABEL,

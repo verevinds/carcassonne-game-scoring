@@ -13,15 +13,14 @@ export const styles = StyleSheet.create({
   },
   body: {
     height: '40%',
-    left: 0,
-    right: 0,
-    overflow: 'hidden',
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
     ...SHADOW_1,
   },
   contentContainer: {
+    position: 'relative',
     backgroundColor: COLORS.BACKGROUND_95,
+    overflow: 'hidden',
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
   },
   content: {
     height: '100%',
@@ -30,6 +29,7 @@ export const styles = StyleSheet.create({
     paddingBottom: 50,
     alignItems: 'center',
     justifyContent: 'space-between',
+    borderRadius: 30,
   },
   title: {
     ...TYPOGRAPHY.HEADING_2,
@@ -49,6 +49,7 @@ export const styles = StyleSheet.create({
     marginLeft: 20,
     marginTop: 20,
     ...SHADOW_2,
+    shadowColor: COLORS.PRIMARY_20,
   },
   buttonConfirm: {
     height: 50,
@@ -61,6 +62,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 20,
     ...SHADOW_2,
+    shadowColor: COLORS.PRIMARY_20,
   },
   description: {
     ...TYPOGRAPHY.PARAGRAPH_1,
@@ -82,5 +84,15 @@ export const styles = StyleSheet.create({
     left: 0,
     right: 0,
     backgroundColor: COLORS.BLACK,
+  },
+  stick: {
+    backgroundColor: COLORS.WHITE,
+    width: 30,
+    height: 2,
+    position: 'absolute',
+    alignSelf: 'center',
+    top: -10,
+    borderRadius: 2,
+    ...SHADOW_2,
   },
 });
