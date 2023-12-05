@@ -6,7 +6,7 @@ import { View, Text, Animated } from 'react-native';
 
 import { styles } from './index.styles';
 
-const Button = (props: LinkProps): JSX.Element => {
+const ButtonTangled = (props: LinkProps): JSX.Element => {
   const fadeAnim = useRef(new Animated.Value(props.disabled ? 0.5 : 1)).current;
 
   useEffect(() => {
@@ -33,4 +33,4 @@ const Button = (props: LinkProps): JSX.Element => {
   );
 };
 
-export default Button;
+export default ButtonTangled;

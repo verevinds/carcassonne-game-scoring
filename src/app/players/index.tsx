@@ -31,14 +31,18 @@ function PlayersScreen() {
   }
   return (
     <View style={styles.container}>
-      <CustomExitButton onPress={onExit} />
+      <View style={styles.navigation}>
+        <CustomExitButton onPress={onExit} />
+      </View>
       <View style={styles.main}>
         <Text style={styles.title}>Select your</Text>
         <Text style={styles.subtitle}>Game Players</Text>
         <View style={styles.body}>
           <FlatList
             contentContainerStyle={{
-              paddingBottom: 330,
+              paddingBottom: 230,
+              paddingHorizontal: 20,
+              paddingTop: 10,
             }}
             data={[
               {
@@ -92,17 +96,17 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 0,
     padding: 0,
-    paddingHorizontal: 20,
-    // backgroundColor: '#EDE9DE',
   },
   main: {
     padding: 0,
     margin: 0,
   },
   title: {
+    paddingHorizontal: 20,
     ...TYPOGRAPHY.HEADING_1,
   },
   subtitle: {
+    paddingHorizontal: 20,
     ...TYPOGRAPHY.HEADING_2,
   },
   svgContainer: {
@@ -110,7 +114,9 @@ const styles = StyleSheet.create({
     marginTop: 50,
   },
   body: {
-    // backgroundColor: '#0604EE',
     marginTop: 50,
+  },
+  navigation: {
+    paddingHorizontal: 20,
   },
 });

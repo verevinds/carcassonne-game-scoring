@@ -26,7 +26,9 @@ function ExpansionsScreen() {
         <View style={styles.body}>
           <FlatList
             contentContainerStyle={{
-              paddingBottom: 330,
+              paddingBottom: 230,
+              paddingHorizontal: 20,
+              paddingTop: 10,
             }}
             data={[
               {
@@ -75,16 +77,17 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 0,
     padding: 0,
-    paddingHorizontal: 20,
   },
   main: {
     padding: 0,
     margin: 0,
   },
   title: {
+    paddingHorizontal: 20,
     ...TYPOGRAPHY.HEADING_1,
   },
   subtitle: {
+    paddingHorizontal: 20,
     ...TYPOGRAPHY.HEADING_2,
   },
   body: {

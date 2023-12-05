@@ -1,16 +1,20 @@
+import { useRouter } from 'expo-router';
 import { observer } from 'mobx-react';
 import { StyleSheet, Text, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
-import Button from 'components/button-tangled';
+import ButtonLongPress from 'components/button-long-press';
+import StickyContainer from 'components/sticky-container';
 import { useStore } from 'stores';
 import { TYPOGRAPHY } from 'themes/constants';
 import { capitalize } from 'utils/capitalize';
 
 function PlayerLeadboard() {
   const store = useStore();
+  const router = useRouter();
   function onRestart() {
     store.restart();
+    router.replace('/players');
   }
   return (
     <View style={styles.container}>
@@ -36,13 +40,9 @@ function PlayerLeadboard() {
         />
       </View>
 
-      <Button
-        disabled={!store.playersStore.isPlayerSelected}
-        href="/players"
-        onPress={onRestart}
-      >
-        Start again
-      </Button>
+      <StickyContainer>
+        <ButtonLongPress onPress={onRestart}>Start again</ButtonLongPress>
+      </StickyContainer>
     </View>
   );
 }

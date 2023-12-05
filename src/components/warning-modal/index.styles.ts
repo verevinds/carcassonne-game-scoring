@@ -12,19 +12,24 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   body: {
-    backgroundColor: COLORS.BACKGROUND_95,
-    alignItems: 'center',
-    justifyContent: 'space-between',
     height: '40%',
-    paddingVertical: 10,
     left: 0,
     right: 0,
-
-    ...SHADOW_1,
+    overflow: 'hidden',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
-    paddingBottom: 50,
+    ...SHADOW_1,
+  },
+  contentContainer: {
+    backgroundColor: COLORS.BACKGROUND_95,
+  },
+  content: {
+    height: '100%',
+    paddingTop: 10,
     paddingHorizontal: 20,
+    paddingBottom: 50,
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
   title: {
     ...TYPOGRAPHY.HEADING_2,

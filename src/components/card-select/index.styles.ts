@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     maxWidth: 220,
   },
   cardContainerHighlight: {
-    backgroundColor: '#A87257',
+    backgroundColor: COLORS.SECONDARY_80,
   },
   cardContent: {
     flex: 1,
@@ -20,19 +20,14 @@ export const styles = StyleSheet.create({
   outerContainer: {
     maxWidth: 350,
     height: 100,
+    borderRadius: 10,
     padding: 4,
-    backgroundColor: '#F6F4EE',
-    shadowColor: COLORS.SHADOW_1,
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3,
-    elevation: 10,
   },
   innerContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'stretch',
-    backgroundColor: '#F6F4EE',
+    backgroundColor: COLORS.BACKGROUND_95,
     paddingHorizontal: 20,
     borderRadius: 6,
   },
@@ -40,7 +35,11 @@ export const styles = StyleSheet.create({
     backgroundColor: COLORS.BACKGROUND_95,
     borderRadius: 10,
     marginBottom: 10,
-    overflow: 'hidden',
+    shadowColor: COLORS.SHADOW_1,
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 1,
+    shadowRadius: 4,
+    elevation: 10,
   },
   main: {
     padding: 0,

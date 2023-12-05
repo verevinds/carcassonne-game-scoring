@@ -5,11 +5,12 @@ import { Dimensions, StyleSheet, Text, View } from 'react-native';
 import HeaderIcon from 'assets/icons/header';
 import CustomBackButton from 'components/button-back';
 import Features from 'components/features';
+import { LinearGradient } from 'components/gradient';
 import Pattern from 'components/pattern';
 import { useStore } from 'stores';
-import { TYPOGRAPHY } from 'themes/constants';
+import { COLORS, TYPOGRAPHY } from 'themes/constants';
 
-const { height } = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
 
 function EnterPoints() {
   const { name } = useLocalSearchParams<{ name: string }>();
@@ -24,6 +25,16 @@ function EnterPoints() {
       </View>
       <View style={styles.body}>
         <Pattern />
+        <LinearGradient
+          endColor={COLORS.BACKGROUND_85}
+          startColor={COLORS.BACKGROUND_95}
+          viewBoxHeight={height}
+          viewBoxWidth={width}
+          x1={-0.2}
+          x2={0.45}
+          y1={0.25}
+          y2={0.9}
+        />
         <HeaderIcon style={{ marginTop: -65 }} />
         <Text style={styles.title}>
           Enter Points for{' '}
@@ -52,7 +63,6 @@ const styles = StyleSheet.create({
   },
   body: {
     position: 'relative',
-    paddingHorizontal: 20,
     backgroundColor: '#EDE9DE',
     height: height - 327,
     alignItems: 'center',

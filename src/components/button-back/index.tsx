@@ -2,6 +2,7 @@ import { useNavigation } from 'expo-router';
 import { View, TouchableOpacity } from 'react-native';
 
 import ArrowIcon from 'assets/icons/arrow';
+import { COLORS } from 'themes/constants';
 
 export default function CustomBackButton() {
   const navigation = useNavigation();
@@ -11,7 +12,7 @@ export default function CustomBackButton() {
         style={{
           width: 40,
           height: 40,
-          backgroundColor: '#F6F4EE',
+          backgroundColor: COLORS.WHITE,
           borderRadius: 40,
           justifyContent: 'center',
           alignItems: 'center',

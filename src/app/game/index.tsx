@@ -5,9 +5,10 @@ import HeaderIcon from 'assets/icons/header';
 import CustomBackButton from 'components/button-back';
 import Button from 'components/button-tangled';
 import CardNavigation from 'components/card-navigation';
+import { LinearGradient } from 'components/gradient';
 import Pattern from 'components/pattern';
 import { useStore } from 'stores';
-import { TYPOGRAPHY } from 'themes/constants';
+import { COLORS, TYPOGRAPHY } from 'themes/constants';
 const { height, width } = Dimensions.get('window');
 
 export default function GameScreen() {
@@ -20,6 +21,16 @@ export default function GameScreen() {
       </View>
       <View style={styles.body}>
         <Pattern />
+        <LinearGradient
+          endColor={COLORS.BACKGROUND_85}
+          startColor={COLORS.BACKGROUND_95}
+          viewBoxHeight={height}
+          viewBoxWidth={width}
+          x1={-0.2}
+          x2={0.45}
+          y1={0.25}
+          y2={0.9}
+        />
         <HeaderIcon style={{ marginTop: -65 }} />
         <Text style={styles.title}>Select a Player to Enter Points</Text>
         <FlatList
@@ -55,7 +66,6 @@ const styles = StyleSheet.create({
     ...TYPOGRAPHY.HEADING_2,
   },
   body: {
-    paddingHorizontal: 20,
     backgroundColor: '#EDE9DE',
     height: height - 327,
     alignItems: 'center',

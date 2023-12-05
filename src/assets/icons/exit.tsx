@@ -5,7 +5,7 @@ import Svg, { Path, Circle, SvgProps } from 'react-native-svg';
 export default function ExitIcon(props: SvgProps) {
   return (
     <Svg fill="none" height="40" viewBox="0 0 40 40" width="40" {...props}>
-      <Circle cx="20" cy="20" fill="#F6F4EE" opacity="0.8" r="20" />
+      <Circle cx="20" cy="20" fill="#FFF" opacity="0.8" r="20" />
       <Path d="M25 23.8342L16 16L25 23.8342Z" fill="#052F46" />
       <Path
         d="M25 23.8342L16 16"

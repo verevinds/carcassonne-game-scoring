@@ -22,7 +22,7 @@ function CardNavigation({ name }: { name: PLAYER_COLOR_NAME }) {
         shadowColor: COLORS.SHADOW_1,
         shadowOffset: { width: 0, height: 1 },
         shadowOpacity: 1,
-        shadowRadius: 3,
+        shadowRadius: 4,
         elevation: 10,
       }}
     >
