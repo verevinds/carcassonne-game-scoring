@@ -4,6 +4,9 @@ import { Link } from 'expo-router';
 import { LinkProps } from 'expo-router/build/link/Link';
 import { View, Text, Animated } from 'react-native';
 
+import ArrowStick from 'assets/icons/arrow-stick';
+
+import messages from './index.messages';
 import { styles } from './index.styles';
 
 const ButtonTangled = (props: LinkProps): JSX.Element => {
@@ -26,7 +29,8 @@ const ButtonTangled = (props: LinkProps): JSX.Element => {
             opacity: fadeAnim,
           }}
         >
-          <Text style={styles.text}>{props.children ?? 'Get started'}</Text>
+          <Text style={styles.text}>{props.children ?? messages.default}</Text>
+          <ArrowStick />
         </Animated.View>
       </View>
     </Link>

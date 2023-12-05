@@ -9,8 +9,9 @@ import CastleIcon from 'assets/icons/castle';
 import CastleRiverIcon from 'assets/icons/castle-river';
 import CathedralIcon from 'assets/icons/cathedral';
 import DragonIcon from 'assets/icons/dragon';
-import Button from 'components/button-tangled';
+import Button from 'components/button-link';
 import CardSelectExpansions from 'components/card-select-expansions';
+import StickyContainer from 'components/sticky-container';
 import { useStore } from 'stores';
 import { TYPOGRAPHY } from 'themes/constants';
 
@@ -61,12 +62,14 @@ function ExpansionsScreen() {
           />
         </View>
       </View>
-      <Button
-        disabled={!store.expansionsStore.isExpansionSelected}
-        href="/players"
-      >
-        Select Players
-      </Button>
+      <StickyContainer>
+        <Button
+          disabled={!store.expansionsStore.isExpansionSelected}
+          href="/players"
+        >
+          Select Players
+        </Button>
+      </StickyContainer>
     </View>
   );
 }

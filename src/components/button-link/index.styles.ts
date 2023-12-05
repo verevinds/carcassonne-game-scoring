@@ -8,8 +8,6 @@ const BORDER_RADIUS = HEIGHT;
 
 export const styles = StyleSheet.create({
   link: {
-    position: 'absolute',
-    bottom: 0,
     width: WIDHT,
     height: HEIGHT,
     padding: 0,
@@ -23,12 +21,14 @@ export const styles = StyleSheet.create({
   },
   button: {
     justifyContent: 'center',
+    flexDirection: 'row',
     width: WIDHT,
     height: HEIGHT,
     backgroundColor: COLORS.PRIMARY_20,
     alignItems: 'center',
   },
   text: {
+    marginRight: 20,
     ...TYPOGRAPHY.BUTTON_LABEL,
   },
   disabled: { opacity: 0.5 },

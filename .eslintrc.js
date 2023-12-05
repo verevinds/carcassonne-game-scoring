@@ -21,6 +21,7 @@ module.exports = {
     '@typescript-eslint/consistent-type-definitions': 'off',
     '@typescript-eslint/no-invalid-void-type': 'off',
     '@typescript-eslint/ban-types': 'off',
+    'prettier/prettier': 'off',
     'id-match': ['error', '^[a-zA-Z\\d_]+$', { properties: true }],
     'import/order': [
       'error',

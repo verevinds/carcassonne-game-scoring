@@ -2,7 +2,8 @@ import { useFonts } from 'expo-font';
 import { StyleSheet, Text, View } from 'react-native';
 
 import SvgComponent from 'assets/icons/farme';
-import Button from 'components/button-tangled';
+import Button from 'components/button-link';
+import StickyContainer from 'components/sticky-container';
 import { TYPOGRAPHY } from 'themes/constants';
 
 export default function Page() {
@@ -22,7 +23,9 @@ export default function Page() {
           <SvgComponent />
         </View>
       </View>
-      <Button href="/expansions" />
+      <StickyContainer>
+        <Button href="/expansions" />
+      </StickyContainer>
     </View>
   );
 }

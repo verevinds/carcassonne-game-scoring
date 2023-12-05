@@ -7,8 +7,9 @@ import { FlatList } from 'react-native-gesture-handler';
 
 import PlayerIcon from 'assets/icons/player';
 import CustomExitButton from 'components/button-exit';
-import Button from 'components/button-tangled';
+import Button from 'components/button-link';
 import CardSelectPlayers from 'components/card-select-players';
+import StickyContainer from 'components/sticky-container';
 import WarningModal from 'components/warning-modal';
 import { useStore } from 'stores';
 import { PLAYER_COLOR_NAME, TYPOGRAPHY } from 'themes/constants';
@@ -82,9 +83,11 @@ function PlayersScreen() {
         onClose={onClose}
         onConfirm={onConfirm}
       />
-      <Button disabled={!store.playersStore.isPlayerSelected} href="/game">
-        Start Game
-      </Button>
+      <StickyContainer>
+        <Button disabled={!store.playersStore.isPlayerSelected} href="/game">
+          Start Game
+        </Button>
+      </StickyContainer>
     </View>
   );
 }

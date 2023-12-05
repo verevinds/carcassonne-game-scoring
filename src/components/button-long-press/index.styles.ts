@@ -15,15 +15,15 @@ export const styles = StyleSheet.create({
     width: WIDHT,
     height: HEIGHT,
     borderRadius: BORDER_RADIUS,
-    backgroundColor: COLORS.SECONDARY_64,
+    backgroundColor: COLORS.PRIMARY_15,
     justifyContent: 'center',
     alignItems: 'center',
   },
   circle: {
     width: 50,
     height: 50,
-    opacity: 0,
-    backgroundColor: COLORS.SECONDARY_80,
+
+    backgroundColor: COLORS.PRIMARY_20,
     borderRadius: 50,
     position: 'absolute',
   },

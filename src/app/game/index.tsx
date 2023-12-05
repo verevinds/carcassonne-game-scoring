@@ -3,10 +3,11 @@ import { FlatList } from 'react-native-gesture-handler';
 
 import HeaderIcon from 'assets/icons/header';
 import CustomBackButton from 'components/button-back';
-import Button from 'components/button-tangled';
+import Button from 'components/button-link';
 import CardNavigation from 'components/card-navigation';
 import { LinearGradient } from 'components/gradient';
 import Pattern from 'components/pattern';
+import StickyContainer from 'components/sticky-container';
 import { useStore } from 'stores';
 import { COLORS, TYPOGRAPHY } from 'themes/constants';
 const { height, width } = Dimensions.get('window');
@@ -48,7 +49,9 @@ export default function GameScreen() {
           }}
         />
       </View>
-      <Button href="/scoring">Finish Game</Button>
+      <StickyContainer>
+        <Button href="/scoring">Finish Game</Button>
+      </StickyContainer>
     </View>
   );
 }
