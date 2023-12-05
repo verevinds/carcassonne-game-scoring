@@ -67,6 +67,9 @@ function ButtonLongPress({ onPress, children }: ButtonLongPressProps) {
       runOnJS(setStartTime)();
       pressed.value = true;
       size.value = 6;
+      if (!hintAnimationActive.value) {
+        hintTop.value = -20;
+      }
     })
     .onTouchesUp(() => {
       runOnJS(callback.stop)();
@@ -87,7 +90,7 @@ function ButtonLongPress({ onPress, children }: ButtonLongPressProps) {
               hintOpacity.value = withTiming(0, HINT_TOP_ANIMATION_CONFIG);
           }),
           withTiming(-70, HINT_TOP_ANIMATION_CONFIG),
-          withTiming(0, {}, (isFinished) => {
+          withTiming(-20, {}, (isFinished) => {
             if (isFinished) {
               hintAnimationActive.value = false; // Сброс флага после завершения анимации
             }

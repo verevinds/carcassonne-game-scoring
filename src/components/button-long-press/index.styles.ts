@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { COLORS, TYPOGRAPHY, SHADOW_1, SHADOW_2 } from 'themes/constants';
+import { COLORS, TYPOGRAPHY, SHADOW_2 } from 'themes/constants';
 
 import { BORDER_RADIUS, HEIGHT, WIDHT } from './index.constants';
 
@@ -37,7 +37,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 20,
     opacity: 0,
     zIndex: 100,
-    ...SHADOW_1,
+    ...SHADOW_2,
   },
   content: {
     overflow: 'hidden',

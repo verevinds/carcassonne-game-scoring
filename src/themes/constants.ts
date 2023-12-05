@@ -156,7 +156,7 @@ export const SHADOW_2 = {
     },
   }),
   shadowOffset: { width: 0, height: 3 },
-  shadowOpacity: 1,
-  shadowRadius: 4,
+  shadowOpacity: 0.25,
+  shadowRadius: 3,
   elevation: 10,
 };
