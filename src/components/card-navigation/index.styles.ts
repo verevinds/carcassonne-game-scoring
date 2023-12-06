@@ -5,14 +5,14 @@ const { width } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
   content: {
-    padding: 10,
+    padding: 5,
     flex: 1,
     justifyContent: 'space-between',
   },
   iconContainer: {
     backgroundColor: '#E5DECE',
-    paddingVertical: 10,
-    paddingHorizontal: 16,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
   },
   container: {
     width: width - 40,
@@ -30,12 +30,15 @@ export const styles = StyleSheet.create({
     ...TYPOGRAPHY.CAPTION_2,
   },
   points: {
-    ...TYPOGRAPHY.PARAGRAPH_1,
+    ...TYPOGRAPHY.CAPTION_2,
+  },
+  pointsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
   },
   navigation: {
-    alignItems: 'flex-end',
-    justifyContent: 'flex-end',
-    paddingRight: 20,
-    paddingBottom: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingRight: 10,
   },
 });

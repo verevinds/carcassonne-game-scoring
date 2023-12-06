@@ -10,13 +10,14 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 
-import { useDebounceCallback } from 'hooks/use-debounce-callback';
+import useDebounce from 'hooks/use-debounce';
+
 const DELAY_BEFORE_ACTION = 2000;
 const HINT_TOP_ANIMATION_CONFIG = { duration: 1000 };
 const HINT_OPACITY_ANIMATION_CONFIG = { duration: 500 };
 
 export function useAnimationLongPress(onPress: (arg?: unknown) => void) {
-  const callback = useDebounceCallback(onPress, DELAY_BEFORE_ACTION);
+  const callback = useDebounce(onPress, DELAY_BEFORE_ACTION);
   const size = useSharedValue(1);
   const pressed = useSharedValue(false);
   const hintTop = useSharedValue(-10);

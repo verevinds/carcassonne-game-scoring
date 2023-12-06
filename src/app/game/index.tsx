@@ -1,5 +1,4 @@
 import { Dimensions, StyleSheet, Text, View } from 'react-native';
-import { FlatList } from 'react-native-gesture-handler';
 
 import HeaderIcon from 'assets/icons/header';
 import CustomBackButton from 'components/button-back';
@@ -7,6 +6,7 @@ import Button from 'components/button-link';
 import CardNavigation from 'components/card-navigation';
 import { LinearGradient } from 'components/gradient';
 import Pattern from 'components/pattern';
+import ShadeFlatList from 'components/shade-flat-list';
 import StickyContainer from 'components/sticky-container';
 import { useStore } from 'stores';
 import { COLORS, TYPOGRAPHY } from 'themes/constants';
@@ -34,19 +34,9 @@ export default function GameScreen() {
         />
         <HeaderIcon style={{ marginTop: -65 }} />
         <Text style={styles.title}>Select a Player to Enter Points</Text>
-        <FlatList
-          contentContainerStyle={{
-            justifyContent: 'center',
-            alignItems: 'center',
-            marginTop: 20,
-            paddingBottom: 130,
-          }}
+        <ShadeFlatList
           data={store.playersStore.namePlayers}
           renderItem={({ item }) => <CardNavigation name={item.name} />}
-          showsVerticalScrollIndicator={false}
-          style={{
-            width,
-          }}
         />
       </View>
       <StickyContainer>
@@ -66,12 +56,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   title: {
+    marginTop: -10,
     ...TYPOGRAPHY.HEADING_2,
   },
   body: {
     backgroundColor: '#EDE9DE',
-    height: height - 327,
+    height: height - 300,
     alignItems: 'center',
-    top: 230,
+    top: 220,
   },
 });

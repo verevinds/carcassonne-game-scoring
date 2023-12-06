@@ -5,16 +5,16 @@ const { width } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
   content: {
-    paddingTop: 10,
-    paddingLeft: 10,
-    paddingRight: 20,
+    paddingTop: 5,
+    paddingLeft: 5,
+    paddingRight: 10,
     flex: 1,
     justifyContent: 'flex-start',
   },
   iconContainer: {
     backgroundColor: '#E5DECE',
-    paddingVertical: 10,
-    paddingHorizontal: 16,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
   },
   container: {
     position: 'relative',
@@ -27,7 +27,7 @@ export const styles = StyleSheet.create({
     margin: 0,
     padding: 0,
     marginBottom: 10,
-    shadowColor: COLORS.SHADOW_1,
+    shadowColor: COLORS.BACKGROUND_85,
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 1,
     shadowRadius: 3,
@@ -49,7 +49,7 @@ export const styles = StyleSheet.create({
     alignItems: 'flex-end',
     flex: 1,
     justifyContent: 'flex-end',
-    paddingBottom: 10,
+    paddingBottom: 5,
     flexDirection: 'row',
   },
   shield: {

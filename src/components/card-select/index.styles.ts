@@ -19,9 +19,9 @@ export const styles = StyleSheet.create({
   },
   outerContainer: {
     maxWidth: 350,
-    height: 100,
+    height: 50,
     borderRadius: 10,
-    padding: 4,
+    padding: 2,
   },
   innerContainer: {
     flex: 1,
@@ -29,13 +29,14 @@ export const styles = StyleSheet.create({
     alignItems: 'stretch',
     backgroundColor: COLORS.BACKGROUND_95,
     paddingHorizontal: 20,
-    borderRadius: 6,
+    borderRadius: 8,
+    padding: 4,
   },
   container: {
     backgroundColor: COLORS.BACKGROUND_95,
     borderRadius: 10,
     marginBottom: 10,
-    shadowColor: COLORS.SHADOW_1,
+    shadowColor: COLORS.BACKGROUND_85,
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 1,
     shadowRadius: 4,
@@ -54,8 +55,5 @@ export const styles = StyleSheet.create({
   svgContainer: {
     alignSelf: 'center',
     marginTop: 50,
-  },
-  body: {
-    // backgroundColor: '#0604EE',
   },
 });

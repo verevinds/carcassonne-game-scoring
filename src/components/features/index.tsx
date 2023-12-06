@@ -13,10 +13,9 @@ import { useStore } from 'stores';
 
 import { FeaturesProps } from './index.types';
 
-function Features(props: FeaturesProps) {
+function Features({ player, LayoutProps, ...props }: FeaturesProps) {
   const prices = useStore().playersStore.options.price;
-  const player = props.player;
-  const isFinishGame = Boolean(props.LayoutProps?.withIndicator);
+  const isFinishGame = Boolean(LayoutProps?.withIndicator);
   const data = [
     {
       icon: <RoadIcon />,
@@ -24,7 +23,7 @@ function Features(props: FeaturesProps) {
       description: `${
         isFinishGame ? prices.road.incomplete : prices.road.complete
       } point per tile, when road is completed.`,
-      LayoutProps: { withIndicator: props.LayoutProps?.withIndicator },
+      LayoutProps: { withIndicator: LayoutProps?.withIndicator },
       feature: player.road,
     },
     {
@@ -33,7 +32,7 @@ function Features(props: FeaturesProps) {
       description: `${
         isFinishGame ? prices.monastery.incomplete : prices.monastery.complete
       } points for fully surrounded monastery.`,
-      LayoutProps: { withIndicator: props.LayoutProps?.withIndicator },
+      LayoutProps: { withIndicator: LayoutProps?.withIndicator },
       feature: player.monastery,
     },
     {
@@ -46,7 +45,7 @@ function Features(props: FeaturesProps) {
       } for coat of arms, if city is completed.`,
       LayoutProps: {
         withShild: true,
-        withIndicator: props.LayoutProps?.withIndicator,
+        withIndicator: LayoutProps?.withIndicator,
       },
       feature: player.city,
     },
@@ -56,7 +55,7 @@ function Features(props: FeaturesProps) {
       description: `${
         isFinishGame ? prices.abbot.incomplete : prices.abbot.complete
       } point for each adjacent tile, including the Abbot's tile, anytime or end.`,
-      LayoutProps: { withIndicator: props.LayoutProps?.withIndicator },
+      LayoutProps: { withIndicator: LayoutProps?.withIndicator },
       feature: player.abbot,
     },
   ];
@@ -67,7 +66,7 @@ function Features(props: FeaturesProps) {
         icon: <FieldsIcon />,
         title: 'The fields',
         description: `${prices.fields.incomplete} points for each adjacent completed city.`,
-        LayoutProps: { withIndicator: props.LayoutProps?.withIndicator },
+        LayoutProps: { withIndicator: LayoutProps?.withIndicator },
         feature: player.fields,
       });
     }
@@ -81,6 +80,7 @@ function Features(props: FeaturesProps) {
         marginTop: 20,
         paddingBottom: 20,
       }}
+      {...props}
       data={data}
       renderItem={({ item }) => <CardPoints {...item} player={player} />}
       showsVerticalScrollIndicator={false}

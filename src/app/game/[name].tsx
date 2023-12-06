@@ -59,14 +59,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   title: {
+    marginTop: -10,
     ...TYPOGRAPHY.HEADING_2,
+    marginBottom: 10,
   },
   body: {
     position: 'relative',
     backgroundColor: '#EDE9DE',
-    height: height - 327,
+    height: height - 300,
     alignItems: 'center',
-    top: 230,
+    top: 220,
   },
 });
 

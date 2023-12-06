@@ -18,8 +18,9 @@ function CardNavigation({ name }: { name: PLAYER_COLOR_NAME }) {
         params: { name },
       }}
       style={{
+        height: 50,
         marginBottom: 10,
-        shadowColor: COLORS.SHADOW_1,
+        shadowColor: COLORS.BACKGROUND_85,
         shadowOffset: { width: 0, height: 1 },
         shadowOpacity: 1,
         shadowRadius: 4,
@@ -33,9 +34,10 @@ function CardNavigation({ name }: { name: PLAYER_COLOR_NAME }) {
         <View style={styles.content}>
           <View>
             <Text style={styles.title}>{name} player</Text>
-            <Text style={styles.position}>position {player.position}</Text>
+            <View style={styles.pointsContainer}>
+              <Text style={styles.points}>points {player.points}</Text>
+            </View>
           </View>
-          <Text style={styles.points}>points: {player.points}</Text>
         </View>
         <View style={styles.navigation}>
           <ArrowIcon mirror />

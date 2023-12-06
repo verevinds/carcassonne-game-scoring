@@ -3,12 +3,12 @@ import { useState } from 'react';
 import { useRouter } from 'expo-router';
 import { observer } from 'mobx-react';
 import { StyleSheet, Text, View } from 'react-native';
-import { FlatList } from 'react-native-gesture-handler';
 
 import PlayerIcon from 'assets/icons/player';
 import CustomExitButton from 'components/button-exit';
 import Button from 'components/button-link';
 import CardSelectPlayers from 'components/card-select-players';
+import ShadeFlatList from 'components/shade-flat-list';
 import StickyContainer from 'components/sticky-container';
 import WarningModal from 'components/warning-modal';
 import { useStore } from 'stores';
@@ -38,49 +38,41 @@ function PlayersScreen() {
       <View style={styles.main}>
         <Text style={styles.title}>Select your</Text>
         <Text style={styles.subtitle}>Game Players</Text>
-        <View style={styles.body}>
-          <FlatList
-            contentContainerStyle={{
-              paddingBottom: 230,
-              paddingHorizontal: 20,
-              paddingTop: 10,
-            }}
-            data={[
-              {
-                text: 'Red player',
-                icon: <PlayerIcon variant={PLAYER_COLOR_NAME.RED} />,
-                name: PLAYER_COLOR_NAME.RED,
-              },
-              {
-                text: 'Blue player',
-                icon: <PlayerIcon variant={PLAYER_COLOR_NAME.BLUE} />,
-                name: PLAYER_COLOR_NAME.BLUE,
-              },
-              {
-                text: 'Green player',
-                icon: <PlayerIcon variant={PLAYER_COLOR_NAME.GREEN} />,
-                name: PLAYER_COLOR_NAME.GREEN,
-              },
-              {
-                text: 'Yellow player',
-                icon: <PlayerIcon variant={PLAYER_COLOR_NAME.YELLOW} />,
-                name: PLAYER_COLOR_NAME.YELLOW,
-              },
-              {
-                text: 'Grey player',
-                icon: <PlayerIcon variant={PLAYER_COLOR_NAME.GREY} />,
-                name: PLAYER_COLOR_NAME.GREY,
-              },
-              {
-                text: 'Pink player',
-                icon: <PlayerIcon variant={PLAYER_COLOR_NAME.PINK} />,
-                name: PLAYER_COLOR_NAME.PINK,
-              },
-            ]}
-            renderItem={({ item }) => <CardSelectPlayers {...item} />}
-            showsVerticalScrollIndicator={false}
-          />
-        </View>
+        <ShadeFlatList
+          data={[
+            {
+              text: 'Red player',
+              icon: <PlayerIcon variant={PLAYER_COLOR_NAME.RED} />,
+              name: PLAYER_COLOR_NAME.RED,
+            },
+            {
+              text: 'Blue player',
+              icon: <PlayerIcon variant={PLAYER_COLOR_NAME.BLUE} />,
+              name: PLAYER_COLOR_NAME.BLUE,
+            },
+            {
+              text: 'Green player',
+              icon: <PlayerIcon variant={PLAYER_COLOR_NAME.GREEN} />,
+              name: PLAYER_COLOR_NAME.GREEN,
+            },
+            {
+              text: 'Yellow player',
+              icon: <PlayerIcon variant={PLAYER_COLOR_NAME.YELLOW} />,
+              name: PLAYER_COLOR_NAME.YELLOW,
+            },
+            {
+              text: 'Grey player',
+              icon: <PlayerIcon variant={PLAYER_COLOR_NAME.GREY} />,
+              name: PLAYER_COLOR_NAME.GREY,
+            },
+            {
+              text: 'Pink player',
+              icon: <PlayerIcon variant={PLAYER_COLOR_NAME.PINK} />,
+              name: PLAYER_COLOR_NAME.PINK,
+            },
+          ]}
+          renderItem={({ item }) => <CardSelectPlayers {...item} />}
+        />
       </View>
 
       <WarningModal
@@ -119,9 +111,6 @@ const styles = StyleSheet.create({
   },
   svgContainer: {
     alignSelf: 'center',
-    marginTop: 50,
-  },
-  body: {
     marginTop: 50,
   },
   navigation: {
