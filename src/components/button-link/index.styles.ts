@@ -16,10 +16,10 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     ...SHADOW_2,
-    shadowColor: COLORS.PRIMARY_15,
+    shadowColor: COLORS.PRIMARY_500,
   },
   container: {
-    backgroundColor: COLORS.WHITE,
+    backgroundColor: COLORS.BACKGROUND_50,
     borderRadius: BORDER_RADIUS,
     overflow: 'hidden',
     justifyContent: 'center',
@@ -30,7 +30,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     width: WIDHT,
     height: HEIGHT,
-    backgroundColor: COLORS.PRIMARY_20,
+    backgroundColor: COLORS.PRIMARY_500,
     alignItems: 'center',
   },
   text: {

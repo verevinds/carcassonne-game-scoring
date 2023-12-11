@@ -27,7 +27,7 @@ export const styles = StyleSheet.create({
     margin: 0,
     padding: 0,
     marginBottom: 10,
-    shadowColor: COLORS.BACKGROUND_85,
+    shadowColor: COLORS.BACKGROUND_100,
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 1,
     shadowRadius: 3,
@@ -60,7 +60,7 @@ export const styles = StyleSheet.create({
   },
   shieldText: {
     ...TYPOGRAPHY.BUTTON_LABEL,
-    color: COLORS.PRIMARY_20,
+    color: COLORS.PRIMARY_500,
     position: 'absolute',
     paddingBottom: 6,
     fontSize: 16,
@@ -81,7 +81,7 @@ export const styles = StyleSheet.create({
   },
   count: {
     ...TYPOGRAPHY.BUTTON_LABEL,
-    color: COLORS.PRIMARY_20,
+    color: COLORS.PRIMARY_500,
     width: 30,
     textAlign: 'center',
   },
@@ -96,21 +96,21 @@ export const styles = StyleSheet.create({
     borderBottomRightRadius: 10,
   },
   indicatorRed: {
-    backgroundColor: COLORS.RED,
+    backgroundColor: COLORS.RED_500,
   },
   indicatorBlue: {
-    backgroundColor: COLORS.RED,
+    backgroundColor: COLORS.BLUE_500,
   },
   indicatorGreen: {
-    backgroundColor: COLORS.RED,
+    backgroundColor: COLORS.GREEN_500,
   },
   indicatorYellow: {
-    backgroundColor: COLORS.RED,
+    backgroundColor: COLORS.YELLOW_500,
   },
   indicatorPink: {
-    backgroundColor: COLORS.RED,
+    backgroundColor: COLORS.PINK_500,
   },
   indicatorGrey: {
-    backgroundColor: COLORS.RED,
+    backgroundColor: COLORS.GREY_500,
   },
 });

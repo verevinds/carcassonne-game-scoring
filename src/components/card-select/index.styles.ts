@@ -1,59 +1,53 @@
 import { StyleSheet } from 'react-native';
 
-import { TYPOGRAPHY, COLORS } from 'themes/constants';
+import { TYPOGRAPHY, COLORS, SHADOW_2 } from 'themes/constants';
+
+export const HEIGHT_CONTAINER = 200;
+export const WIDTH_CONTAINER = 120;
+export const PADDING_CONTENT = 10;
 
 export const styles = StyleSheet.create({
-  disabled: { opacity: 0.5 },
-  cardTitle: {
-    ...TYPOGRAPHY.SUBTITLE_1,
-    maxWidth: 220,
-  },
-  cardContainerHighlight: {
-    backgroundColor: COLORS.SECONDARY_80,
-  },
-  cardContent: {
-    flex: 1,
-    flexDirection: 'row',
+  container: {
+    borderRadius: 10,
+    margin: 5,
+    minWidth: WIDTH_CONTAINER,
+    minHeight: HEIGHT_CONTAINER,
+    alignSelf: 'center',
+    justifyContent: 'center',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    ...SHADOW_2,
+  },
+  disabled: { opacity: 0.5 },
+  cardContainerHighlight: {
+    backgroundColor: COLORS.SECONDARY_500,
   },
   outerContainer: {
-    maxWidth: 350,
-    height: 50,
+    maxWidth: WIDTH_CONTAINER * 0.8,
+    height: HEIGHT_CONTAINER * 0.8,
     borderRadius: 10,
     padding: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   innerContainer: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'stretch',
-    backgroundColor: COLORS.BACKGROUND_95,
-    paddingHorizontal: 20,
+    alignItems: 'center',
+    backgroundColor: COLORS.BACKGROUND_50,
     borderRadius: 8,
-    padding: 4,
+    padding: PADDING_CONTENT,
   },
-  container: {
-    backgroundColor: COLORS.BACKGROUND_95,
-    borderRadius: 10,
-    marginBottom: 10,
-    shadowColor: COLORS.BACKGROUND_85,
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 1,
-    shadowRadius: 4,
-    elevation: 10,
+  cardContent: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: (WIDTH_CONTAINER - PADDING_CONTENT) * 0.8,
+    height: (HEIGHT_CONTAINER - PADDING_CONTENT) * 0.8,
   },
-  main: {
-    padding: 0,
-    margin: 0,
+  iconContainer: {
+    flex: 1,
   },
-  title: {
-    ...TYPOGRAPHY.HEADING_1,
-  },
-  subtitle: {
-    ...TYPOGRAPHY.HEADING_2,
-  },
-  svgContainer: {
-    alignSelf: 'center',
-    marginTop: 50,
+  cardTitle: {
+    ...TYPOGRAPHY.CAPTION_1,
+    maxWidth: 220,
   },
 });

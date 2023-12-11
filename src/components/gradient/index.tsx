@@ -6,46 +6,22 @@ import Svg, {
   LinearGradient as Linear,
   Rect,
   Stop,
+  SvgProps,
 } from 'react-native-svg';
 
-import { BASE_PADDING } from 'themes/constants';
+import { COLORS } from 'themes/constants';
 
 import { styles } from './index.styles';
 
-export type LinearGradientProps = {
-  startColor?: string;
-  endColor?: string;
-  startOpacity?: number | string;
-  endOpacity?: number | string;
-  x1?: number | string;
-  y1?: number | string;
-  x2?: number | string;
-  y2?: number | string;
-  viewBoxWidth: number;
-  viewBoxHeight: number;
-};
+export type LinearGradientProps = SvgProps;
 
-export const LinearGradient = ({
-  startColor,
-  endColor,
-  startOpacity = 1,
-  endOpacity = 1,
-  x1 = 0,
-  y1 = 0,
-  x2 = 0,
-  y2 = 1,
-  viewBoxWidth,
-  viewBoxHeight,
-}: LinearGradientProps) => (
+export const LinearGradient = (props: LinearGradientProps) => (
   <View style={styles.gradient}>
-    <Svg
-      height={viewBoxHeight + BASE_PADDING / 4}
-      width={viewBoxWidth + BASE_PADDING / 4}
-    >
+    <Svg {...props}>
       <Defs>
-        <Linear id="linear-gradient" {...{ x1, y1, x2, y2 }}>
-          <Stop offset={0} stopColor={startColor} stopOpacity={startOpacity} />
-          <Stop offset={1} stopColor={endColor} stopOpacity={endOpacity} />
+        <Linear id="linear-gradient">
+          <Stop offset={0} stopColor={COLORS.BACKGROUND_50} stopOpacity={1} />
+          <Stop offset={1} stopColor={COLORS.BACKGROUND_200} stopOpacity={1} />
         </Linear>
       </Defs>
       <Rect

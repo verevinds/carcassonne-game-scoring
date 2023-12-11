@@ -20,7 +20,7 @@ function CardNavigation({ name }: { name: PLAYER_COLOR_NAME }) {
       style={{
         height: 50,
         marginBottom: 10,
-        shadowColor: COLORS.BACKGROUND_85,
+        shadowColor: COLORS.BACKGROUND_100,
         shadowOffset: { width: 0, height: 1 },
         shadowOpacity: 1,
         shadowRadius: 4,

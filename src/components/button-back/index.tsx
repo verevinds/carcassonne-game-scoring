@@ -12,7 +12,7 @@ export default function CustomBackButton() {
         style={{
           width: 40,
           height: 40,
-          backgroundColor: COLORS.WHITE,
+          backgroundColor: COLORS.BACKGROUND_50,
           borderRadius: 40,
           justifyContent: 'center',
           alignItems: 'center',

@@ -7,7 +7,7 @@ import { BORDER_RADIUS, HEIGHT, WIDHT } from './index.constants';
 export const styles = StyleSheet.create({
   container: {
     ...SHADOW_2,
-    shadowColor: COLORS.PRIMARY_15,
+    shadowColor: COLORS.PRIMARY_500,
   },
   text: {
     ...TYPOGRAPHY.BUTTON_LABEL,
@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     width: WIDHT,
     height: HEIGHT,
     borderRadius: BORDER_RADIUS,
-    backgroundColor: COLORS.PRIMARY_15,
+    backgroundColor: COLORS.PRIMARY_500,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
     width: 50,
     height: 50,
 
-    backgroundColor: COLORS.PRIMARY_20,
+    backgroundColor: COLORS.PRIMARY_500,
     borderRadius: 50,
     position: 'absolute',
   },
@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
     top: 0,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: COLORS.BACKGROUND_95,
+    backgroundColor: COLORS.BACKGROUND_50,
     borderRadius: 10,
     paddingHorizontal: 20,
     opacity: 0,

@@ -8,9 +8,9 @@ import Features from 'components/features';
 import { LinearGradient } from 'components/gradient';
 import Pattern from 'components/pattern';
 import { useStore } from 'stores';
-import { COLORS, TYPOGRAPHY } from 'themes/constants';
+import { TYPOGRAPHY } from 'themes/constants';
 
-const { height, width } = Dimensions.get('window');
+const { height } = Dimensions.get('window');
 
 function EnterPoints() {
   const { name } = useLocalSearchParams<{ name: string }>();
@@ -25,16 +25,7 @@ function EnterPoints() {
       </View>
       <View style={styles.body}>
         <Pattern />
-        <LinearGradient
-          endColor={COLORS.BACKGROUND_85}
-          startColor={COLORS.BACKGROUND_95}
-          viewBoxHeight={height}
-          viewBoxWidth={width}
-          x1={-0.2}
-          x2={0.45}
-          y1={0.25}
-          y2={0.9}
-        />
+        <LinearGradient />
         <HeaderIcon style={{ marginTop: -65 }} />
         <Text style={styles.title}>
           Enter Points for{' '}

@@ -1935,9 +1935,10 @@
     prompts "^2.4.0"
     semver "^7.5.2"
 
-"@react-native-community/datetimepicker@react-native-community/datetimepicker":
-  version "7.6.2"
-  resolved "https://codeload.github.com/react-native-community/datetimepicker/tar.gz/aa64fa4555d3e40d94f8def22e8aa9aa3e4e97b3"
+"@react-native-community/datetimepicker@7.2.0":
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/@react-native-community/datetimepicker/-/datetimepicker-7.2.0.tgz#db8c03dbf49bf3c24b06b617a8467d8b05511f62"
+  integrity sha512-dO1sQy83M/EvnHE2egto05iwXZX7EYn5f/VDMp6afZFRFXRiRo7CzB3VFg4B55gJRJMNBv06NYMLPM3SlpnEGQ==
   dependencies:
     invariant "^2.2.4"
 
@@ -4126,10 +4127,10 @@ expo-head@0.0.20:
   dependencies:
     react-helmet-async "^1.3.0"
 
-expo-image@^1.5.1:
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/expo-image/-/expo-image-1.5.1.tgz#98a306488637a255761e4b79e8bacc8ec8fd9eab"
-  integrity sha512-133chFSiaiZDeHRmABo/D+j/ByhPjhRwa4X2vgok1E6I2BapJ8n6ZiXODbABNH02EDYssV4Ih71tAWpheMzl/g==
+expo-image@~1.3.5:
+  version "1.3.5"
+  resolved "https://registry.yarnpkg.com/expo-image/-/expo-image-1.3.5.tgz#426deca8cc9a8a3e72a649e9d98c5019efde0d37"
+  integrity sha512-yrIR2mnfIKbKcguoqWK3U5m3zvLPnonvSCabB2ErVGhws8zQs7ILYf+7T08j8U6eFcohjw0CoAFJ6RWNsX2EhA==
 
 expo-keep-awake@~12.3.0:
   version "12.3.0"

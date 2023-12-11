@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
   },
   pickerContainer: {
     width: '100%',
-    backgroundColor: COLORS.BACKGROUND_95,
+    backgroundColor: COLORS.BACKGROUND_50,
     justifyContent: 'center',
     alignItems: 'flex-end',
     height: 270,
@@ -22,12 +22,12 @@ export const styles = StyleSheet.create({
   },
   done: {
     ...TYPOGRAPHY.BUTTON_LABEL,
-    color: COLORS.SECONDARY_64,
+    color: COLORS.SECONDARY_500,
     paddingHorizontal: 20,
     height: 40,
   },
   picker: {
-    backgroundColor: COLORS.BACKGROUND_95,
+    backgroundColor: COLORS.BACKGROUND_50,
     width: '100%',
     height: 200,
   },
