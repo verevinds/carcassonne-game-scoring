@@ -12,6 +12,7 @@ export default function Page() {
     'Roboto-Regular': require('assets/fonts/Roboto-Regular.ttf'),
     'Roboto-Medium': require('assets/fonts/Roboto-Medium.ttf'),
     'Roboto-Bold': require('assets/fonts/Roboto-Bold.ttf'),
+    'Roboto-Black': require('assets/fonts/Roboto-Black.ttf'),
   });
   if (!fontReaded) return null;
   return (

@@ -1,53 +1,38 @@
 import { StyleSheet } from 'react-native';
 
-import { TYPOGRAPHY, COLORS, SHADOW_2 } from 'themes/constants';
+import {
+  TYPOGRAPHY,
+  SHADOW_2,
+  COLORS,
+  BASE_PADDING,
+  BASE_BORDER_RADIUS,
+  SPACING,
+} from 'themes/constants';
 
-export const HEIGHT_CONTAINER = 200;
-export const WIDTH_CONTAINER = 120;
+export const HEIGHT_CONTAINER = 100;
+export const WIDTH_CONTAINER = 350;
 export const PADDING_CONTENT = 10;
 
 export const styles = StyleSheet.create({
   container: {
-    borderRadius: 10,
-    margin: 5,
-    minWidth: WIDTH_CONTAINER,
-    minHeight: HEIGHT_CONTAINER,
+    borderRadius: BASE_BORDER_RADIUS,
+    margin: BASE_PADDING,
+    width: WIDTH_CONTAINER,
+    height: HEIGHT_CONTAINER,
     alignSelf: 'center',
-    justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: COLORS.BACKGROUND_50,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: SPACING.SPACING_4,
+    paddingVertical: SPACING.SPACING_3,
     ...SHADOW_2,
   },
   disabled: { opacity: 0.5 },
-  cardContainerHighlight: {
-    backgroundColor: COLORS.SECONDARY_500,
-  },
-  outerContainer: {
-    maxWidth: WIDTH_CONTAINER * 0.8,
-    height: HEIGHT_CONTAINER * 0.8,
-    borderRadius: 10,
-    padding: 2,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  innerContainer: {
+  title: {
+    marginHorizontal: SPACING.SPACING_3,
+    ...TYPOGRAPHY.PARAGRAPH_1,
+    textAlign: 'left',
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: COLORS.BACKGROUND_50,
-    borderRadius: 8,
-    padding: PADDING_CONTENT,
-  },
-  cardContent: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: (WIDTH_CONTAINER - PADDING_CONTENT) * 0.8,
-    height: (HEIGHT_CONTAINER - PADDING_CONTENT) * 0.8,
-  },
-  iconContainer: {
-    flex: 1,
-  },
-  cardTitle: {
-    ...TYPOGRAPHY.CAPTION_1,
-    maxWidth: 220,
   },
 });

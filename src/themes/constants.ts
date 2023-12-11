@@ -102,16 +102,17 @@ export const COLORS = {
   YELLOW_700: 'rgba(111, 97, 17, 1)',
   YELLOW_800: 'rgba(55, 49, 9, 1)',
   YELLOW_900: 'rgba(22, 19, 3, 1)',
+  TRANSPARENT: 'transparent',
 };
-export const NUMBERS = {
-  spacing0: '0px',
-  spacing1: '2px',
-  spacing2: '4px',
-  spacing3: '8px',
-  spacing4: '12px',
-  spacing5: '16px',
-  spacing6: '22px',
-  spacing7: '24px',
+export const SPACING = {
+  SPACING_0: 0,
+  SPACING_1: 2,
+  SPACING_2: 4,
+  SPACING_3: 8,
+  SPACING_4: 12,
+  SPACING_5: 16,
+  SPACING_6: 22,
+  SPACING_7: 24,
 };
 export enum PLAYER_COLOR_NAME {
   BLUE = 'BLUE',
@@ -162,7 +163,7 @@ export const TYPOGRAPHY = StyleSheet.create({
     color: COLORS.PRIMARY_600,
   },
   SUBTITLE_2: {
-    fontFamily: 'Roboto-Light',
+    fontFamily: 'Roboto-Thin',
     fontSize: 24,
     lineHeight: 26.4,
     color: COLORS.PRIMARY_600,
@@ -199,8 +200,8 @@ export const TYPOGRAPHY = StyleSheet.create({
   },
 });
 
-export const BASE_PADDING = 8;
-export const BASE_BORDER_RADIUS = 10;
+export const BASE_PADDING = SPACING.SPACING_3;
+export const BASE_BORDER_RADIUS = SPACING.SPACING_3;
 export const BASE_BUTTON_HEIGHT = 48;
 export const BASE_BUTTON_MARGIN_BOTTOM = 20;
 export const BASE_BUTTON_CONTAINER_HEIGHT =
