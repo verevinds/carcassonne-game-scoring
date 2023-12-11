@@ -44,13 +44,11 @@ const styles = StyleSheet.create({
     margin: 0,
   },
   title: {
-    ...TYPOGRAPHY.ACCENT_2,
-    fontSize: 40,
+    ...TYPOGRAPHY.TITLE_1,
     width: 240,
   },
   subtitle: {
-    ...TYPOGRAPHY.ACCENT_1,
-    fontSize: 45,
+    ...TYPOGRAPHY.TITLE_2,
   },
   svgContainer: {
     alignSelf: 'center',
