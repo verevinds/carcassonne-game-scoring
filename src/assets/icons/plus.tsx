@@ -1,24 +1,24 @@
 import * as React from 'react';
 
-import Svg, { Path, SvgProps, Rect } from 'react-native-svg';
+import Svg, { Path, SvgProps } from 'react-native-svg';
 
 export default function PlusIcon(props: SvgProps) {
+  const stroke = props.stroke ?? 'white';
   return (
-    <Svg fill="none" height="36" viewBox="0 0 36 36" width="36" {...props}>
-      <Rect fill="#07405F" height="30" rx="15" width="30" x="3" y="2" />
+    <Svg fill="none" height="100%" viewBox="0 0 14 14" width="14" {...props}>
       <Path
-        d="M24 17.0001L12 17"
-        stroke="#EEE3DD"
+        d="M13 7.0001L1 7"
+        stroke={stroke}
         strokeLinecap="round"
         strokeMiterlimit="10"
-        strokeWidth="4"
+        strokeWidth="2"
       />
       <Path
-        d="M18.0001 11L18 23"
-        stroke="#EEE3DD"
+        d="M7.00004 1L6.99994 13"
+        stroke={stroke}
         strokeLinecap="round"
         strokeMiterlimit="10"
-        strokeWidth="4"
+        strokeWidth="2"
       />
     </Svg>
   );

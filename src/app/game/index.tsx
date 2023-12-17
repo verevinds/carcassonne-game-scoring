@@ -10,7 +10,7 @@ import CardNavigation from 'components/card-navigation';
 import Features from 'components/features';
 import StickyContainer from 'components/sticky-container';
 import { useStore } from 'stores';
-import { TYPOGRAPHY } from 'themes/constants';
+import { SPACING, TYPOGRAPHY } from 'themes/constants';
 
 function GameScreen() {
   const store = useStore();
@@ -32,8 +32,8 @@ function GameScreen() {
         <Text style={styles.subtitle}>Completed Feature’s Points</Text>
         <FlatList
           contentContainerStyle={{
-            paddingHorizontal: 20,
-            paddingTop: 10,
+            paddingHorizontal: SPACING.SPACING_6,
+            paddingTop: SPACING.SPACING_4,
           }}
           data={store.playersStore.namePlayers}
           horizontal
@@ -69,15 +69,15 @@ const styles = StyleSheet.create({
     margin: 0,
   },
   title: {
-    paddingHorizontal: 20,
+    paddingHorizontal: SPACING.SPACING_6,
     ...TYPOGRAPHY.SUBTITLE_2,
   },
   subtitle: {
-    paddingHorizontal: 20,
+    paddingHorizontal: SPACING.SPACING_6,
     ...TYPOGRAPHY.HEADER_1,
   },
   navigation: {
-    paddingHorizontal: 20,
+    paddingHorizontal: SPACING.SPACING_6,
   },
 });
 

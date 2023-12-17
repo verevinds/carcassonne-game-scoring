@@ -1,6 +1,12 @@
 import { StyleSheet } from 'react-native';
 
-import { COLORS, SHADOW_1, SHADOW_2, TYPOGRAPHY } from 'themes/constants';
+import {
+  COLORS,
+  SHADOW_1,
+  SHADOW_2,
+  SPACING,
+  TYPOGRAPHY,
+} from 'themes/constants';
 
 export const styles = StyleSheet.create({
   container: {
@@ -24,15 +30,15 @@ export const styles = StyleSheet.create({
   },
   content: {
     height: '100%',
-    paddingTop: 10,
-    paddingHorizontal: 20,
-    paddingBottom: 50,
+    paddingTop: SPACING.SPACING_4,
+    paddingHorizontal: SPACING.SPACING_6,
+    paddingBottom: SPACING.SPACING_7,
     alignItems: 'center',
     justifyContent: 'space-between',
     borderRadius: 30,
   },
   title: {
-    ...TYPOGRAPHY.HEADING_2,
+    ...TYPOGRAPHY.HEADER_2,
     marginTop: 10,
   },
   buttonContainer: {
@@ -43,26 +49,22 @@ export const styles = StyleSheet.create({
     height: 50,
     borderRadius: 10,
     width: 130,
-    backgroundColor: COLORS.PRIMARY_500,
+    backgroundColor: COLORS.SECONDARY_500,
     justifyContent: 'center',
     alignItems: 'center',
-    marginLeft: 20,
-    marginTop: 20,
+    marginLeft: SPACING.SPACING_6,
     ...SHADOW_2,
-    shadowColor: COLORS.PRIMARY_500,
   },
   buttonConfirm: {
     height: 50,
     borderRadius: 10,
     width: 130,
     borderWidth: 4,
-    borderColor: COLORS.PRIMARY_500,
+    borderColor: COLORS.SECONDARY_500,
     backgroundColor: COLORS.BACKGROUND_50,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 20,
     ...SHADOW_2,
-    shadowColor: COLORS.PRIMARY_500,
   },
   description: {
     ...TYPOGRAPHY.PARAGRAPH_1,
@@ -75,7 +77,7 @@ export const styles = StyleSheet.create({
   },
   buttonConfirmText: {
     ...TYPOGRAPHY.BUTTON_LABEL,
-    color: COLORS.PRIMARY_500,
+    color: COLORS.SECONDARY_500,
   },
   background: {
     position: 'absolute',

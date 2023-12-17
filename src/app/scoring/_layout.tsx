@@ -2,6 +2,7 @@ import { Slot } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
 
 import CustomBackButton from 'components/button-back';
+import { SPACING } from 'themes/constants';
 export default function _Layout() {
   return (
     <View style={styles.container}>
@@ -16,6 +17,6 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 0,
     padding: 0,
-    paddingHorizontal: 20,
+    paddingHorizontal: SPACING.SPACING_6,
   },
 });

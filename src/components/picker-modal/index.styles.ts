@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { COLORS, SHADOW_1, TYPOGRAPHY } from 'themes/constants';
+import { COLORS, SHADOW_1, SPACING, TYPOGRAPHY } from 'themes/constants';
 
 export const styles = StyleSheet.create({
   container: {
@@ -15,15 +15,24 @@ export const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: COLORS.BACKGROUND_50,
     justifyContent: 'center',
-    alignItems: 'flex-end',
     height: 270,
-    paddingVertical: 10,
+    paddingVertical: SPACING.SPACING_4,
     ...SHADOW_1,
+  },
+  title: {
+    paddingHorizontal: SPACING.SPACING_6,
+    justifyContent: 'space-between',
+    width: '100%',
+    flexDirection: 'row',
   },
   done: {
     ...TYPOGRAPHY.BUTTON_LABEL,
     color: COLORS.SECONDARY_500,
-    paddingHorizontal: 20,
+    height: 40,
+  },
+  text: {
+    ...TYPOGRAPHY.PARAGRAPH_1,
+    color: COLORS.SECONDARY_500,
     height: 40,
   },
   picker: {

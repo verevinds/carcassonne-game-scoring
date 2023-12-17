@@ -7,6 +7,7 @@ import Animated from 'react-native-reanimated';
 
 import { LinearGradient } from 'components/gradient';
 import Pattern from 'components/pattern';
+import { COLORS } from 'themes/constants';
 
 import { useAnimationWarningModal } from './index.hooks';
 import messages from './index.messages';
@@ -26,7 +27,10 @@ function WarningModal(props: WarningModalProps) {
             <View style={styles.stick} />
             <View style={styles.contentContainer}>
               <Pattern />
-              <LinearGradient />
+              <LinearGradient
+                startColor={COLORS.BACKGROUND_50}
+                stopColor={COLORS.BACKGROUND_200}
+              />
               <View style={styles.content}>
                 <Text style={styles.title}>Game Reset</Text>
                 <Text style={styles.description}>

@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import SvgComponent from 'assets/icons/farme';
 import Button from 'components/button-link';
 import StickyContainer from 'components/sticky-container';
-import { TYPOGRAPHY } from 'themes/constants';
+import { SPACING, TYPOGRAPHY } from 'themes/constants';
 
 export default function Page() {
   const [fontReaded] = useFonts({
@@ -13,6 +13,7 @@ export default function Page() {
     'Roboto-Medium': require('assets/fonts/Roboto-Medium.ttf'),
     'Roboto-Bold': require('assets/fonts/Roboto-Bold.ttf'),
     'Roboto-Black': require('assets/fonts/Roboto-Black.ttf'),
+    'Roboto-Light': require('assets/fonts/Roboto-Light.ttf'),
   });
   if (!fontReaded) return null;
   return (
@@ -37,7 +38,7 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 0,
     padding: 0,
-    paddingHorizontal: 20,
+    paddingHorizontal: SPACING.SPACING_6,
   },
   main: {
     top: 100,

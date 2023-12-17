@@ -10,11 +10,13 @@ function ModalPicker({
   onClose,
   onValueChange,
   value,
+  text,
 }: {
   isOpen: boolean;
   onClose: () => void;
   onValueChange: (value: number) => void;
   value: number;
+  text: string;
 }) {
   return (
     <Modal
@@ -25,7 +27,8 @@ function ModalPicker({
     >
       <View style={styles.container}>
         <View style={styles.pickerContainer}>
-          <TouchableOpacity onPress={onClose}>
+          <TouchableOpacity style={styles.title} onPress={onClose}>
+            <Text style={styles.text}>{text}</Text>
             <Text style={styles.done}>{messages.done}</Text>
           </TouchableOpacity>
           <Picker

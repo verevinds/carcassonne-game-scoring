@@ -4,11 +4,11 @@ import { observer } from 'mobx-react';
 import { Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
+import EllipsisIcon from 'assets/icons/ellipsis';
 import MinusIcon from 'assets/icons/minus';
 import PlusIcon from 'assets/icons/plus';
-import ShieldIcon from 'assets/icons/shield';
 import ModalPicker from 'components/picker-modal';
-import { PLAYER_COLORS } from 'themes/constants';
+import { COLORS, PLAYER_COLORS } from 'themes/constants';
 
 import { styles } from './index.styles';
 import { CardPointsProps } from './index.types';
@@ -61,41 +61,57 @@ function CardPoints({
           ]}
         />
       ) : null}
-      <View style={styles.iconContainer}>{icon}</View>
       <View style={styles.content}>
+        <View style={styles.iconContainer}>{icon}</View>
         <View style={styles.titleContainer}>
-          <Text style={styles.title}>{title}</Text>
-          <Text style={styles.points}>points: {feature?.points ?? 0}</Text>
-        </View>
-        <Text style={styles.position}>{description}</Text>
-        <View
-          style={[styles.navigation, isButtons && styles.multipleNavigation]}
-        >
-          {LayoutProps?.withShild ? (
-            <TouchableOpacity onPress={togglePicker}>
-              <View style={styles.shield}>
-                <Text style={styles.shieldText}>
-                  {countShields.toString().padStart(2, '0')}
-                </Text>
-                <ShieldIcon />
-                <ModalPicker
-                  isOpen={pickerVisible}
-                  value={countShields}
-                  onClose={togglePicker}
-                  onValueChange={onValueChange}
-                />
-              </View>
-            </TouchableOpacity>
-          ) : null}
-          <View style={styles.calculator}>
-            <TouchableOpacity disabled={!feature?.count} onPress={onMinusPress}>
-              <MinusIcon disabled={!feature?.count} />
-            </TouchableOpacity>
-            <Text style={styles.count}>{feature?.count}</Text>
-            <TouchableOpacity onPress={onPlusPress}>
-              <PlusIcon />
-            </TouchableOpacity>
+          <Text numberOfLines={1} style={styles.title}>
+            {title}
+          </Text>
+          <View
+            style={{ flexDirection: 'row', position: 'absolute', right: 0 }}
+          >
+            <Text style={styles.count}>counts: {feature?.count}</Text>
+            <Text style={styles.points}>points: {feature?.points ?? 0}</Text>
           </View>
+
+          <Text style={styles.description}>{description}</Text>
+        </View>
+      </View>
+      <View style={styles.divider} />
+      <View style={[styles.navigation, isButtons && styles.multipleNavigation]}>
+        {LayoutProps?.withShild ? (
+          <TouchableOpacity
+            style={[styles.button, styles.ellipsisButton]}
+            onPress={togglePicker}
+          >
+            <EllipsisIcon stroke={COLORS.BACKGROUND_50} width={20} />
+            <ModalPicker
+              isOpen={pickerVisible}
+              text="Select count shields"
+              value={countShields}
+              onClose={togglePicker}
+              onValueChange={onValueChange}
+            />
+          </TouchableOpacity>
+        ) : null}
+        <View style={styles.calculator}>
+          <TouchableOpacity
+            disabled={!feature?.count}
+            style={[styles.button, styles.minusButton]}
+            onPress={onMinusPress}
+          >
+            <MinusIcon
+              disabled={!feature?.count}
+              stroke={COLORS.SECONDARY_500}
+              width={15}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.button, styles.plusButton]}
+            onPress={onPlusPress}
+          >
+            <PlusIcon stroke={COLORS.BACKGROUND_50} width={15} />
+          </TouchableOpacity>
         </View>
       </View>
     </View>

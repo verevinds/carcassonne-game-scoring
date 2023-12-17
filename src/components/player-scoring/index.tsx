@@ -10,6 +10,7 @@ import { PlayerScoringProps } from './index.types';
 
 function PlayerScoring(props: PlayerScoringProps) {
   const player = useStore().playersStore.getPlayer(props.name);
+  if (!player) return null;
   return (
     <View>
       <Text style={styles.title}>

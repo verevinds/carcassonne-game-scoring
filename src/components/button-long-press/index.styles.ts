@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { COLORS, TYPOGRAPHY, SHADOW_2 } from 'themes/constants';
+import { COLORS, TYPOGRAPHY, SHADOW_2, SPACING } from 'themes/constants';
 
 import { BORDER_RADIUS, HEIGHT, WIDHT } from './index.constants';
 
@@ -16,15 +16,14 @@ export const styles = StyleSheet.create({
     width: WIDHT,
     height: HEIGHT,
     borderRadius: BORDER_RADIUS,
-    backgroundColor: COLORS.PRIMARY_500,
+    backgroundColor: COLORS.SECONDARY_500,
     justifyContent: 'center',
     alignItems: 'center',
   },
   circle: {
     width: 50,
     height: 50,
-
-    backgroundColor: COLORS.PRIMARY_500,
+    backgroundColor: COLORS.SECONDARY_300,
     borderRadius: 50,
     position: 'absolute',
   },
@@ -35,7 +34,8 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: COLORS.BACKGROUND_50,
     borderRadius: 10,
-    paddingHorizontal: 20,
+    paddingHorizontal: SPACING.SPACING_6,
+    paddingVertical: SPACING.SPACING_2,
     opacity: 0,
     zIndex: 100,
     ...SHADOW_2,

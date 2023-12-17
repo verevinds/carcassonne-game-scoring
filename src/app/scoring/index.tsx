@@ -45,10 +45,10 @@ function PlayersScreen() {
 
 const styles = StyleSheet.create({
   title: {
-    ...TYPOGRAPHY.HEADING_1,
+    ...TYPOGRAPHY.SUBTITLE_2,
   },
   subtitle: {
-    ...TYPOGRAPHY.HEADING_2,
+    ...TYPOGRAPHY.HEADER_2,
   },
   body: {
     marginTop: 20,

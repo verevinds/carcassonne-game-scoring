@@ -13,7 +13,7 @@ import CardSelectExpansions from 'components/card-select-expansions';
 import ShadeFlatList from 'components/shade-flat-list';
 import StickyContainer from 'components/sticky-container';
 import { useStore } from 'stores';
-import { TYPOGRAPHY } from 'themes/constants';
+import { SPACING, TYPOGRAPHY } from 'themes/constants';
 
 function ExpansionsScreen() {
   const store = useStore();
@@ -77,11 +77,11 @@ const styles = StyleSheet.create({
     margin: 0,
   },
   title: {
-    paddingHorizontal: 20,
+    paddingHorizontal: SPACING.SPACING_6,
     ...TYPOGRAPHY.SUBTITLE_2,
   },
   subtitle: {
-    paddingHorizontal: 20,
+    paddingHorizontal: SPACING.SPACING_6,
     ...TYPOGRAPHY.HEADER_1,
   },
   body: {

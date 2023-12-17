@@ -1,14 +1,7 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 
 import { observer } from 'mobx-react';
 import { FlatList } from 'react-native-gesture-handler';
-import Animated, {
-  Easing,
-  interpolate,
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from 'react-native-reanimated';
 
 import AbbotIcon from 'assets/icons/abbot';
 import CityIcon from 'assets/icons/city';
@@ -17,52 +10,17 @@ import MonasteryIcon from 'assets/icons/monastery';
 import RoadIcon from 'assets/icons/road';
 import CardPoints from 'components/card-points';
 import { useStore } from 'stores';
+import { SPACING } from 'themes/constants';
 
 import { FeaturesProps } from './index.types';
 
-function Features({
-  player,
-  LayoutProps,
-  index = 0,
-  withAnimated,
-  ...props
-}: FeaturesProps) {
+function Features({ player, LayoutProps, ...props }: FeaturesProps) {
   const prices = useStore().playersStore.options.price;
-  const rotate = useSharedValue(0);
-  const firstRender = useRef(true);
-  useEffect(() => {
-    if (withAnimated !== true && firstRender.current === false) {
-      rotate.value = withTiming(
-        90,
-        {
-          duration: 150,
-          easing: Easing.linear,
-        },
-        (isFinished) => {
-          if (isFinished) {
-            rotate.value = withTiming(0, {
-              duration: 150,
-              easing: Easing.linear,
-            });
-          }
-        },
-      );
-    }
-    firstRender.current = false;
-  }, [index]);
 
-  const animationStyles = useAnimatedStyle(() => {
-    return {
-      transform: [
-        { scale: interpolate(rotate.value, [0, 180, 360], [1, 0.8, 1]) }, // Меняем масштаб в зависимости от угла вращения
-      ],
-      opacity: interpolate(rotate.value, [0, 180, 360], [1, 0, 1]),
-    };
-  });
   const isFinishGame = Boolean(LayoutProps?.withIndicator);
   const data = [
     {
-      icon: <RoadIcon />,
+      icon: <RoadIcon height={50} width={50} />,
       title: 'The roads',
       description: `${
         isFinishGame ? prices.road.incomplete : prices.road.complete
@@ -71,7 +29,7 @@ function Features({
       feature: player.road,
     },
     {
-      icon: <MonasteryIcon />,
+      icon: <MonasteryIcon height={50} width={50} />,
       title: 'The monasteries',
       description: `${
         isFinishGame ? prices.monastery.incomplete : prices.monastery.complete
@@ -80,7 +38,7 @@ function Features({
       feature: player.monastery,
     },
     {
-      icon: <CityIcon />,
+      icon: <CityIcon height={50} width={50} />,
       title: 'The cities',
       description: `${
         isFinishGame ? prices.city.incomplete : prices.city.complete
@@ -94,7 +52,7 @@ function Features({
       feature: player.city,
     },
     {
-      icon: <AbbotIcon />,
+      icon: <AbbotIcon height={50} width={50} />,
       title: 'The abbots',
       description: `${
         isFinishGame ? prices.abbot.incomplete : prices.abbot.complete
@@ -107,7 +65,7 @@ function Features({
   useEffect(() => {
     if (isFinishGame) {
       data.push({
-        icon: <FieldsIcon />,
+        icon: <FieldsIcon height={50} width={50} />,
         title: 'The fields',
         description: `${prices.fields.incomplete} points for each adjacent completed city.`,
         LayoutProps: { withIndicator: LayoutProps?.withIndicator },
@@ -121,16 +79,12 @@ function Features({
       contentContainerStyle={{
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 20,
-        paddingBottom: 20,
+        marginTop: SPACING.SPACING_6,
+        paddingBottom: SPACING.SPACING_6,
       }}
       {...props}
       data={data}
-      renderItem={({ item }) => (
-        <Animated.View style={animationStyles}>
-          <CardPoints {...item} player={player} />
-        </Animated.View>
-      )}
+      renderItem={({ item }) => <CardPoints {...item} player={player} />}
       showsVerticalScrollIndicator={false}
     />
   );
