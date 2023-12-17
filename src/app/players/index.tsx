@@ -103,11 +103,11 @@ const styles = StyleSheet.create({
   },
   title: {
     paddingHorizontal: 20,
-    ...TYPOGRAPHY.HEADING_1,
+    ...TYPOGRAPHY.SUBTITLE_2,
   },
   subtitle: {
     paddingHorizontal: 20,
-    ...TYPOGRAPHY.HEADING_2,
+    ...TYPOGRAPHY.HEADER_1,
   },
   svgContainer: {
     alignSelf: 'center',
