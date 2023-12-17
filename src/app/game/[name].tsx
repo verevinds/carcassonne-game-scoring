@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   },
   title: {
     marginTop: -10,
-    ...TYPOGRAPHY.HEADING_2,
+    ...TYPOGRAPHY.HEADER_2,
     marginBottom: 10,
   },
   body: {

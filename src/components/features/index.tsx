@@ -2,6 +2,13 @@ import { useEffect } from 'react';
 
 import { observer } from 'mobx-react';
 import { FlatList } from 'react-native-gesture-handler';
+import Animated, {
+  Easing,
+  interpolate,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
 
 import AbbotIcon from 'assets/icons/abbot';
 import CityIcon from 'assets/icons/city';
@@ -13,8 +20,44 @@ import { useStore } from 'stores';
 
 import { FeaturesProps } from './index.types';
 
-function Features({ player, LayoutProps, ...props }: FeaturesProps) {
+function Features({
+  player,
+  LayoutProps,
+  index = 0,
+  withAnimated,
+  ...props
+}: FeaturesProps) {
   const prices = useStore().playersStore.options.price;
+  const rotate = useSharedValue(0);
+
+  useEffect(() => {
+    if (withAnimated === false) {
+      rotate.value = withTiming(
+        90,
+        {
+          duration: 150,
+          easing: Easing.linear,
+        },
+        (isFinished) => {
+          if (isFinished) {
+            rotate.value = withTiming(0, {
+              duration: 150,
+              easing: Easing.linear,
+            });
+          }
+        },
+      );
+    }
+  }, [index]);
+
+  const animationStyles = useAnimatedStyle(() => {
+    return {
+      transform: [
+        { scale: interpolate(rotate.value, [0, 180, 360], [1, 0.8, 1]) }, // Меняем масштаб в зависимости от угла вращения
+      ],
+      opacity: interpolate(rotate.value, [0, 180, 360], [1, 0, 1]),
+    };
+  });
   const isFinishGame = Boolean(LayoutProps?.withIndicator);
   const data = [
     {
@@ -82,7 +125,11 @@ function Features({ player, LayoutProps, ...props }: FeaturesProps) {
       }}
       {...props}
       data={data}
-      renderItem={({ item }) => <CardPoints {...item} player={player} />}
+      renderItem={({ item }) => (
+        <Animated.View style={animationStyles}>
+          <CardPoints {...item} player={player} />
+        </Animated.View>
+      )}
       showsVerticalScrollIndicator={false}
     />
   );

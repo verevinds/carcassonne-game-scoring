@@ -1,50 +1,33 @@
-import { Link } from 'expo-router';
-import { Text, View } from 'react-native';
+import { useCallback, useMemo } from 'react';
 
-import ArrowIcon from 'assets/icons/arrow';
+import { observer } from 'mobx-react';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+
 import PlayerIcon from 'assets/icons/player';
 import { useStore } from 'stores';
-import { COLORS, PLAYER_COLOR_NAME } from 'themes/constants';
+import { PLAYER_COLOR_NAME } from 'themes/constants';
 
 import { styles } from './index.styles';
 
 function CardNavigation({ name }: { name: PLAYER_COLOR_NAME }) {
   const store = useStore();
   const player = store.playersStore.getPlayer(name);
+  const onPress = useCallback(() => {
+    store.gameStore.setPlayer(player);
+  }, [player?.name]);
+  const isSelected = useMemo(
+    () => store.gameStore.selectedPlayer?.name === player?.name,
+    [store.gameStore.selectedPlayer?.name, player?.name],
+  );
+
   return (
-    <Link
-      href={{
-        pathname: '/game/[name]',
-        params: { name },
-      }}
-      style={{
-        height: 50,
-        marginBottom: 10,
-        shadowColor: COLORS.BACKGROUND_100,
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 1,
-        shadowRadius: 4,
-        elevation: 10,
-      }}
+    <TouchableOpacity
+      style={[styles.container, isSelected && styles.selected]}
+      onPress={onPress}
     >
-      <View style={styles.container}>
-        <View style={styles.iconContainer}>
-          <PlayerIcon variant={name} />
-        </View>
-        <View style={styles.content}>
-          <View>
-            <Text style={styles.title}>{name} player</Text>
-            <View style={styles.pointsContainer}>
-              <Text style={styles.points}>points {player.points}</Text>
-            </View>
-          </View>
-        </View>
-        <View style={styles.navigation}>
-          <ArrowIcon mirror />
-        </View>
-      </View>
-    </Link>
+      <PlayerIcon height={50} variant={name} width={50} />
+    </TouchableOpacity>
   );
 }
 
-export default CardNavigation;
+export default observer(CardNavigation);

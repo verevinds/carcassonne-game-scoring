@@ -40,7 +40,7 @@ export class PlayersStore {
   setPlayer(id: string) {
     this.players.set(id, new PlayerStore(id, this.options));
   }
-  getPlayer(id: string | undefined) {
+  getPlayer(id: string | undefined): PlayerStore | undefined {
     return this.players.get(id);
   }
   deletePlayer(id: string) {

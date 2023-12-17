@@ -1,11 +1,13 @@
 import { autorun, makeAutoObservable } from 'mobx';
 
 import { ExpansionsStore } from './expansions-store';
+import { GameStore } from './game-store';
 import { PlayersStore } from './players-store';
 
 export class RootStore {
   playersStore = new PlayersStore();
   expansionsStore = new ExpansionsStore();
+  gameStore = new GameStore();
   numberOfGames = 1;
 
   constructor() {

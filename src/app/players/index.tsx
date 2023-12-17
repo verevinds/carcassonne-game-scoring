@@ -109,10 +109,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     ...TYPOGRAPHY.HEADER_1,
   },
-  svgContainer: {
-    alignSelf: 'center',
-    marginTop: 50,
-  },
   navigation: {
     paddingHorizontal: 20,
   },

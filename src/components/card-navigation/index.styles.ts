@@ -1,44 +1,25 @@
-import { Dimensions, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 
-import { TYPOGRAPHY } from 'themes/constants';
-const { width } = Dimensions.get('window');
+import { COLORS, SHADOW_2, SPACING } from 'themes/constants';
 
 export const styles = StyleSheet.create({
-  content: {
-    padding: 5,
-    flex: 1,
-    justifyContent: 'space-between',
-  },
-  iconContainer: {
-    backgroundColor: '#E5DECE',
-    paddingVertical: 5,
-    paddingHorizontal: 10,
-  },
   container: {
-    width: width - 40,
-    backgroundColor: '#F6F4EE',
-    flexDirection: 'row',
-    borderRadius: 10,
-    overflow: 'hidden',
-    justifyContent: 'space-between',
-  },
-  title: {
-    ...TYPOGRAPHY.SUBTITLE_1,
-    textTransform: 'capitalize',
-  },
-  position: {
-    ...TYPOGRAPHY.CAPTION_2,
-  },
-  points: {
-    ...TYPOGRAPHY.CAPTION_2,
-  },
-  pointsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-  },
-  navigation: {
-    alignItems: 'center',
+    width: 60,
+    height: 60,
+    backgroundColor: COLORS.BACKGROUND_50,
+    marginRight: SPACING.SPACING_4,
+    borderRadius: 60,
     justifyContent: 'center',
-    paddingRight: 10,
+    alignItems: 'center',
+    ...SHADOW_2,
+  },
+  gradient: {
+    borderRadius: 60,
+    width: 60,
+    height: 60,
+    overflow: 'hidden',
+  },
+  selected: {
+    backgroundColor: COLORS.SECONDARY_500,
   },
 });
