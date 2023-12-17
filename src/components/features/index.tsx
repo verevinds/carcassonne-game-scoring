@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 import { observer } from 'mobx-react';
 import { FlatList } from 'react-native-gesture-handler';
@@ -29,9 +29,9 @@ function Features({
 }: FeaturesProps) {
   const prices = useStore().playersStore.options.price;
   const rotate = useSharedValue(0);
-
+  const firstRender = useRef(true);
   useEffect(() => {
-    if (withAnimated === false) {
+    if (withAnimated !== true && firstRender.current === false) {
       rotate.value = withTiming(
         90,
         {
@@ -48,6 +48,7 @@ function Features({
         },
       );
     }
+    firstRender.current = false;
   }, [index]);
 
   const animationStyles = useAnimatedStyle(() => {
