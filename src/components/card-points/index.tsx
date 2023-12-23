@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import * as Haptics from 'expo-haptics';
 import { observer } from 'mobx-react';
 import { Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -35,6 +36,7 @@ function CardPoints({
 
   function togglePicker() {
     setPickerVisible((prev) => !prev);
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
   }
   function onValueChange(val: number) {
     if (feature && 'setShield' in feature) {
@@ -43,14 +45,18 @@ function CardPoints({
     }
   }
   function onMinusPress() {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     if (isFinishGame) return feature?.minusIncomplete();
     feature?.minus();
   }
   function onPlusPress() {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     if (isFinishGame) return feature?.plusIncomplete();
     feature?.plus();
   }
-
+  const isDisabled = Boolean(
+    isFinishGame ? !feature?.countImcomplete : !feature?.count,
+  );
   return (
     <View style={styles.container}>
       {isFinishGame ? (
@@ -96,13 +102,16 @@ function CardPoints({
         ) : null}
         <View style={styles.calculator}>
           <TouchableOpacity
-            disabled={!feature?.count}
-            style={[styles.button, styles.minusButton]}
+            disabled={isDisabled}
+            style={[
+              styles.button,
+              styles.minusButton,
+              isDisabled && styles.disabled,
+            ]}
             onPress={onMinusPress}
           >
             <MinusIcon
-              disabled={!feature?.count}
-              stroke={COLORS.SECONDARY_500}
+              stroke={isDisabled ? COLORS.SECONDARY_200 : COLORS.SECONDARY_500}
               width={15}
             />
           </TouchableOpacity>

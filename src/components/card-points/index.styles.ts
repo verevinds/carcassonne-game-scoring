@@ -121,4 +121,7 @@ export const styles = StyleSheet.create({
   ellipsisButton: {
     backgroundColor: COLORS.SECONDARY_500,
   },
+  disabled: {
+    borderColor: COLORS.SECONDARY_200,
+  },
 });

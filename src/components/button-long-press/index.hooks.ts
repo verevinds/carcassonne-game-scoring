@@ -1,3 +1,5 @@
+import * as Haptics from 'expo-haptics';
+import { Vibration } from 'react-native';
 import { Gesture } from 'react-native-gesture-handler';
 import {
   SharedValue,
@@ -17,7 +19,11 @@ const HINT_TOP_ANIMATION_CONFIG = { duration: 1000 };
 const HINT_OPACITY_ANIMATION_CONFIG = { duration: 500 };
 
 export function useAnimationLongPress(onPress: (arg?: unknown) => void) {
-  const callback = useDebounce(onPress, DELAY_BEFORE_ACTION);
+  const callback = useDebounce(function () {
+    Vibration.cancel();
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+    onPress();
+  }, DELAY_BEFORE_ACTION);
   const size = useSharedValue(1);
   const pressed = useSharedValue(false);
   const hintTop = useSharedValue(-10);
@@ -32,12 +38,27 @@ export function useAnimationLongPress(onPress: (arg?: unknown) => void) {
   function setEnedTime() {
     endTime.value = Date.now();
   }
-
+  let pattern: number[] = [];
+  const startGradualVibration = () => {
+    let duration = 10;
+    const maxDuration = 2000;
+    const step = 10;
+    while (duration <= maxDuration) {
+      pattern.push(duration, 500);
+      duration += step;
+    }
+    Vibration.vibrate(pattern);
+  };
+  const stopVibration = () => {
+    pattern = [];
+    Vibration.cancel();
+  };
   const gesture = Gesture.Pan()
     .onBegin(() => {
       pressed.value = true;
     })
     .onTouchesDown(() => {
+      runOnJS(startGradualVibration)();
       runOnJS(callback.start)();
       runOnJS(setStartTime)();
       pressed.value = true;
@@ -48,6 +69,7 @@ export function useAnimationLongPress(onPress: (arg?: unknown) => void) {
     })
     .onTouchesUp(() => {
       runOnJS(callback.stop)();
+      runOnJS(stopVibration)();
       runOnJS(setEnedTime)();
       size.value = 1;
       pressed.value = false;

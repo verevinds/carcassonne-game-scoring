@@ -60,22 +60,22 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   title: {
-    ...TYPOGRAPHY.HEADING_1,
+    ...TYPOGRAPHY.SUBTITLE_2,
   },
   subtitle: {
-    ...TYPOGRAPHY.HEADING_2,
+    ...TYPOGRAPHY.HEADER_1,
   },
   body: {
     marginTop: 50,
   },
   name: {
-    ...TYPOGRAPHY.HEADING_2,
+    ...TYPOGRAPHY.PARAGRAPH_1,
   },
   position: {
-    ...TYPOGRAPHY.HEADING_2,
+    ...TYPOGRAPHY.PARAGRAPH_1,
   },
   points: {
-    ...TYPOGRAPHY.HEADING_2,
+    ...TYPOGRAPHY.PARAGRAPH_1,
   },
   tableHeader: {
     flexDirection: 'row',
@@ -83,13 +83,14 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   nameTitle: {
-    ...TYPOGRAPHY.HEADING_1,
+    ...TYPOGRAPHY.HEADER_2,
   },
   positionTitle: {
-    ...TYPOGRAPHY.HEADING_1,
+    ...TYPOGRAPHY.HEADER_2,
   },
   pointsTitle: {
-    ...TYPOGRAPHY.HEADING_1,
+    ...TYPOGRAPHY.HEADER_2,
   },
 });
+
 export default observer(PlayerLeadboard);

@@ -1,3 +1,4 @@
+import * as Haptics from 'expo-haptics';
 import { Modal, Text, View } from 'react-native';
 import {
   GestureDetector,
@@ -18,6 +19,14 @@ function WarningModal(props: WarningModalProps) {
   const { isOpen, gesture, fadeAnimationStyles, slideAnimationStyles } =
     useAnimationWarningModal(props.isOpen, props.onClose);
 
+  function hanldeClose() {
+    props.onClose();
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+  }
+  function handleConfirm() {
+    props.onConfirm();
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+  }
   return (
     <Modal transparent visible={isOpen} onRequestClose={props.onClose}>
       <GestureDetector gesture={gesture}>
@@ -40,7 +49,7 @@ function WarningModal(props: WarningModalProps) {
                 <View style={styles.buttonContainer}>
                   <TouchableOpacity
                     style={styles.buttonConfirm}
-                    onPress={props.onConfirm}
+                    onPress={handleConfirm}
                   >
                     <Text style={styles.buttonConfirmText}>
                       {messages['confirm']}
@@ -48,7 +57,7 @@ function WarningModal(props: WarningModalProps) {
                   </TouchableOpacity>
                   <TouchableOpacity
                     style={styles.buttonCancel}
-                    onPress={props.onClose}
+                    onPress={hanldeClose}
                   >
                     <Text style={styles.buttonText}>{messages['cancel']}</Text>
                   </TouchableOpacity>

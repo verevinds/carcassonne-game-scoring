@@ -12,7 +12,7 @@ import ShadeFlatList from 'components/shade-flat-list';
 import StickyContainer from 'components/sticky-container';
 import WarningModal from 'components/warning-modal';
 import { useStore } from 'stores';
-import { PLAYER_COLOR_NAME, TYPOGRAPHY } from 'themes/constants';
+import { PLAYER_COLOR_NAME, SPACING, TYPOGRAPHY } from 'themes/constants';
 
 function PlayersScreen() {
   const route = useRouter();
@@ -102,14 +102,14 @@ const styles = StyleSheet.create({
     margin: 0,
   },
   title: {
-    paddingHorizontal: 20,
+    paddingHorizontal: SPACING.SPACING_6,
     ...TYPOGRAPHY.SUBTITLE_2,
   },
   subtitle: {
-    paddingHorizontal: 20,
+    paddingHorizontal: SPACING.SPACING_6,
     ...TYPOGRAPHY.HEADER_1,
   },
   navigation: {
-    paddingHorizontal: 20,
+    paddingHorizontal: SPACING.SPACING_6,
   },
 });

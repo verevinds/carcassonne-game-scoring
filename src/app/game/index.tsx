@@ -41,14 +41,7 @@ function GameScreen() {
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}
         />
-        {selectedPlayer ? (
-          <Features
-            index={store.playersStore.namePlayers.findIndex(
-              (el) => el.name === selectedPlayer.name,
-            )}
-            player={selectedPlayer}
-          />
-        ) : null}
+        {selectedPlayer ? <Features player={selectedPlayer} /> : null}
       </View>
       <StickyContainer>
         <Button href="/scoring">Finish Game</Button>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import * as Haptics from 'expo-haptics';
 import { autorun } from 'mobx';
 
 import CardSelect from 'components/card-select';
@@ -24,6 +25,7 @@ function CardSelectExpansions(props: CardSelectExpansionsProps) {
   }, []);
 
   function onExpansionSelect() {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     setIsSelected((prev) => !prev);
     store.expansionsStore.toggleExpansion(props.text);
   }

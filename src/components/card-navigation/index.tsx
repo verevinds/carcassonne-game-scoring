@@ -1,5 +1,6 @@
 import { useCallback, useMemo } from 'react';
 
+import * as Haptics from 'expo-haptics';
 import { observer } from 'mobx-react';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
@@ -13,6 +14,7 @@ function CardNavigation({ name }: { name: PLAYER_COLOR_NAME }) {
   const store = useStore();
   const player = store.playersStore.getPlayer(name);
   const onPress = useCallback(() => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
     store.gameStore.setPlayer(player);
   }, [player?.name]);
   const isSelected = useMemo(

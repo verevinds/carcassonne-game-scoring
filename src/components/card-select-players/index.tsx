@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 
+import * as Haptics from 'expo-haptics';
 import { autorun } from 'mobx';
-import { useStore } from 'stores';
 
 import CardSelect from 'components/card-select';
+import { useStore } from 'stores';
 
 import type { CardSelectPlayersProps } from './index.types';
 
@@ -22,6 +23,7 @@ function CardSelectPlayers(props: CardSelectPlayersProps) {
   }, []);
 
   function onPlayerSelect() {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     setIsSelected((prev) => !prev);
     store.playersStore.togglePlayer(props.name);
   }

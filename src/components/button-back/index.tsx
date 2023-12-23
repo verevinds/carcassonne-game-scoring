@@ -1,3 +1,4 @@
+import * as Haptics from 'expo-haptics';
 import { useNavigation } from 'expo-router';
 import { View, TouchableOpacity } from 'react-native';
 
@@ -6,8 +7,12 @@ import { COLORS } from 'themes/constants';
 
 export default function CustomBackButton() {
   const navigation = useNavigation();
+  function onPress() {
+    navigation.goBack();
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+  }
   return (
-    <TouchableOpacity onPress={navigation.goBack}>
+    <TouchableOpacity onPress={onPress}>
       <View
         style={{
           width: 40,

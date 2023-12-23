@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
 
+import * as Haptics from 'expo-haptics';
 import { Link } from 'expo-router';
 import { LinkProps } from 'expo-router/build/link/Link';
-import { View, Text } from 'react-native';
+import { View, Text, GestureResponderEvent } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   Easing,
@@ -41,13 +42,15 @@ const ButtonTangled = (props: LinkProps): JSX.Element => {
       }),
     };
   });
+  function handlePress(
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent> | GestureResponderEvent,
+  ) {
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+    props.onPress?.(e);
+  }
   return (
     <GestureDetector gesture={gesture}>
-      <Link
-        {...props}
-        style={[props.style, styles.link]}
-        onPress={props.onPress}
-      >
+      <Link {...props} style={[props.style, styles.link]} onPress={handlePress}>
         <View style={styles.container}>
           <Animated.View style={[styles.button, animationStyles]}>
             <Text style={styles.text}>
