@@ -23,7 +23,7 @@ function CardSelectPlayers(props: CardSelectPlayersProps) {
   }, []);
 
   function onPlayerSelect() {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
     setIsSelected((prev) => !prev);
     store.playersStore.togglePlayer(props.name);
   }

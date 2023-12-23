@@ -25,7 +25,7 @@ function CardSelectExpansions(props: CardSelectExpansionsProps) {
   }, []);
 
   function onExpansionSelect() {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
     setIsSelected((prev) => !prev);
     store.expansionsStore.toggleExpansion(props.text);
   }

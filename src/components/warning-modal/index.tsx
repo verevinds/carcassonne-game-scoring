@@ -21,7 +21,7 @@ function WarningModal(props: WarningModalProps) {
 
   function hanldeClose() {
     props.onClose();
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
   }
   function handleConfirm() {
     props.onConfirm();

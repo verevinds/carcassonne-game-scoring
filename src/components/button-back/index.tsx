@@ -9,7 +9,7 @@ export default function CustomBackButton() {
   const navigation = useNavigation();
   function onPress() {
     navigation.goBack();
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
   }
   return (
     <TouchableOpacity onPress={onPress}>
