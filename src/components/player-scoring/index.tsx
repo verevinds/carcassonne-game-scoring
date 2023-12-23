@@ -6,7 +6,7 @@ import { Text, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
 import Button from 'components/button';
-import CustomBackButton from 'components/button-back';
+import CustomExitButton from 'components/button-exit';
 import ButtonLongPress from 'components/button-long-press';
 import CardNavigation from 'components/card-navigation';
 import Features from 'components/features';
@@ -55,7 +55,7 @@ function PlayerScoring({
   return (
     <View style={styles.container}>
       <View style={styles.navigation}>
-        <CustomBackButton />
+        <CustomExitButton />
       </View>
       <View style={styles.main}>
         <Text style={styles.title}>{title}</Text>

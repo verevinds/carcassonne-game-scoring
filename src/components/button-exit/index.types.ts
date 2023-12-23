@@ -1,3 +1,1 @@
-export type CustomExitButtonProps = {
-  onPress: () => void;
-};
+export type CustomExitButtonProps = {};
