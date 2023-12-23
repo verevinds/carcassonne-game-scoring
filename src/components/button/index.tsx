@@ -1,9 +1,13 @@
 import { useEffect } from 'react';
 
 import * as Haptics from 'expo-haptics';
-import { Link } from 'expo-router';
-import { LinkProps } from 'expo-router/build/link/Link';
-import { View, Text, GestureResponderEvent } from 'react-native';
+import {
+  View,
+  Text,
+  GestureResponderEvent,
+  TouchableNativeFeedback,
+  TouchableNativeFeedbackProps,
+} from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   Easing,
@@ -17,7 +21,7 @@ import ArrowStick from 'assets/icons/arrow-stick';
 import messages from './index.messages';
 import { styles } from './index.styles';
 
-const ButtonLink = (props: LinkProps): JSX.Element => {
+const Button = (props: TouchableNativeFeedbackProps): JSX.Element => {
   const opacity = useSharedValue(0.5);
   useEffect(() => {
     if (props.disabled) {
@@ -42,15 +46,17 @@ const ButtonLink = (props: LinkProps): JSX.Element => {
       }),
     };
   });
-  function handlePress(
-    e: React.MouseEvent<HTMLAnchorElement, MouseEvent> | GestureResponderEvent,
-  ) {
+  function handlePress(e: GestureResponderEvent) {
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
     props.onPress?.(e);
   }
   return (
     <GestureDetector gesture={gesture}>
-      <Link {...props} style={[props.style, styles.link]} onPress={handlePress}>
+      <TouchableNativeFeedback
+        {...props}
+        style={[props.style, styles.link]}
+        onPress={handlePress}
+      >
         <View style={styles.container}>
           <Animated.View style={[styles.button, animationStyles]}>
             <Text style={styles.text}>
@@ -63,9 +69,9 @@ const ButtonLink = (props: LinkProps): JSX.Element => {
             )}
           </Animated.View>
         </View>
-      </Link>
+      </TouchableNativeFeedback>
     </GestureDetector>
   );
 };
 
-export default ButtonLink;
+export default Button;

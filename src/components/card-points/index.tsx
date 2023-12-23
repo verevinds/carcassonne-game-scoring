@@ -24,7 +24,7 @@ function CardPoints({
 }: CardPointsProps) {
   const [pickerVisible, setPickerVisible] = useState(false);
   const isButtons = LayoutProps?.withShild;
-  const isFinishGame = Boolean(LayoutProps?.withIndicator);
+  const isFinishGame = Boolean(LayoutProps?.isFinishGame);
   function getCountShields() {
     if (feature && 'shield' in feature && 'shieldIncomplete' in feature) {
       if (isFinishGame) return feature.shieldIncomplete;
@@ -36,7 +36,7 @@ function CardPoints({
 
   function togglePicker() {
     setPickerVisible((prev) => !prev);
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
   }
   function onValueChange(val: number) {
     if (feature && 'setShield' in feature) {
@@ -45,28 +45,24 @@ function CardPoints({
     }
   }
   function onMinusPress() {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
     if (isFinishGame) return feature?.minusIncomplete();
     feature?.minus();
   }
   function onPlusPress() {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
     if (isFinishGame) return feature?.plusIncomplete();
     feature?.plus();
   }
-  const isDisabled = Boolean(
-    isFinishGame ? !feature?.countImcomplete : !feature?.count,
-  );
+
   return (
     <View style={styles.container}>
-      {isFinishGame ? (
-        <View
-          style={[
-            styles.indicator,
-            { backgroundColor: PLAYER_COLORS[player.name] },
-          ]}
-        />
-      ) : null}
+      <View
+        style={[
+          styles.indicator,
+          { backgroundColor: PLAYER_COLORS[player.name] },
+        ]}
+      />
       <View style={styles.content}>
         <View style={styles.iconContainer}>{icon}</View>
         <View style={styles.titleContainer}>
@@ -76,7 +72,7 @@ function CardPoints({
           <View
             style={{ flexDirection: 'row', position: 'absolute', right: 0 }}
           >
-            <Text style={styles.count}>counts: {feature?.count}</Text>
+            <Text style={styles.count}>counts: {feature?.count ?? 0}</Text>
             <Text style={styles.points}>points: {feature?.points ?? 0}</Text>
           </View>
 
@@ -102,18 +98,10 @@ function CardPoints({
         ) : null}
         <View style={styles.calculator}>
           <TouchableOpacity
-            disabled={isDisabled}
-            style={[
-              styles.button,
-              styles.minusButton,
-              isDisabled && styles.disabled,
-            ]}
+            style={[styles.button, styles.minusButton]}
             onPress={onMinusPress}
           >
-            <MinusIcon
-              stroke={isDisabled ? COLORS.SECONDARY_200 : COLORS.SECONDARY_500}
-              width={15}
-            />
+            <MinusIcon stroke={COLORS.SECONDARY_500} width={15} />
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.button, styles.plusButton]}

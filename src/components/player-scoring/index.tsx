@@ -1,27 +1,119 @@
+import { useEffect, useState } from 'react';
+
+import { useRouter } from 'expo-router';
 import { observer } from 'mobx-react';
 import { Text, View } from 'react-native';
+import { FlatList } from 'react-native-gesture-handler';
 
+import Button from 'components/button';
+import CustomBackButton from 'components/button-back';
+import ButtonLongPress from 'components/button-long-press';
+import CardNavigation from 'components/card-navigation';
 import Features from 'components/features';
+import StickyContainer from 'components/sticky-container';
 import { useStore } from 'stores';
+import { PlayerStore } from 'stores/player-store';
+import { SPACING } from 'themes/constants';
 import { capitalize } from 'utils/capitalize';
 
 import { styles } from './index.styles';
 import { PlayerScoringProps } from './index.types';
 
-function PlayerScoring(props: PlayerScoringProps) {
-  const player = useStore().playersStore.getPlayer(props.name);
-  if (!player) return null;
+function PlayerScoring({
+  isFinishGame,
+  title,
+  subtitle,
+  caption,
+  message,
+  buttonText,
+}: PlayerScoringProps) {
+  const router = useRouter();
+  const store = useStore();
+  const selectedPlayer = store.gameStore.selectedPlayer;
+  const [player, setPlayer] = useState<PlayerStore | null>(null);
+  useEffect(() => {
+    if (selectedPlayer) {
+      setPlayer(new PlayerStore(selectedPlayer?.name, selectedPlayer?.options));
+    }
+    return function () {
+      setPlayer(null);
+    };
+  }, [selectedPlayer?.name]);
+  function onSave() {
+    if (isFinishGame) {
+      store.playersStore.getPlayer(player?.name)?.mergeCountsIncomplete(player);
+    } else {
+      store.playersStore.getPlayer(player?.name)?.mergeCounts(player);
+    }
+    store.gameStore.setPlayer(undefined);
+  }
+  function onConfirm() {
+    if (isFinishGame) return router.push('/leadboard');
+    router.push('/scoring');
+  }
+
   return (
-    <View>
-      <Text style={styles.title}>
-        Scoring for {capitalize(props.name)} layer
-      </Text>
-      <Features
-        LayoutProps={{
-          withIndicator: true,
-        }}
-        player={player}
-      />
+    <View style={styles.container}>
+      <View style={styles.navigation}>
+        <CustomBackButton />
+      </View>
+      <View style={styles.main}>
+        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.subtitle}>{subtitle}</Text>
+        <Text style={styles.caption}>{caption}</Text>
+        <View style={styles.corusel}>
+          <FlatList
+            contentContainerStyle={{
+              paddingHorizontal: SPACING.SPACING_6,
+              paddingTop: SPACING.SPACING_4,
+            }}
+            data={store.playersStore.namePlayers}
+            horizontal
+            renderItem={({ item }) => <CardNavigation name={item.name} />}
+            showsHorizontalScrollIndicator={false}
+            showsVerticalScrollIndicator={false}
+          />
+        </View>
+        <View style={styles.message}>
+          {player && selectedPlayer ? (
+            <View>
+              <Text style={styles.points}>
+                {capitalize(selectedPlayer.name)}'s player points:{' '}
+                {selectedPlayer.points}
+              </Text>
+              <Features isFinishGame={isFinishGame} player={player} />
+            </View>
+          ) : (
+            <View style={styles.leadboardContainer}>
+              <View style={styles.leadboard}>
+                <FlatList
+                  data={store.playersStore.leaderBoard}
+                  renderItem={({ item }) => (
+                    <View style={styles.row}>
+                      <Text style={styles.name}>
+                        {capitalize(item.name)} player
+                      </Text>
+                      <Text style={styles.points}>{item.points} points</Text>
+                    </View>
+                  )}
+                  scrollEnabled={false}
+                  showsVerticalScrollIndicator={false}
+                />
+              </View>
+              <Text style={styles.messageText}>{message}</Text>
+            </View>
+          )}
+        </View>
+      </View>
+      <StickyContainer>
+        {selectedPlayer ? (
+          <Button onPress={onSave}>Save</Button>
+        ) : (
+          <ButtonLongPress onPress={onConfirm}>
+            {buttonText ?? 'Confirm'}
+          </ButtonLongPress>
+        )}
+      </StickyContainer>
     </View>
   );
 }

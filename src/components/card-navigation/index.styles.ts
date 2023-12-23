@@ -22,4 +22,7 @@ export const styles = StyleSheet.create({
   selected: {
     backgroundColor: COLORS.SECONDARY_500,
   },
+  disabled: {
+    opacity: 0.5,
+  },
 });

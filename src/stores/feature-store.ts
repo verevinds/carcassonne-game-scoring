@@ -30,22 +30,28 @@ export class FeatureStore {
   }
 
   setCount(count: number) {
-    this.count = count;
+    this.count = Number(count);
   }
   plus() {
     this.count++;
   }
   minus() {
-    if (this.count > 0) this.count--;
+    this.count--;
   }
   plusIncomplete() {
     this.countImcomplete++;
   }
   minusIncomplete() {
-    if (this.countImcomplete > 0) this.countImcomplete--;
+    this.countImcomplete--;
   }
   setCountIncomplete(count: number) {
-    this.countImcomplete = count;
+    this.countImcomplete = Number(count);
+  }
+  mergeCounts(count: number) {
+    this.count += Number(count);
+  }
+  mergeCountsIncomplete(count: number) {
+    this.countImcomplete += Number(count);
   }
 }
 

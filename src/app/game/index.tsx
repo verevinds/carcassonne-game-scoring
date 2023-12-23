@@ -1,77 +1,16 @@
-import { useLayoutEffect } from 'react';
-
 import { observer } from 'mobx-react';
-import { StyleSheet, Text, View } from 'react-native';
-import { FlatList } from 'react-native-gesture-handler';
 
-import CustomBackButton from 'components/button-back';
-import Button from 'components/button-link';
-import CardNavigation from 'components/card-navigation';
-import Features from 'components/features';
-import StickyContainer from 'components/sticky-container';
-import { useStore } from 'stores';
-import { SPACING, TYPOGRAPHY } from 'themes/constants';
+import PlayerScoring from 'components/player-scoring';
 
 function GameScreen() {
-  const store = useStore();
-  useLayoutEffect(() => {
-    const player = store.playersStore.getPlayer(
-      store.playersStore.namePlayers[0].name,
-    );
-    store.gameStore.setPlayer(player);
-  }, [store.playersStore.namePlayers[0].name]);
-  const selectedPlayer = store.gameStore.selectedPlayer;
-
   return (
-    <View style={styles.container}>
-      <View style={styles.navigation}>
-        <CustomBackButton />
-      </View>
-      <View style={styles.main}>
-        <Text style={styles.title}>Calculate your</Text>
-        <Text style={styles.subtitle}>Completed Feature’s Points</Text>
-        <FlatList
-          contentContainerStyle={{
-            paddingHorizontal: SPACING.SPACING_6,
-            paddingTop: SPACING.SPACING_4,
-          }}
-          data={store.playersStore.namePlayers}
-          horizontal
-          renderItem={({ item }) => <CardNavigation name={item.name} />}
-          showsHorizontalScrollIndicator={false}
-          showsVerticalScrollIndicator={false}
-        />
-        {selectedPlayer ? <Features player={selectedPlayer} /> : null}
-      </View>
-      <StickyContainer>
-        <Button href="/scoring">Finish Game</Button>
-      </StickyContainer>
-    </View>
+    <PlayerScoring
+      buttonText="Finish Game"
+      message="Select a player or press 'Finish Game' to go finished stage."
+      subtitle="Completed Feature’s Points"
+      title="Calculate your"
+    />
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    position: 'relative',
-    flex: 1,
-    margin: 0,
-    padding: 0,
-  },
-  main: {
-    padding: 0,
-    margin: 0,
-  },
-  title: {
-    paddingHorizontal: SPACING.SPACING_6,
-    ...TYPOGRAPHY.SUBTITLE_2,
-  },
-  subtitle: {
-    paddingHorizontal: SPACING.SPACING_6,
-    ...TYPOGRAPHY.HEADER_1,
-  },
-  navigation: {
-    paddingHorizontal: SPACING.SPACING_6,
-  },
-});
 
 export default observer(GameScreen);

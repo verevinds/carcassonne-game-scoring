@@ -13,10 +13,16 @@ import { styles } from './index.styles';
 function CardNavigation({ name }: { name: PLAYER_COLOR_NAME }) {
   const store = useStore();
   const player = store.playersStore.getPlayer(name);
+  const hasSelectedPlayers = useMemo(
+    () => Boolean(store.gameStore.selectedPlayer),
+    [store.gameStore.selectedPlayer],
+  );
   const onPress = useCallback(() => {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
-    store.gameStore.setPlayer(player);
-  }, [player?.name]);
+    if (hasSelectedPlayers === false) {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
+      store.gameStore.setPlayer(player);
+    }
+  }, [player?.name, hasSelectedPlayers]);
   const isSelected = useMemo(
     () => store.gameStore.selectedPlayer?.name === player?.name,
     [store.gameStore.selectedPlayer?.name, player?.name],
@@ -24,10 +30,20 @@ function CardNavigation({ name }: { name: PLAYER_COLOR_NAME }) {
 
   return (
     <TouchableOpacity
-      style={[styles.container, isSelected && styles.selected]}
+      disabled={hasSelectedPlayers && !isSelected}
+      style={[
+        styles.container,
+        isSelected && styles.selected,
+        hasSelectedPlayers && !isSelected ? styles.disabled : undefined,
+      ]}
       onPress={onPress}
     >
-      <PlayerIcon height={50} variant={name} width={50} />
+      <PlayerIcon
+        height={50}
+        opacity={hasSelectedPlayers && !isSelected ? 0.5 : 1}
+        variant={name}
+        width={50}
+      />
     </TouchableOpacity>
   );
 }

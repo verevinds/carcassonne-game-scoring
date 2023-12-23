@@ -5,5 +5,5 @@ import { PlayerStore } from 'stores/player-store';
 
 export type FeaturesProps = {
   player: PlayerStore;
-} & Pick<CardPointsProps, 'LayoutProps'> &
+} & Pick<CardPointsProps, 'LayoutProps' | 'isFinishGame'> &
   Omit<FlatListProps<any>, 'data' | 'renderItem'>;
