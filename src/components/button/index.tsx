@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 
+import { Canvas, LinearGradient, Rect, vec } from '@shopify/react-native-skia';
 import * as Haptics from 'expo-haptics';
 import {
   View,
@@ -12,24 +13,62 @@ import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   Easing,
   useAnimatedStyle,
+  useDerivedValue,
   useSharedValue,
+  withRepeat,
   withTiming,
 } from 'react-native-reanimated';
 
 import ArrowStick from 'assets/icons/arrow-stick';
+import { COLORS } from 'themes/constants';
 
 import messages from './index.messages';
 import { styles } from './index.styles';
 
-const Button = (props: TouchableNativeFeedbackProps): JSX.Element => {
+const PATH_LENGTH = 5000;
+const DURATION = 10000;
+const COLORS_GRADIENT = [
+  COLORS.TRANSPARENT,
+  COLORS.SECONDARY_50,
+  COLORS.SECONDARY_100,
+  COLORS.SECONDARY_50,
+  COLORS.TRANSPARENT,
+];
+
+const Button = (
+  props: TouchableNativeFeedbackProps & {
+    TransitionProps?: { withBlick?: boolean };
+  },
+): JSX.Element => {
   const opacity = useSharedValue(0.5);
+  const gradientValue = useSharedValue(-PATH_LENGTH);
+
   useEffect(() => {
     if (props.disabled) {
       opacity.value = 0.5;
     } else {
       opacity.value = 1;
     }
-  }, [props.disabled, opacity]);
+    if (props.TransitionProps?.withBlick) {
+      gradientValue.value = withRepeat(
+        withTiming(
+          PATH_LENGTH,
+          {
+            duration: DURATION,
+            easing: Easing.ease,
+          },
+          () => {},
+        ),
+        -1,
+      );
+    }
+  }, [
+    props.disabled,
+    opacity,
+    gradientValue,
+    props.TransitionProps?.withBlick,
+  ]);
+
   const gesture = Gesture.Tap()
     .onBegin(() => {
       opacity.value = 0.2;
@@ -46,6 +85,10 @@ const Button = (props: TouchableNativeFeedbackProps): JSX.Element => {
       }),
     };
   });
+  const transform = useDerivedValue(() => {
+    return [{ translateX: gradientValue.value }];
+  }, [gradientValue.value]);
+
   function handlePress(e: GestureResponderEvent) {
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
     props.onPress?.(e);
@@ -58,6 +101,23 @@ const Button = (props: TouchableNativeFeedbackProps): JSX.Element => {
         onPress={handlePress}
       >
         <View style={styles.container}>
+          {props.TransitionProps?.withBlick ? (
+            <Canvas style={styles.canvas}>
+              <Rect
+                height={styles.canvas.height}
+                width={styles.canvas.width}
+                x={0}
+                y={0}
+              >
+                <LinearGradient
+                  colors={COLORS_GRADIENT}
+                  end={vec(200, 200)}
+                  start={vec(0, 0)}
+                  transform={transform}
+                />
+              </Rect>
+            </Canvas>
+          ) : null}
           <Animated.View style={[styles.button, animationStyles]}>
             <Text style={styles.text}>
               {props.children ?? messages.default}

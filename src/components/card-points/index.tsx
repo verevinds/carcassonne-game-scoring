@@ -69,14 +69,24 @@ function CardPoints({
           <Text numberOfLines={1} style={styles.title}>
             {title}
           </Text>
-          <View
-            style={{ flexDirection: 'row', position: 'absolute', right: 0 }}
-          >
-            <Text style={styles.count}>counts: {feature?.count ?? 0}</Text>
-            <Text style={styles.points}>points: {feature?.points ?? 0}</Text>
-          </View>
 
           <Text style={styles.description}>{description}</Text>
+        </View>
+        <View
+          style={{
+            flexDirection: 'row',
+            position: 'absolute',
+            right: -10,
+            bottom: -10,
+          }}
+        >
+          <Text style={styles.count}>
+            counts:{' '}
+            {isFinishGame ? feature?.countImcomplete ?? 0 : feature?.count ?? 0}
+          </Text>
+          <Text style={styles.points}>
+            points: {feature?.points.toString().padStart(3, '0') ?? 0}
+          </Text>
         </View>
       </View>
       <View style={styles.divider} />

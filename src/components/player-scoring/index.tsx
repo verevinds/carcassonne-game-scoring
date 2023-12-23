@@ -6,6 +6,7 @@ import { Text, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
 import Button from 'components/button';
+import CustomBackButton from 'components/button-back';
 import CustomExitButton from 'components/button-exit';
 import ButtonLongPress from 'components/button-long-press';
 import CardNavigation from 'components/card-navigation';
@@ -55,7 +56,7 @@ function PlayerScoring({
   return (
     <View style={styles.container}>
       <View style={styles.navigation}>
-        <CustomExitButton />
+        {isFinishGame ? <CustomBackButton /> : <CustomExitButton />}
       </View>
       <View style={styles.main}>
         <Text style={styles.title}>{title}</Text>
@@ -79,7 +80,7 @@ function PlayerScoring({
             <View>
               <Text style={styles.points}>
                 {capitalize(selectedPlayer.name)}'s player points:{' '}
-                {selectedPlayer.points}
+                {selectedPlayer.points.toString().padStart(3, '0')}
               </Text>
               <Features isFinishGame={isFinishGame} player={player} />
             </View>
@@ -107,11 +108,20 @@ function PlayerScoring({
       </View>
       <StickyContainer>
         {selectedPlayer ? (
-          <Button onPress={onSave}>Save</Button>
-        ) : (
+          <Button
+            TransitionProps={{
+              withBlick: true,
+            }}
+            onPress={onSave}
+          >
+            Save
+          </Button>
+        ) : isFinishGame ? (
           <ButtonLongPress onPress={onConfirm}>
             {buttonText ?? 'Confirm'}
           </ButtonLongPress>
+        ) : (
+          <Button onPress={onConfirm}>{buttonText ?? 'Confirm'}</Button>
         )}
       </StickyContainer>
     </View>

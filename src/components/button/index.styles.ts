@@ -17,6 +17,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     ...SHADOW_2,
     shadowColor: COLORS.BACKGROUND_900,
+    position: 'relative',
   },
   container: {
     backgroundColor: COLORS.BACKGROUND_50,
@@ -39,4 +40,15 @@ export const styles = StyleSheet.create({
   },
   disabled: { opacity: 0.5 },
   icon: { marginLeft: 10 },
+  canvas: {
+    height: HEIGHT,
+    width: WIDHT,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 1,
+    opacity: 0.25,
+  },
 });
