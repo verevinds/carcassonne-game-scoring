@@ -9,6 +9,7 @@
     "web": "expo start --web",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint-staged": "lint-staged",
+    "tsc:debug": "tsc --noemit",
     "prepare": "husky install"
   },
   "dependencies": {

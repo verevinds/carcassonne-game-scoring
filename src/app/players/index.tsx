@@ -1,14 +1,13 @@
 import { observer } from 'mobx-react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import PlayerIcon from 'assets/icons/player';
 import CustomBackButton from 'components/button-back';
 import Button from 'components/button-link';
 import CardSelectPlayers from 'components/card-select-players';
 import ShadeFlatList from 'components/shade-flat-list';
 import StickyContainer from 'components/sticky-container';
 import { useStore } from 'stores';
-import { PLAYER_COLOR_NAME, SPACING, TYPOGRAPHY } from 'themes/constants';
+import { SPACING, TYPOGRAPHY } from 'themes/constants';
 
 function PlayersScreen() {
   const store = useStore();
@@ -22,38 +21,7 @@ function PlayersScreen() {
         <Text style={styles.title}>Select your</Text>
         <Text style={styles.subtitle}>Game Players</Text>
         <ShadeFlatList
-          data={[
-            {
-              text: 'Red player',
-              icon: <PlayerIcon variant={PLAYER_COLOR_NAME.RED} />,
-              name: PLAYER_COLOR_NAME.RED,
-            },
-            {
-              text: 'Blue player',
-              icon: <PlayerIcon variant={PLAYER_COLOR_NAME.BLUE} />,
-              name: PLAYER_COLOR_NAME.BLUE,
-            },
-            {
-              text: 'Green player',
-              icon: <PlayerIcon variant={PLAYER_COLOR_NAME.GREEN} />,
-              name: PLAYER_COLOR_NAME.GREEN,
-            },
-            {
-              text: 'Yellow player',
-              icon: <PlayerIcon variant={PLAYER_COLOR_NAME.YELLOW} />,
-              name: PLAYER_COLOR_NAME.YELLOW,
-            },
-            {
-              text: 'Grey player',
-              icon: <PlayerIcon variant={PLAYER_COLOR_NAME.GREY} />,
-              name: PLAYER_COLOR_NAME.GREY,
-            },
-            {
-              text: 'Pink player',
-              icon: <PlayerIcon variant={PLAYER_COLOR_NAME.PINK} />,
-              name: PLAYER_COLOR_NAME.PINK,
-            },
-          ]}
+          data={store.playersStore.variants}
           renderItem={({ item }) => <CardSelectPlayers {...item} />}
         />
       </View>

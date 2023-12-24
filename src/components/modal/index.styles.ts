@@ -36,7 +36,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     borderRadius: 30,
-    flex: 1,
+    minHeight: '40%',
   },
   title: {
     ...TYPOGRAPHY.HEADER_2,

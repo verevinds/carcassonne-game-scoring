@@ -1,3 +1,5 @@
+import { useLayoutEffect } from 'react';
+
 import { useRouter } from 'expo-router';
 import { observer } from 'mobx-react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -12,6 +14,9 @@ import { capitalize } from 'utils/capitalize';
 function PlayerLeadboard() {
   const store = useStore();
   const router = useRouter();
+  useLayoutEffect(() => {
+    store.playersStore.updatePlayerPositions();
+  }, []);
   function onRestart() {
     store.restart();
     router.replace('/players');

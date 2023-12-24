@@ -7,8 +7,8 @@ export type CardPointsProps = {
   title: string | undefined;
   description: string | undefined;
   icon: JSX.Element;
-  LayoutProps?: { withShild?: boolean; isFinishGame?: boolean };
-  isFinishGame?: boolean;
+  LayoutProps?: { withShild?: boolean };
+  isFinishGame: boolean | undefined;
   player: PlayerStore;
   buttons?: React.ReactNode | React.ReactNode[];
 };

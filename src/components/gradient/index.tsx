@@ -14,8 +14,8 @@ import { COLORS } from 'themes/constants';
 import { styles } from './index.styles';
 
 export type LinearGradientProps = SvgProps & {
-  stopColor: COLORS;
-  startColor: COLORS;
+  stopColor?: COLORS;
+  startColor?: COLORS;
   containerStyle?: StyleProp<ViewStyle>;
 };
 

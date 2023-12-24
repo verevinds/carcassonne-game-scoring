@@ -27,7 +27,7 @@ function CardSelectExpansions(props: CardSelectExpansionsProps) {
   function onExpansionSelect() {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
     setIsSelected((prev) => !prev);
-    store.expansionsStore.toggleExpansion(props.text);
+    store.expansionsStore.toggleExpansion(props.text, props.playerStore);
   }
 
   return (

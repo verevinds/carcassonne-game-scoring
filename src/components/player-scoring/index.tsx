@@ -13,7 +13,7 @@ import CardNavigation from 'components/card-navigation';
 import Features from 'components/features';
 import StickyContainer from 'components/sticky-container';
 import { useStore } from 'stores';
-import { PlayerStore } from 'stores/player-store';
+import { PlayerStore, mixinCathedralsPlayer } from 'stores/player-store';
 import { SPACING } from 'themes/constants';
 import { capitalize } from 'utils/capitalize';
 
@@ -34,7 +34,14 @@ function PlayerScoring({
   const [player, setPlayer] = useState<PlayerStore | null>(null);
   useEffect(() => {
     if (selectedPlayer) {
-      setPlayer(new PlayerStore(selectedPlayer?.name, selectedPlayer?.options));
+      if ('markCathedral' in selectedPlayer) {
+        const NPlayer = mixinCathedralsPlayer(PlayerStore);
+        setPlayer(new NPlayer(selectedPlayer?.name, selectedPlayer?.options));
+      } else {
+        setPlayer(
+          new PlayerStore(selectedPlayer?.name, selectedPlayer?.options),
+        );
+      }
     }
     return function () {
       setPlayer(null);

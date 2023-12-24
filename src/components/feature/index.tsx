@@ -28,7 +28,6 @@ function Feature({
   }
   return (
     <CardPoints
-      {...rest}
       buttons={
         <>
           {optionButton}
@@ -41,6 +40,7 @@ function Feature({
       feature={feature}
       isFinishGame={isFinishGame}
       player={player}
+      {...rest}
     />
   );
 }

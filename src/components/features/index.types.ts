@@ -1,9 +1,9 @@
 import { FlatListProps } from 'react-native';
 
 import { CardPointsProps } from 'components/card-points/index.types';
-import { PlayerStore } from 'stores/player-store';
+import { PlayerStore, SwitchPlayerStore } from 'stores/player-store';
 
 export type FeaturesProps = {
-  player: PlayerStore;
+  player: PlayerStore | SwitchPlayerStore;
 } & Pick<CardPointsProps, 'LayoutProps' | 'isFinishGame'> &
   Omit<FlatListProps<any>, 'data' | 'renderItem'>;

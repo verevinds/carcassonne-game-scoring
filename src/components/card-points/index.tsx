@@ -13,12 +13,10 @@ function CardPoints({
   title,
   description,
   icon,
-  LayoutProps,
+  isFinishGame,
   player,
   buttons,
 }: CardPointsProps) {
-  const isFinishGame = Boolean(LayoutProps?.isFinishGame);
-
   return (
     <View style={styles.container}>
       <View

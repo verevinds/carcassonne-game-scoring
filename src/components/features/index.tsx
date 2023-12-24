@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 import { observer } from 'mobx-react';
-import { View } from 'react-native';
+import { Switch, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
 import AbbotIcon from 'assets/icons/abbot';
@@ -12,7 +12,7 @@ import RoadIcon from 'assets/icons/road';
 import CardPointsOptionButton from 'components/card-points-option-button';
 import Feature from 'components/feature';
 import { useStore } from 'stores';
-import { SPACING } from 'themes/constants';
+import { COLORS, SPACING } from 'themes/constants';
 
 import { FeaturesProps } from './index.types';
 type FeaturesCards = {
@@ -22,12 +22,12 @@ type FeaturesCards = {
   feature?: any;
   LayoutProps?: {
     withShild?: boolean;
-    isFinishGame?: boolean;
   };
   optionButton?: JSX.Element;
 };
 function Features({ player, isFinishGame, ...props }: FeaturesProps) {
   const prices = useStore().playersStore.options.price;
+  const playerStore = useStore().playersStore;
 
   const data: FeaturesCards[] = [
     {
@@ -37,33 +37,77 @@ function Features({ player, isFinishGame, ...props }: FeaturesProps) {
         isFinishGame ? prices.road.incomplete : prices.road.complete
       } point per tile, when road is completed.`,
       feature: player.road,
-      LayoutProps: { isFinishGame },
     },
     {
       icon: <MonasteryIcon height={50} width={50} />,
       title: 'The monasteries',
       description: `${
         isFinishGame ? prices.monastery.incomplete : prices.monastery.complete
-      } points for fully surrounded monastery.`,
+      } points for completed monastery.`,
       feature: player.monastery,
-      LayoutProps: { isFinishGame },
     },
     {
       icon: <CityIcon height={50} width={50} />,
       title: 'The cities',
       description: `${
         isFinishGame ? prices.city.incomplete : prices.city.complete
-      } points per tile, +${
-        isFinishGame ? prices.city.incomplete : prices.city.complete
-      } for coat of arms, if city is completed.`,
+      } points per tile of city.`,
       LayoutProps: {
         withShild: true,
-        isFinishGame,
       },
       feature: player.city,
       optionButton: (
         <View style={{ flex: 1 }}>
-          <CardPointsOptionButton player={player} />
+          <CardPointsOptionButton>
+            <Feature
+              description={`${
+                isFinishGame ? prices.city.incomplete : prices.city.complete
+              } for coat of arms.`}
+              feature={player.shield}
+              icon={<CityIcon height={50} width={50} />}
+              isFinishGame={isFinishGame}
+              player={player}
+              title="The Shields"
+            />
+            {'markCathedral' in player && 'markCathedral' in playerStore ? (
+              <Feature
+                buttons={
+                  <Switch
+                    ios_backgroundColor={COLORS.BACKGROUND_800}
+                    thumbColor={
+                      'modified' in player.city && player.city.modified
+                        ? COLORS.SECONDARY_500
+                        : COLORS.BACKGROUND_50
+                    }
+                    trackColor={{
+                      false: COLORS.BACKGROUND_50,
+                      true: COLORS.BACKGROUND_800,
+                    }}
+                    value={
+                      'modified' in player.city ? player.city.modified : false
+                    }
+                    onValueChange={() => {
+                      player.city.toggleModified();
+                      player.shield.toggleModified();
+                    }}
+                  />
+                }
+                description={`${
+                  isFinishGame
+                    ? playerStore.options.price.cathedral.incomplete
+                    : playerStore.options.price.cathedral.complete
+                } points per tile and coat of arms in this completed city (instead of ${
+                  isFinishGame
+                    ? playerStore.options.price.city.incomplete
+                    : playerStore.options.price.city.complete
+                } points).`}
+                icon={<CityIcon height={50} width={50} />}
+                isFinishGame={isFinishGame}
+                player={player}
+                title="The cathedrals"
+              />
+            ) : null}
+          </CardPointsOptionButton>
         </View>
       ),
     },
@@ -73,7 +117,6 @@ function Features({ player, isFinishGame, ...props }: FeaturesProps) {
       description: `${
         isFinishGame ? prices.abbot.incomplete : prices.abbot.complete
       } point for each adjacent tile, including the Abbot's tile, anytime or end.`,
-      LayoutProps: { isFinishGame },
       feature: player.abbot,
     },
   ];
@@ -85,7 +128,6 @@ function Features({ player, isFinishGame, ...props }: FeaturesProps) {
         title: 'The fields',
         description: `${prices.fields.incomplete} points for each adjacent completed city.`,
         feature: player.fields,
-        LayoutProps: { isFinishGame },
       });
     }
   }, [isFinishGame]);
@@ -101,7 +143,9 @@ function Features({ player, isFinishGame, ...props }: FeaturesProps) {
       }}
       {...props}
       data={data}
-      renderItem={({ item }) => <Feature {...item} player={player} />}
+      renderItem={({ item }) => (
+        <Feature {...item} isFinishGame={isFinishGame} player={player} />
+      )}
       showsVerticalScrollIndicator={false}
     />
   );
