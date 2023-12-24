@@ -1,8 +1,16 @@
 import { StyleSheet } from 'react-native';
 
-import { COLORS, TYPOGRAPHY, SHADOW_2, SPACING } from 'themes/constants';
-
-import { BORDER_RADIUS, HEIGHT, WIDHT } from './index.constants';
+import {
+  COLORS,
+  TYPOGRAPHY,
+  BUTTON_LAYOUT,
+  BUTTON_SIZE,
+  BUTTON_VARIANT,
+  SHADOW_2,
+  SPACING,
+  BUTTON_SIZES,
+  BUTTON_VARIANTS,
+} from 'themes/constants';
 
 export const styles = StyleSheet.create({
   container: {
@@ -13,12 +21,9 @@ export const styles = StyleSheet.create({
     ...TYPOGRAPHY.BUTTON_LABEL,
   },
   button: {
-    width: WIDHT,
-    height: HEIGHT,
-    borderRadius: BORDER_RADIUS,
-    backgroundColor: COLORS.SECONDARY_500,
-    justifyContent: 'center',
-    alignItems: 'center',
+    ...BUTTON_LAYOUT,
+    ...BUTTON_SIZE[BUTTON_SIZES.LARGE],
+    ...BUTTON_VARIANT[BUTTON_VARIANTS.PRIMARY],
   },
   circle: {
     width: 50,
@@ -43,9 +48,7 @@ export const styles = StyleSheet.create({
   content: {
     overflow: 'hidden',
     flex: 1,
-    width: WIDHT,
-    height: HEIGHT,
-    borderRadius: BORDER_RADIUS,
+    ...BUTTON_SIZE[BUTTON_SIZES.LARGE],
     justifyContent: 'center',
     alignItems: 'center',
   },

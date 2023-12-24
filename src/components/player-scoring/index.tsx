@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { useRouter } from 'expo-router';
 import { observer } from 'mobx-react';
@@ -31,8 +31,9 @@ function PlayerScoring({
   const router = useRouter();
   const store = useStore();
   const selectedPlayer = store.gameStore.selectedPlayer;
+  const lastPoints = useRef<number>(0);
   const [player, setPlayer] = useState<PlayerStore | null>(null);
-  useEffect(() => {
+  const createNewInstancePlayer = useCallback(() => {
     if (selectedPlayer) {
       if ('markCathedral' in selectedPlayer) {
         const NPlayer = mixinCathedralsPlayer(PlayerStore);
@@ -43,17 +44,21 @@ function PlayerScoring({
         );
       }
     }
+  }, [selectedPlayer?.name]);
+  useEffect(() => {
+    createNewInstancePlayer();
     return function () {
       setPlayer(null);
     };
-  }, [selectedPlayer?.name]);
+  }, [createNewInstancePlayer]);
   function onAdd() {
     if (isFinishGame) {
       store.playersStore.getPlayer(player?.name)?.mergeCountsIncomplete(player);
     } else {
       store.playersStore.getPlayer(player?.name)?.mergeCounts(player);
-      player?.reset();
     }
+    lastPoints.current = player?.pointsLocal ?? 0;
+    createNewInstancePlayer();
   }
   function onSave() {
     onAdd();
@@ -124,6 +129,7 @@ function PlayerScoring({
               TransitionProps={{
                 withBlick: true,
               }}
+              hint={`Earned ${lastPoints.current} points.`}
               size={BUTTON_SIZES.MEDIUM}
               variant={BUTTON_VARIANTS.OUTLINE}
               onPress={onAdd}

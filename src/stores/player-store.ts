@@ -62,6 +62,16 @@ export class PlayerStore {
     });
   }
 
+  get pointsLocal() {
+    return (
+      Number(this.road.points) +
+      Number(this.monastery.points) +
+      Number(this.city.points) +
+      Number(this.abbot.points) +
+      Number(this.fields.points) +
+      Number(this.shield.points)
+    );
+  }
   get points() {
     return (
       Number(this.road.total) +

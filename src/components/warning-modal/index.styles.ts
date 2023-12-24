@@ -1,6 +1,15 @@
 import { StyleSheet } from 'react-native';
 
-import { COLORS, BUTTON, SPACING, TYPOGRAPHY } from 'themes/constants';
+import {
+  COLORS,
+  BUTTON_LAYOUT,
+  BUTTON_SIZE,
+  BUTTON_VARIANT,
+  SPACING,
+  TYPOGRAPHY,
+  BUTTON_SIZES,
+  BUTTON_VARIANTS,
+} from 'themes/constants';
 
 export const styles = StyleSheet.create({
   container: {
@@ -24,11 +33,15 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   buttonCancel: {
-    ...BUTTON.MEDIUM,
+    ...BUTTON_LAYOUT,
+    ...BUTTON_SIZE[BUTTON_SIZES.MEDIUM],
+    ...BUTTON_VARIANT[BUTTON_VARIANTS.PRIMARY],
     marginLeft: SPACING.SPACING_6,
   },
   buttonConfirm: {
-    ...BUTTON.MEDIUM_OUTLINE,
+    ...BUTTON_LAYOUT,
+    ...BUTTON_SIZE[BUTTON_SIZES.MEDIUM],
+    ...BUTTON_VARIANT[BUTTON_VARIANTS.OUTLINE],
     justifyContent: 'center',
     alignItems: 'center',
   },

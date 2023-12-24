@@ -1,18 +1,14 @@
-import { useEffect } from 'react';
+import { PropsWithChildren, useEffect } from 'react';
 
 import { Canvas, LinearGradient, Rect, vec } from '@shopify/react-native-skia';
 import * as Haptics from 'expo-haptics';
+import { View, Text } from 'react-native';
 import {
-  View,
-  Text,
-  GestureResponderEvent,
-  TouchableNativeFeedback,
-  TouchableNativeFeedbackProps,
-} from 'react-native';
-import { Gesture, GestureDetector } from 'react-native-gesture-handler';
+  GestureStateChangeEvent,
+  PanGestureHandlerEventPayload,
+} from 'react-native-gesture-handler';
 import Animated, {
   Easing,
-  useAnimatedStyle,
   useDerivedValue,
   useSharedValue,
   withRepeat,
@@ -20,6 +16,7 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import ArrowStick from 'assets/icons/arrow-stick';
+import Hint from 'components/hint';
 import { BUTTON_SIZES, BUTTON_VARIANTS, COLORS } from 'themes/constants';
 
 import messages from './index.messages';
@@ -37,27 +34,22 @@ const COLORS_GRADIENT = [
 
 const Button = ({
   size = BUTTON_SIZES.LARGE,
-  disabled,
   TransitionProps,
-  style,
   onPress,
   children,
   variant = BUTTON_VARIANTS.PRIMARY,
+  hint,
   ...props
-}: TouchableNativeFeedbackProps & {
+}: PropsWithChildren<{
+  onPress?: (e: GestureStateChangeEvent<PanGestureHandlerEventPayload>) => void;
   TransitionProps?: { withBlick?: boolean };
   variant?: BUTTON_VARIANTS;
   size?: BUTTON_SIZES;
-}): JSX.Element => {
-  const opacity = useSharedValue(0.5);
+  hint?: string;
+}>): JSX.Element => {
   const gradientValue = useSharedValue(-PATH_LENGTH);
 
   useEffect(() => {
-    if (disabled) {
-      opacity.value = 0.2;
-    } else {
-      opacity.value = 1;
-    }
     if (TransitionProps?.withBlick) {
       gradientValue.value = withRepeat(
         withTiming(
@@ -71,29 +63,15 @@ const Button = ({
         -1,
       );
     }
-  }, [disabled, opacity, gradientValue, TransitionProps?.withBlick]);
+  }, [gradientValue, TransitionProps?.withBlick]);
 
-  const gesture = Gesture.Tap()
-    .onBegin(() => {
-      opacity.value = 0.2;
-    })
-    .onFinalize(() => {
-      opacity.value = 1;
-    });
-
-  const animationStyles = useAnimatedStyle(() => {
-    return {
-      opacity: withTiming(opacity.value, {
-        duration: 300,
-        easing: Easing.inOut(Easing.ease),
-      }),
-    };
-  });
   const transform = useDerivedValue(() => {
     return [{ translateX: gradientValue.value }];
   }, [gradientValue.value]);
 
-  function handlePress(e: GestureResponderEvent) {
+  function handlePress(
+    e: GestureStateChangeEvent<PanGestureHandlerEventPayload>,
+  ) {
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
     onPress?.(e);
   }
@@ -111,50 +89,39 @@ const Button = ({
       ? styles.primaryText
       : styles.outlineText;
   return (
-    <GestureDetector gesture={gesture}>
-      <TouchableNativeFeedback
-        {...props}
-        style={[style, styles.touchable]}
-        onPress={handlePress}
-      >
-        <View style={styles.container}>
-          {TransitionProps?.withBlick ? (
-            <Canvas style={styles.canvas}>
-              <Rect
-                height={Number(buttonSizeStyle.height)}
-                width={Number(buttonSizeStyle.width)}
-                x={0}
-                y={0}
-              >
-                <LinearGradient
-                  colors={COLORS_GRADIENT}
-                  end={vec(200, 200)}
-                  start={vec(0, 0)}
-                  transform={transform}
-                />
-              </Rect>
-            </Canvas>
-          ) : null}
-          <Animated.View
-            style={[
-              styles.button,
-              animationStyles,
-              buttonSizeStyle,
-              buttonVariantStyle,
-            ]}
-          >
-            <Text style={[styles.text, textVariantStyle]}>
-              {children ?? messages.default}
-            </Text>
-            {children ? null : (
-              <View style={styles.icon}>
-                <ArrowStick />
-              </View>
-            )}
-          </Animated.View>
-        </View>
-      </TouchableNativeFeedback>
-    </GestureDetector>
+    <Hint disabled={!hint} text={hint ?? ''} onPress={handlePress} {...props}>
+      <View style={styles.container}>
+        {TransitionProps?.withBlick ? (
+          <Canvas style={styles.canvas}>
+            <Rect
+              height={Number(buttonSizeStyle.height)}
+              width={Number(buttonSizeStyle.width)}
+              x={0}
+              y={0}
+            >
+              <LinearGradient
+                colors={COLORS_GRADIENT}
+                end={vec(200, 200)}
+                start={vec(0, 0)}
+                transform={transform}
+              />
+            </Rect>
+          </Canvas>
+        ) : null}
+        <Animated.View
+          style={[styles.button, buttonSizeStyle, buttonVariantStyle]}
+        >
+          <Text style={[styles.text, textVariantStyle]}>
+            {children ?? messages.default}
+          </Text>
+          {children ? null : (
+            <View style={styles.icon}>
+              <ArrowStick />
+            </View>
+          )}
+        </Animated.View>
+      </View>
+    </Hint>
   );
 };
 

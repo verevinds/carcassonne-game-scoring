@@ -252,63 +252,6 @@ export enum BUTTON_SIZES {
   MEDIUM = 'MEDIUM',
   LARGE = 'LARGE',
 }
-type BUTTON_STYLE_SHEET = NamedStyles<{
-  [BUTTON_SIZES.SMALL]: any;
-  SMALL_OUTLINE: any;
-  [BUTTON_SIZES.MEDIUM]: any;
-  MEDIUM_OUTLINE: any;
-  [BUTTON_SIZES.LARGE]: any;
-}>;
-export const BUTTON: BUTTON_STYLE_SHEET = {
-  SMALL: {
-    width: 50,
-    height: 35,
-    borderRadius: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: COLORS.SECONDARY_500,
-    ...SHADOW_2,
-  },
-  SMALL_OUTLINE: {
-    width: 50,
-    height: 35,
-    borderRadius: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 2,
-    borderColor: COLORS.SECONDARY_500,
-    backgroundColor: COLORS.BACKGROUND_50,
-    ...SHADOW_2,
-  },
-  MEDIUM: {
-    height: 50,
-    width: 130,
-    borderRadius: 10,
-    backgroundColor: COLORS.SECONDARY_500,
-    justifyContent: 'center',
-    alignItems: 'center',
-    ...SHADOW_2,
-  },
-  MEDIUM_OUTLINE: {
-    height: 50,
-    borderRadius: 10,
-    width: 130,
-    borderWidth: 4,
-    borderColor: COLORS.SECONDARY_500,
-    backgroundColor: COLORS.BACKGROUND_50,
-    ...SHADOW_2,
-  },
-  LARGE: {
-    height: 50,
-    borderRadius: 10,
-    width: '80%',
-    borderWidth: 4,
-    borderColor: COLORS.SECONDARY_500,
-    backgroundColor: COLORS.BACKGROUND_50,
-    ...SHADOW_2,
-  },
-};
-
 export enum BUTTON_VARIANTS {
   PRIMARY = 'PRIMARY',
   OUTLINE = 'OUTLINE',
@@ -343,13 +286,13 @@ export const BUTTON_SIZE: BUTTON_SIZE_STYLE_SHEET = {
     borderColor: COLORS.TRANSPARENT,
   },
   MEDIUM: {
-    height: 50,
+    height: 44,
     borderWidth: 4,
     width: width * 0.4,
     borderColor: COLORS.TRANSPARENT,
   },
   LARGE: {
-    height: 50,
+    height: 44,
     borderWidth: 4,
     width: width * 0.8,
     borderColor: COLORS.TRANSPARENT,
