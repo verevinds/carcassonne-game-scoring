@@ -20,15 +20,35 @@ export class ExpansionsStore {
     return this.expansions.size > 0;
   }
   get price(): Options['price'] | null {
-    if (this.expansions.has(EXPANTIONS_NAME.BASIC_VERSION_2)) {
+    if (this.expansions.has(EXPANTIONS_NAME.INNS_AND_CATHEDRALS))
+      return {
+        abbot: { complete: 1, incomplete: 1 },
+        city: {
+          complete: 2,
+          incomplete: 1,
+          completeImproved: 3,
+          incompleteImproved: 1,
+        },
+        monastery: { complete: 9, incomplete: 1 },
+        road: {
+          complete: 1,
+          incomplete: 1,
+          completeImproved: 2,
+          incompleteImproved: 1,
+        },
+        fields: { complete: 0, incomplete: 3 },
+        shield: { complete: 2, incomplete: 1 },
+      };
+    if (this.expansions.has(EXPANTIONS_NAME.BASIC_VERSION_2))
       return {
         abbot: { complete: 1, incomplete: 1 },
         city: { complete: 2, incomplete: 1 },
         monastery: { complete: 9, incomplete: 1 },
         road: { complete: 1, incomplete: 1 },
         fields: { complete: 0, incomplete: 3 },
+        shield: { complete: 2, incomplete: 1 },
       };
-    }
+
     return null;
   }
 

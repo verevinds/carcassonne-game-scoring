@@ -1,5 +1,7 @@
 import { StyleSheet, Platform } from 'react-native';
 
+import { NamedStyles } from 'types/style';
+
 export enum COLORS {
   BACKGROUND_50 = 'rgba(253, 252, 251, 1)',
   BACKGROUND_100 = 'rgba(250, 248, 245, 1)',
@@ -237,4 +239,51 @@ export const SHADOW_2 = {
   shadowOpacity: 0.25,
   shadowRadius: 4,
   elevation: 10,
+};
+
+type BUTTON_STYLE_SHEET = NamedStyles<{
+  SMALL: any;
+  SMALL_OUTLINE: any;
+  MEDIUM: any;
+  MEDIUM_OUTLINE: any;
+}>;
+export const BUTTON: BUTTON_STYLE_SHEET = {
+  SMALL: {
+    width: 50,
+    height: 35,
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: COLORS.SECONDARY_500,
+    ...SHADOW_2,
+  },
+  SMALL_OUTLINE: {
+    width: 50,
+    height: 35,
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 2,
+    borderColor: COLORS.SECONDARY_500,
+    backgroundColor: COLORS.BACKGROUND_50,
+    ...SHADOW_2,
+  },
+  MEDIUM: {
+    height: 50,
+    borderRadius: 10,
+    width: 130,
+    backgroundColor: COLORS.SECONDARY_500,
+    justifyContent: 'center',
+    alignItems: 'center',
+    ...SHADOW_2,
+  },
+  MEDIUM_OUTLINE: {
+    height: 50,
+    borderRadius: 10,
+    width: 130,
+    borderWidth: 4,
+    borderColor: COLORS.SECONDARY_500,
+    backgroundColor: COLORS.BACKGROUND_50,
+    ...SHADOW_2,
+  },
 };

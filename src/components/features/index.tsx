@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 
 import { observer } from 'mobx-react';
+import { View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
 import AbbotIcon from 'assets/icons/abbot';
@@ -8,16 +9,27 @@ import CityIcon from 'assets/icons/city';
 import FieldsIcon from 'assets/icons/fields';
 import MonasteryIcon from 'assets/icons/monastery';
 import RoadIcon from 'assets/icons/road';
-import CardPoints from 'components/card-points';
+import CardPointsOptionButton from 'components/card-points-option-button';
+import Feature from 'components/feature';
 import { useStore } from 'stores';
 import { SPACING } from 'themes/constants';
 
 import { FeaturesProps } from './index.types';
-
+type FeaturesCards = {
+  icon: JSX.Element;
+  title: string;
+  description: string;
+  feature?: any;
+  LayoutProps?: {
+    withShild?: boolean;
+    isFinishGame?: boolean;
+  };
+  optionButton?: JSX.Element;
+};
 function Features({ player, isFinishGame, ...props }: FeaturesProps) {
   const prices = useStore().playersStore.options.price;
 
-  const data = [
+  const data: FeaturesCards[] = [
     {
       icon: <RoadIcon height={50} width={50} />,
       title: 'The roads',
@@ -49,6 +61,11 @@ function Features({ player, isFinishGame, ...props }: FeaturesProps) {
         isFinishGame,
       },
       feature: player.city,
+      optionButton: (
+        <View style={{ flex: 1 }}>
+          <CardPointsOptionButton player={player} />
+        </View>
+      ),
     },
     {
       icon: <AbbotIcon height={50} width={50} />,
@@ -74,7 +91,7 @@ function Features({ player, isFinishGame, ...props }: FeaturesProps) {
   }, [isFinishGame]);
 
   return (
-    <FlatList
+    <FlatList<FeaturesCards>
       contentContainerStyle={{
         justifyContent: 'center',
         alignItems: 'center',
@@ -84,7 +101,7 @@ function Features({ player, isFinishGame, ...props }: FeaturesProps) {
       }}
       {...props}
       data={data}
-      renderItem={({ item }) => <CardPoints {...item} player={player} />}
+      renderItem={({ item }) => <Feature {...item} player={player} />}
       showsVerticalScrollIndicator={false}
     />
   );

@@ -5,7 +5,6 @@ const { width } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
   content: {
-    flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-start',
   },
@@ -33,6 +32,12 @@ export const styles = StyleSheet.create({
     backgroundColor: COLORS.BACKGROUND_50,
     ...SHADOW_2,
   },
+  titleContainer: {
+    justifyContent: 'flex-start',
+    flex: 1,
+    marginTop: SPACING.SPACING_3,
+    height: 50,
+  },
   title: {
     ...TYPOGRAPHY.PARAGRAPH_1,
     textTransform: 'capitalize',
@@ -53,25 +58,6 @@ export const styles = StyleSheet.create({
   navigation: {
     alignItems: 'flex-end',
     justifyContent: 'flex-end',
-    flexDirection: 'row',
-  },
-  shield: {
-    position: 'relative',
-    justifyContent: 'center',
-    alignItems: 'center',
-    zIndex: 1,
-  },
-  multipleNavigation: {
-    justifyContent: 'space-between',
-  },
-  titleContainer: {
-    justifyContent: 'flex-start',
-    flex: 1,
-    marginTop: SPACING.SPACING_3,
-  },
-  calculator: {
-    alignItems: 'center',
-    justifyContent: 'center',
     flexDirection: 'row',
   },
   indicator: {
@@ -101,25 +87,6 @@ export const styles = StyleSheet.create({
   },
   indicatorGrey: {
     backgroundColor: COLORS.GREY_500,
-  },
-  button: {
-    width: 50,
-    height: 35,
-    borderRadius: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-    ...SHADOW_2,
-  },
-  minusButton: {
-    borderColor: COLORS.SECONDARY_500,
-    borderWidth: 2,
-    marginRight: SPACING.SPACING_4,
-  },
-  plusButton: {
-    backgroundColor: COLORS.SECONDARY_500,
-  },
-  ellipsisButton: {
-    backgroundColor: COLORS.SECONDARY_500,
   },
   disabled: {
     borderColor: COLORS.SECONDARY_200,

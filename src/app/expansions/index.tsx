@@ -26,18 +26,17 @@ function ExpansionsScreen() {
         <ShadeFlatList
           data={[
             {
-              text: EXPANTIONS_NAME.BASIC_VERSION_2,
-              icon: <CastleRiverIcon />,
-            },
-            {
               text: EXPANTIONS_NAME.BASIC_VERSION,
               icon: <CastleIcon />,
               disabled: true,
             },
             {
+              text: EXPANTIONS_NAME.BASIC_VERSION_2,
+              icon: <CastleRiverIcon />,
+            },
+            {
               text: EXPANTIONS_NAME.INNS_AND_CATHEDRALS,
               icon: <CathedralIcon />,
-              disabled: true,
             },
             {
               text: EXPANTIONS_NAME.TRADERS_AND_BUILDERS,

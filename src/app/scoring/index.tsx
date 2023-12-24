@@ -8,7 +8,7 @@ function PlayersScreen() {
       caption="Scoring all incomplete feature and the fields."
       isFinishGame
       message="Select a player or press 'Confirm' to end."
-      subtitle="Game Scoring"
+      subtitle="Scoring a Features"
       title="Confirm your"
     />
   );
