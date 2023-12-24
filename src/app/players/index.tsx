@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import CustomBackButton from 'components/button-back';
+import CustomBackButton from 'components/buttons/button-back';
 import Button from 'components/buttons/button-link';
 import CardSelectPlayers from 'components/card-select-players';
 import ShadeFlatList from 'components/shade-flat-list';
@@ -27,7 +27,11 @@ function PlayersScreen() {
       </View>
 
       <StickyContainer>
-        <Button disabled={!store.playersStore.isPlayerSelected} href="/game">
+        <Button
+          disabled={!store.playersStore.isPlayerSelected}
+          hint="Select players to begin."
+          href="/game"
+        >
           Start Game
         </Button>
       </StickyContainer>

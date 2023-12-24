@@ -5,7 +5,7 @@ import { observer } from 'mobx-react';
 import { StyleSheet, Text, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
-import ButtonLongPress from 'components/button-long-press';
+import ButtonLongPress from 'components/buttons/button-long-press';
 import StickyContainer from 'components/sticky-container';
 import { useStore } from 'stores';
 import { TYPOGRAPHY } from 'themes/constants';
