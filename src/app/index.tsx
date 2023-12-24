@@ -2,7 +2,7 @@ import { useFonts } from 'expo-font';
 import { StyleSheet, Text, View } from 'react-native';
 
 import SvgComponent from 'assets/icons/farme';
-import Button from 'components/button-link';
+import Button from 'components/buttons/button-link';
 import StickyContainer from 'components/sticky-container';
 import { SPACING, TYPOGRAPHY } from 'themes/constants';
 

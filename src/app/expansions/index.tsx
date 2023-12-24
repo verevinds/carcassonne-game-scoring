@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import Button from 'components/button-link';
+import Button from 'components/buttons/button-link';
 import CardSelectExpansions from 'components/card-select-expansions';
 import ShadeFlatList from 'components/shade-flat-list';
 import StickyContainer from 'components/sticky-container';

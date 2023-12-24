@@ -14,7 +14,7 @@ import Features from 'components/features';
 import StickyContainer from 'components/sticky-container';
 import { useStore } from 'stores';
 import { PlayerStore, mixinCathedralsPlayer } from 'stores/player-store';
-import { SPACING } from 'themes/constants';
+import { BUTTON_SIZES, BUTTON_VARIANTS, SPACING } from 'themes/constants';
 import { capitalize } from 'utils/capitalize';
 
 import { styles } from './index.styles';
@@ -115,14 +115,27 @@ function PlayerScoring({
       </View>
       <StickyContainer>
         {selectedPlayer ? (
-          <Button
-            TransitionProps={{
-              withBlick: true,
-            }}
-            onPress={onSave}
-          >
-            Save
-          </Button>
+          <View style={styles.buttonContainer}>
+            <Button
+              TransitionProps={{
+                withBlick: true,
+              }}
+              size={BUTTON_SIZES.MEDIUM}
+              variant={BUTTON_VARIANTS.OUTLINE}
+              onPress={onSave}
+            >
+              Add
+            </Button>
+            <Button
+              TransitionProps={{
+                withBlick: true,
+              }}
+              size={BUTTON_SIZES.MEDIUM}
+              onPress={onSave}
+            >
+              Save
+            </Button>
+          </View>
         ) : isFinishGame ? (
           <ButtonLongPress onPress={onConfirm}>
             {buttonText ?? 'Confirm'}

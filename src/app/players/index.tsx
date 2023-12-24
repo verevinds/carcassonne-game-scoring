@@ -2,7 +2,7 @@ import { observer } from 'mobx-react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import CustomBackButton from 'components/button-back';
-import Button from 'components/button-link';
+import Button from 'components/buttons/button-link';
 import CardSelectPlayers from 'components/card-select-players';
 import ShadeFlatList from 'components/shade-flat-list';
 import StickyContainer from 'components/sticky-container';

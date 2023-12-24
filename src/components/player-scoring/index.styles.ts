@@ -1,6 +1,8 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
 import { SPACING, TYPOGRAPHY } from 'themes/constants';
+const { width } = Dimensions.get('window');
+
 export const styles = StyleSheet.create({
   container: {
     position: 'relative',
@@ -62,5 +64,11 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 10,
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width,
+    paddingHorizontal: SPACING.SPACING_6,
   },
 });

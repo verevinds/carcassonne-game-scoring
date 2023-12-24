@@ -1,38 +1,48 @@
 import { StyleSheet } from 'react-native';
 
-import { COLORS, TYPOGRAPHY, SHADOW_2 } from 'themes/constants';
-
-const WIDHT = 300;
-const HEIGHT = 60;
-const BORDER_RADIUS = HEIGHT;
+import {
+  COLORS,
+  TYPOGRAPHY,
+  BUTTON_SIZE,
+  BUTTON_VARIANT,
+  BUTTON_VARIANTS,
+  BUTTON_LAYOUT,
+} from 'themes/constants';
 
 export const styles = StyleSheet.create({
-  link: {
-    width: WIDHT,
-    height: HEIGHT,
-    padding: 0,
-    margin: 0,
-    alignSelf: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
-    ...SHADOW_2,
-    shadowColor: COLORS.BACKGROUND_900,
+  touchable: {
     position: 'relative',
   },
-  container: {
-    backgroundColor: COLORS.BACKGROUND_50,
-    borderRadius: BORDER_RADIUS,
-    overflow: 'hidden',
-    justifyContent: 'center',
-    alignItems: 'center',
+  large: {
+    ...BUTTON_SIZE.LARGE,
+  },
+  medium: {
+    ...BUTTON_SIZE.MEDIUM,
+  },
+  small: {
+    ...BUTTON_SIZE.SMALL,
+  },
+  primary: {
+    ...BUTTON_VARIANT[BUTTON_VARIANTS.PRIMARY],
+  },
+  outline: {
+    ...BUTTON_VARIANT[BUTTON_VARIANTS.OUTLINE],
+  },
+  primaryText: {
+    color: COLORS.BACKGROUND_50,
+  },
+  outlineText: {
+    color: COLORS.SECONDARY_500,
   },
   button: {
+    ...BUTTON_LAYOUT,
+  },
+  container: {
     justifyContent: 'center',
-    flexDirection: 'row',
-    width: WIDHT,
-    height: HEIGHT,
-    backgroundColor: COLORS.SECONDARY_500,
     alignItems: 'center',
+    backgroundColor: COLORS.SECONDARY_500,
+    overflow: 'hidden',
+    borderRadius: BUTTON_VARIANT.PRIMARY.borderRadius,
   },
   text: {
     textAlign: 'center',
@@ -41,8 +51,6 @@ export const styles = StyleSheet.create({
   disabled: { opacity: 0.5 },
   icon: { marginLeft: 10 },
   canvas: {
-    height: HEIGHT,
-    width: WIDHT,
     position: 'absolute',
     top: 0,
     left: 0,

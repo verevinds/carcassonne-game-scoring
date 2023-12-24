@@ -1,7 +1,14 @@
-import { StyleSheet, Platform } from 'react-native';
+import {
+  StyleSheet,
+  Platform,
+  Dimensions,
+  ViewStyle,
+  TextStyle,
+  ImageStyle,
+} from 'react-native';
 
 import { NamedStyles } from 'types/style';
-
+const { width } = Dimensions.get('window');
 export enum COLORS {
   BACKGROUND_50 = 'rgba(253, 252, 251, 1)',
   BACKGROUND_100 = 'rgba(250, 248, 245, 1)',
@@ -240,12 +247,17 @@ export const SHADOW_2 = {
   shadowRadius: 4,
   elevation: 10,
 };
-
+export enum BUTTON_SIZES {
+  SMALL = 'SMALL',
+  MEDIUM = 'MEDIUM',
+  LARGE = 'LARGE',
+}
 type BUTTON_STYLE_SHEET = NamedStyles<{
-  SMALL: any;
+  [BUTTON_SIZES.SMALL]: any;
   SMALL_OUTLINE: any;
-  MEDIUM: any;
+  [BUTTON_SIZES.MEDIUM]: any;
   MEDIUM_OUTLINE: any;
+  [BUTTON_SIZES.LARGE]: any;
 }>;
 export const BUTTON: BUTTON_STYLE_SHEET = {
   SMALL: {
@@ -270,8 +282,8 @@ export const BUTTON: BUTTON_STYLE_SHEET = {
   },
   MEDIUM: {
     height: 50,
-    borderRadius: 10,
     width: 130,
+    borderRadius: 10,
     backgroundColor: COLORS.SECONDARY_500,
     justifyContent: 'center',
     alignItems: 'center',
@@ -286,4 +298,65 @@ export const BUTTON: BUTTON_STYLE_SHEET = {
     backgroundColor: COLORS.BACKGROUND_50,
     ...SHADOW_2,
   },
+  LARGE: {
+    height: 50,
+    borderRadius: 10,
+    width: '80%',
+    borderWidth: 4,
+    borderColor: COLORS.SECONDARY_500,
+    backgroundColor: COLORS.BACKGROUND_50,
+    ...SHADOW_2,
+  },
+};
+
+export enum BUTTON_VARIANTS {
+  PRIMARY = 'PRIMARY',
+  OUTLINE = 'OUTLINE',
+}
+export type BUTTON_VARIANT_STYLE_SHEET = NamedStyles<{
+  [BUTTON_VARIANTS.OUTLINE]: any;
+  [BUTTON_VARIANTS.PRIMARY]: any;
+}>;
+export const BUTTON_VARIANT: BUTTON_VARIANT_STYLE_SHEET = {
+  OUTLINE: {
+    borderRadius: SPACING.SPACING_7,
+    borderColor: COLORS.SECONDARY_500,
+    backgroundColor: COLORS.BACKGROUND_50,
+  },
+  PRIMARY: {
+    borderRadius: SPACING.SPACING_7,
+    backgroundColor: COLORS.SECONDARY_500,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+};
+type BUTTON_SIZE_STYLE_SHEET = NamedStyles<{
+  [BUTTON_SIZES.SMALL]: any;
+  [BUTTON_SIZES.MEDIUM]: any;
+  [BUTTON_SIZES.LARGE]: any;
+}>;
+export const BUTTON_SIZE: BUTTON_SIZE_STYLE_SHEET = {
+  SMALL: {
+    height: 35,
+    borderWidth: 2,
+    width: 50,
+    borderColor: COLORS.TRANSPARENT,
+  },
+  MEDIUM: {
+    height: 50,
+    borderWidth: 4,
+    width: width * 0.4,
+    borderColor: COLORS.TRANSPARENT,
+  },
+  LARGE: {
+    height: 50,
+    borderWidth: 4,
+    width: width * 0.8,
+    borderColor: COLORS.TRANSPARENT,
+  },
+};
+export const BUTTON_LAYOUT: ViewStyle | TextStyle | ImageStyle = {
+  justifyContent: 'center',
+  flexDirection: 'row',
+  alignItems: 'center',
 };

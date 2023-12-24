@@ -20,7 +20,7 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import ArrowStick from 'assets/icons/arrow-stick';
-import { COLORS } from 'themes/constants';
+import { BUTTON_SIZES, BUTTON_VARIANTS, COLORS } from 'themes/constants';
 
 import messages from './index.messages';
 import { styles } from './index.styles';
@@ -35,21 +35,30 @@ const COLORS_GRADIENT = [
   COLORS.TRANSPARENT,
 ];
 
-const Button = (
-  props: TouchableNativeFeedbackProps & {
-    TransitionProps?: { withBlick?: boolean };
-  },
-): JSX.Element => {
+const Button = ({
+  size = BUTTON_SIZES.LARGE,
+  disabled,
+  TransitionProps,
+  style,
+  onPress,
+  children,
+  variant = BUTTON_VARIANTS.PRIMARY,
+  ...props
+}: TouchableNativeFeedbackProps & {
+  TransitionProps?: { withBlick?: boolean };
+  variant?: BUTTON_VARIANTS;
+  size?: BUTTON_SIZES;
+}): JSX.Element => {
   const opacity = useSharedValue(0.5);
   const gradientValue = useSharedValue(-PATH_LENGTH);
 
   useEffect(() => {
-    if (props.disabled) {
+    if (disabled) {
       opacity.value = 0.5;
     } else {
       opacity.value = 1;
     }
-    if (props.TransitionProps?.withBlick) {
+    if (TransitionProps?.withBlick) {
       gradientValue.value = withRepeat(
         withTiming(
           PATH_LENGTH,
@@ -62,12 +71,7 @@ const Button = (
         -1,
       );
     }
-  }, [
-    props.disabled,
-    opacity,
-    gradientValue,
-    props.TransitionProps?.withBlick,
-  ]);
+  }, [disabled, opacity, gradientValue, TransitionProps?.withBlick]);
 
   const gesture = Gesture.Tap()
     .onBegin(() => {
@@ -91,21 +95,34 @@ const Button = (
 
   function handlePress(e: GestureResponderEvent) {
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-    props.onPress?.(e);
+    onPress?.(e);
   }
+  const buttonSizeStyle =
+    size === BUTTON_SIZES.LARGE
+      ? styles.large
+      : size === BUTTON_SIZES.MEDIUM
+        ? styles.medium
+        : styles.small;
+  const buttonVariantStyle =
+    variant === BUTTON_VARIANTS.PRIMARY ? styles.primary : styles.outline;
+
+  const textVariantStyle =
+    variant === BUTTON_VARIANTS.PRIMARY
+      ? styles.primaryText
+      : styles.outlineText;
   return (
     <GestureDetector gesture={gesture}>
       <TouchableNativeFeedback
         {...props}
-        style={[props.style, styles.link]}
+        style={[style, styles.touchable]}
         onPress={handlePress}
       >
         <View style={styles.container}>
-          {props.TransitionProps?.withBlick ? (
+          {TransitionProps?.withBlick ? (
             <Canvas style={styles.canvas}>
               <Rect
-                height={styles.canvas.height}
-                width={styles.canvas.width}
+                height={Number(buttonSizeStyle.height)}
+                width={Number(buttonSizeStyle.width)}
                 x={0}
                 y={0}
               >
@@ -118,11 +135,18 @@ const Button = (
               </Rect>
             </Canvas>
           ) : null}
-          <Animated.View style={[styles.button, animationStyles]}>
-            <Text style={styles.text}>
-              {props.children ?? messages.default}
+          <Animated.View
+            style={[
+              styles.button,
+              animationStyles,
+              buttonSizeStyle,
+              buttonVariantStyle,
+            ]}
+          >
+            <Text style={[styles.text, textVariantStyle]}>
+              {children ?? messages.default}
             </Text>
-            {props.children ? null : (
+            {children ? null : (
               <View style={styles.icon}>
                 <ArrowStick />
               </View>

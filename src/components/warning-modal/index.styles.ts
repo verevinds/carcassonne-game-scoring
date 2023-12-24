@@ -4,7 +4,8 @@ import { COLORS, BUTTON, SPACING, TYPOGRAPHY } from 'themes/constants';
 
 export const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    height: 300,
+    paddingBottom: SPACING.SPACING_6,
     alignItems: 'center',
     justifyContent: 'space-between',
   },
@@ -21,7 +22,6 @@ export const styles = StyleSheet.create({
   },
   buttonContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
   },
   buttonCancel: {
     ...BUTTON.MEDIUM,
