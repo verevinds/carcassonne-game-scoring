@@ -47,12 +47,16 @@ function PlayerScoring({
       setPlayer(null);
     };
   }, [selectedPlayer?.name]);
-  function onSave() {
+  function onAdd() {
     if (isFinishGame) {
       store.playersStore.getPlayer(player?.name)?.mergeCountsIncomplete(player);
     } else {
       store.playersStore.getPlayer(player?.name)?.mergeCounts(player);
+      player?.reset();
     }
+  }
+  function onSave() {
+    onAdd();
     store.gameStore.setPlayer(undefined);
   }
   function onConfirm() {
@@ -122,7 +126,7 @@ function PlayerScoring({
               }}
               size={BUTTON_SIZES.MEDIUM}
               variant={BUTTON_VARIANTS.OUTLINE}
-              onPress={onSave}
+              onPress={onAdd}
             >
               Add
             </Button>

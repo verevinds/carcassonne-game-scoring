@@ -54,7 +54,7 @@ const Button = ({
 
   useEffect(() => {
     if (disabled) {
-      opacity.value = 0.5;
+      opacity.value = 0.2;
     } else {
       opacity.value = 1;
     }
@@ -78,7 +78,7 @@ const Button = ({
       opacity.value = 0.2;
     })
     .onFinalize(() => {
-      opacity.value = 0.5;
+      opacity.value = 1;
     });
 
   const animationStyles = useAnimatedStyle(() => {

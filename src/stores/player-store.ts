@@ -109,6 +109,15 @@ export class PlayerStore {
       player.fields.countImcomplete * player.fields.price.incomplete,
     );
   }
+
+  reset() {
+    this.road.reset();
+    this.monastery.reset();
+    this.city.reset();
+    this.shield.reset();
+    this.abbot.reset();
+    this.fields.reset();
+  }
 }
 
 export type SwitchPlayerStore = PlayerStore & {

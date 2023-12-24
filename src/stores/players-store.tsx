@@ -129,6 +129,11 @@ export class PlayersStore {
   setOptions(options: Options) {
     this.options = options;
   }
+  reset() {
+    Array.from(this.players.entries()).forEach(([_id, player]) => {
+      player.reset();
+    });
+  }
 }
 
 export type OptionsCathedrals = Options & {

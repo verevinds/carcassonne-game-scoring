@@ -52,6 +52,14 @@ export class FeatureStore {
   addTotal(points: number) {
     this.total += Number(points);
   }
+  setTotal(points: number) {
+    this.total = Number(points);
+  }
+  reset() {
+    this.setCount(0);
+    this.setCountIncomplete(0);
+    this.setTotal(0);
+  }
 }
 
 export class SwitchFeatureStore extends FeatureStore {
