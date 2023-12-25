@@ -1,5 +1,13 @@
+import { useEffect } from 'react';
+
 import { useFonts } from 'expo-font';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import Animated, {
+  Easing,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
 
 import SvgComponent from 'assets/icons/farme';
 import Button from 'components/buttons/button-link';
@@ -15,20 +23,42 @@ export default function Page() {
     'Roboto-Black': require('assets/fonts/Roboto-Black.ttf'),
     'Roboto-Light': require('assets/fonts/Roboto-Light.ttf'),
   });
+  const opacity = useSharedValue(0);
+  const opacityStyle = useAnimatedStyle(() => {
+    return {
+      opacity: withTiming(opacity.value, {
+        duration: 2000,
+        easing: Easing.inOut(Easing.ease),
+      }),
+    };
+  });
+  useEffect(() => {
+    opacity.value = 1;
+    return () => {
+      opacity.value = 0;
+    };
+  }, [fontReaded]);
+
   if (!fontReaded) return null;
   return (
-    <View style={styles.container}>
+    <Animated.View style={[styles.container, opacityStyle]}>
       <View style={styles.main}>
-        <Text style={styles.title}>Improve your game</Text>
-        <Text style={styles.subtitle}>Carcassonne</Text>
-        <View style={styles.svgContainer}>
+        <Animated.Text style={[styles.title, opacityStyle]}>
+          Improve your game
+        </Animated.Text>
+        <Animated.Text style={[styles.subtitle, opacityStyle]}>
+          Carcassonne
+        </Animated.Text>
+        <Animated.View style={[styles.svgContainer, opacityStyle]}>
           <SvgComponent />
-        </View>
+        </Animated.View>
       </View>
       <StickyContainer>
-        <Button href="/expansions" />
+        <Animated.View style={[opacityStyle]}>
+          <Button href="/expansions" />
+        </Animated.View>
       </StickyContainer>
-    </View>
+    </Animated.View>
   );
 }
 
@@ -50,6 +80,7 @@ const styles = StyleSheet.create({
     width: 240,
   },
   subtitle: {
+    marginTop: 20,
     ...TYPOGRAPHY.TITLE_2,
   },
   svgContainer: {

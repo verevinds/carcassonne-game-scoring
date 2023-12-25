@@ -22,7 +22,7 @@ function ButtonLongPress({ onPress, children }: ButtonLongPressProps) {
   } = useAnimationLongPress(onPress);
 
   return (
-    <GestureHandlerRootView style={styles.container}>
+    <GestureHandlerRootView>
       <GestureDetector gesture={gesture}>
         <View style={styles.button}>
           <Animated.View style={[styles.hint, hintAnimatedStyles]}>

@@ -2,7 +2,8 @@ import { useCallback, useMemo } from 'react';
 
 import * as Haptics from 'expo-haptics';
 import { observer } from 'mobx-react';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { View } from 'react-native';
+import { TouchableNativeFeedback } from 'react-native-gesture-handler';
 
 import PlayerIcon from 'assets/icons/player';
 import { useStore } from 'stores';
@@ -29,22 +30,25 @@ function CardNavigation({ name }: { name: PLAYER_COLOR_NAME }) {
   );
 
   return (
-    <TouchableOpacity
+    <TouchableNativeFeedback
       disabled={hasSelectedPlayers && !isSelected}
-      style={[
-        styles.container,
-        isSelected && styles.selected,
-        hasSelectedPlayers && !isSelected ? styles.disabled : undefined,
-      ]}
       onPress={onPress}
     >
-      <PlayerIcon
-        height={50}
-        opacity={hasSelectedPlayers && !isSelected ? 0.5 : 1}
-        variant={name}
-        width={50}
-      />
-    </TouchableOpacity>
+      <View
+        style={[
+          styles.container,
+          isSelected && styles.selected,
+          hasSelectedPlayers && !isSelected ? styles.disabled : undefined,
+        ]}
+      >
+        <PlayerIcon
+          height={50}
+          opacity={hasSelectedPlayers && !isSelected ? 0.5 : 1}
+          variant={name}
+          width={50}
+        />
+      </View>
+    </TouchableNativeFeedback>
   );
 }
 

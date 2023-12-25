@@ -13,7 +13,9 @@ import { styles } from './index.styles';
 import { HintProps } from './index.types';
 
 function Hint({ text, children, onPress }: PropsWithChildren<HintProps>) {
+  const disabledHint = !text;
   const { gesture, hintAnimatedStyles } = useAnimationHint({
+    disabledHint,
     onPress,
   });
 
@@ -21,7 +23,9 @@ function Hint({ text, children, onPress }: PropsWithChildren<HintProps>) {
     <GestureHandlerRootView style={styles.container}>
       <GestureDetector gesture={gesture}>
         <View>
-          <Animated.View style={[styles.hint, hintAnimatedStyles]}>
+          <Animated.View
+            style={[styles.hint, !disabledHint && hintAnimatedStyles]}
+          >
             <Text style={styles.hintText}>{text}</Text>
           </Animated.View>
           {children}

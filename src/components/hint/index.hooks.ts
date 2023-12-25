@@ -15,7 +15,9 @@ import { HintProps } from './index.types';
 const HINT_TOP_ANIMATION_CONFIG = { duration: 1000 };
 const HINT_OPACITY_ANIMATION_CONFIG = { duration: 500 };
 
-export function useAnimationHint({ onPress }: Omit<HintProps, 'text'>) {
+export function useAnimationHint({
+  onPress,
+}: Omit<HintProps, 'text'> & { disabledHint: boolean }) {
   const enableButton = () => {
     setButtonActive(true);
   };

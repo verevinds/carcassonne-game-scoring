@@ -1,13 +1,33 @@
 import * as React from 'react';
 
-import { View } from 'react-native';
+import Animated, {
+  Easing,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
 import Svg, { Path, G, SvgProps } from 'react-native-svg';
 
 import { COLORS } from 'themes/constants';
 
 export default function Pattern(props: SvgProps) {
+  const opacity = useSharedValue(0);
+  const opacityStyle = useAnimatedStyle(() => {
+    return {
+      opacity: withTiming(opacity.value, {
+        duration: 2500,
+        easing: Easing.inOut(Easing.ease),
+      }),
+    };
+  });
+  React.useEffect(() => {
+    opacity.value = 1;
+    return () => {
+      opacity.value = 0;
+    };
+  }, []);
   return (
-    <View
+    <Animated.View
       style={[
         props.style,
         {
@@ -18,6 +38,7 @@ export default function Pattern(props: SvgProps) {
           right: 0,
           zIndex: -1,
         },
+        opacityStyle,
       ]}
     >
       <Svg
@@ -156,6 +177,6 @@ export default function Pattern(props: SvgProps) {
           />
         </G>
       </Svg>
-    </View>
+    </Animated.View>
   );
 }
