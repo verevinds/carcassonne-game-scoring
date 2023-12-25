@@ -1,12 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-import { StyleProp, ViewStyle } from 'react-native';
-import Animated, {
-  Easing,
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from 'react-native-reanimated';
+import { StyleProp, View, ViewStyle } from 'react-native';
 import Svg, {
   Defs,
   LinearGradient as Linear,
@@ -31,23 +25,8 @@ export const LinearGradient = ({
   containerStyle,
   ...props
 }: LinearGradientProps) => {
-  const opacity = useSharedValue(0);
-  const opacityStyle = useAnimatedStyle(() => {
-    return {
-      opacity: withTiming(opacity.value, {
-        duration: 2000,
-        easing: Easing.inOut(Easing.ease),
-      }),
-    };
-  });
-  useEffect(() => {
-    opacity.value = 1;
-    return () => {
-      opacity.value = 0;
-    };
-  }, []);
   return (
-    <Animated.View style={[styles.gradient, containerStyle, opacityStyle]}>
+    <View style={[styles.gradient, containerStyle]}>
       <Svg {...props}>
         <Defs>
           <Linear id="linear-gradient">
@@ -71,6 +50,6 @@ export const LinearGradient = ({
           y={0}
         />
       </Svg>
-    </Animated.View>
+    </View>
   );
 };

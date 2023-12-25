@@ -10,9 +10,10 @@
     "splash": {
       "image": "./src/assets/splash.png",
       "resizeMode": "cover",
-      "backgroundColor": "#EDE9DE"
+      "backgroundColor": "transparent",
+      "hideAsync": true
     },
-    "backgroundColor": "#EDE9DE",
+    "backgroundColor": "transparent",
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,

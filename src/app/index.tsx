@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
+import { useCallback } from 'react';
 
 import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
 import { StyleSheet, View } from 'react-native';
 import Animated, {
   Easing,
@@ -13,6 +14,8 @@ import SvgComponent from 'assets/icons/farme';
 import Button from 'components/buttons/button-link';
 import StickyContainer from 'components/sticky-container';
 import { SPACING, TYPOGRAPHY } from 'themes/constants';
+
+SplashScreen.preventAutoHideAsync().catch(() => {});
 
 export default function Page() {
   const [fontReaded] = useFonts({
@@ -32,16 +35,16 @@ export default function Page() {
       }),
     };
   });
-  useEffect(() => {
-    opacity.value = 1;
-    return () => {
-      opacity.value = 0;
-    };
+  const onLayoutRootView = useCallback(async () => {
+    if (fontReaded) {
+      opacity.value = 1;
+      // await SplashScreen.hideAsync();
+    }
   }, [fontReaded]);
 
   if (!fontReaded) return null;
   return (
-    <Animated.View style={[styles.container, opacityStyle]}>
+    <View style={styles.container} onLayout={onLayoutRootView}>
       <View style={styles.main}>
         <Animated.Text style={[styles.title, opacityStyle]}>
           Improve your game
@@ -58,7 +61,7 @@ export default function Page() {
           <Button href="/expansions" />
         </Animated.View>
       </StickyContainer>
-    </Animated.View>
+    </View>
   );
 }
 
