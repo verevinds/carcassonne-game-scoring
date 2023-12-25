@@ -1,5 +1,6 @@
 import { observer } from 'mobx-react';
 import { StyleSheet, Text, View } from 'react-native';
+import Animated, { FadeInDown } from 'react-native-reanimated';
 
 import Button from 'components/buttons/button-link';
 import CardSelectExpansions from 'components/card-select-expansions';
@@ -18,7 +19,11 @@ function ExpansionsScreen() {
         <Text style={styles.subtitle}>Expansions</Text>
         <ShadeFlatList
           data={store.expansionsStore.variants}
-          renderItem={({ item }) => <CardSelectExpansions {...item} />}
+          renderItem={({ item, index }) => (
+            <Animated.View entering={FadeInDown.delay(100 * index)}>
+              <CardSelectExpansions {...item} />
+            </Animated.View>
+          )}
         />
       </View>
       <StickyContainer>

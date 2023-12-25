@@ -1,5 +1,6 @@
 import { observer } from 'mobx-react';
 import { StyleSheet, Text, View } from 'react-native';
+import Animated, { FadeInDown } from 'react-native-reanimated';
 
 import CustomBackButton from 'components/buttons/button-back';
 import Button from 'components/buttons/button-link';
@@ -22,7 +23,11 @@ function PlayersScreen() {
         <Text style={styles.subtitle}>Game Players</Text>
         <ShadeFlatList
           data={store.playersStore.variants}
-          renderItem={({ item }) => <CardSelectPlayers {...item} />}
+          renderItem={({ item, index }) => (
+            <Animated.View entering={FadeInDown.delay(100 * index)}>
+              <CardSelectPlayers {...item} />
+            </Animated.View>
+          )}
         />
       </View>
 
