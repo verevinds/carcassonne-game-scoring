@@ -9,6 +9,7 @@ import {
 } from 'mobx';
 
 import PlayerIcon from 'assets/icons/player';
+import { type RootStore } from 'stores';
 import { PLAYER_COLOR_NAME } from 'themes/constants';
 
 import {
@@ -18,10 +19,18 @@ import {
   Variant,
   mixinCathedralsPlayer,
 } from './player-store';
+export type History = {
+  name: string;
+  status: string;
+  type: string;
+  count: number;
+  timestamp: number;
+};
 
 export class PlayersStore {
   name = EXPANTIONS_NAME.BASIC_VERSION;
   players = new ObservableMap();
+  _history: History[] = [];
   options: Options = {
     price: {
       abbot: { complete: 1, incomplete: 1 },
@@ -65,21 +74,27 @@ export class PlayersStore {
       name: PLAYER_COLOR_NAME.GREY,
     },
   ];
+  rootStore: RootStore;
 
-  constructor() {
+  constructor(rootStore: RootStore) {
+    this.rootStore = rootStore;
     makeObservable(this, {
       players: observable,
       options: observable,
       variants: observable,
+      _history: observable,
       namePlayers: computed,
       isPlayerSelected: computed,
       leaderBoard: computed,
+      history: computed,
       setPlayer: action,
       getPlayer: action,
       deletePlayer: action,
       togglePlayer: action,
       updatePlayerPositions: action,
       setOptions: action,
+      addHistory: action,
+      resetHistory: action,
     });
   }
 
@@ -103,8 +118,28 @@ export class PlayersStore {
       }));
   }
 
+  get history(): History[] {
+    const history = [...this._history].sort(
+      (a, b) => b.timestamp - a.timestamp,
+    );
+    return history;
+  }
+
+  addHistory(
+    type: string,
+    status: string,
+    count: number,
+    name: string,
+    timestamp = Date.now(),
+  ) {
+    this._history.push({ type, count, status, timestamp, name });
+  }
+  resetHistory() {
+    this._history = [];
+  }
+
   setPlayer(id: string) {
-    this.players.set(id, new PlayerStore(id, this.options));
+    this.players.set(id, new PlayerStore(this.rootStore, id, this.options));
   }
   getPlayer(id: string | undefined): PlayerStore | undefined {
     return this.players.get(id);
@@ -151,8 +186,8 @@ export function mixinCathedrals(BaseClass: typeof PlayersStore) {
     name = EXPANTIONS_NAME.INNS_AND_CATHEDRALS;
     options: CathedralsPlayersStore['options'];
     markCathedral: true = true;
-    constructor() {
-      super();
+    constructor(rootStore: RootStore) {
+      super(rootStore);
       this.variants.push({
         text: 'Pink player',
         icon: <PlayerIcon variant={PLAYER_COLOR_NAME.PINK} />,
@@ -173,7 +208,10 @@ export function mixinCathedrals(BaseClass: typeof PlayersStore) {
     }
     setPlayer(id: string) {
       const CathedralPlayerStore = mixinCathedralsPlayer(PlayerStore);
-      this.players.set(id, new CathedralPlayerStore(id, this.options));
+      this.players.set(
+        id,
+        new CathedralPlayerStore(this.rootStore, id, this.options),
+      );
     }
   };
 }

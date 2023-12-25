@@ -40,7 +40,6 @@ export const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: COLORS.SECONDARY_500,
     overflow: 'hidden',
     borderRadius: BUTTON_VARIANT.PRIMARY.borderRadius,
   },

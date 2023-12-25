@@ -83,7 +83,6 @@ const Button = ({
         : styles.small;
   const buttonVariantStyle =
     variant === BUTTON_VARIANTS.PRIMARY ? styles.primary : styles.outline;
-
   const textVariantStyle =
     variant === BUTTON_VARIANTS.PRIMARY
       ? styles.primaryText

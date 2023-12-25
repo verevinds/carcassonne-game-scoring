@@ -57,7 +57,7 @@ function Features({ player, isFinishGame, ...props }: FeaturesProps) {
       },
       feature: player.city,
       optionButton: (
-        <View style={{ flex: 1 }}>
+        <View>
           <CardPointsOptionButton>
             <Feature
               description={`${
@@ -75,25 +75,28 @@ function Features({ player, isFinishGame, ...props }: FeaturesProps) {
                   withoutScoring: true,
                 }}
                 buttons={
-                  <Switch
-                    ios_backgroundColor={COLORS.BACKGROUND_800}
-                    thumbColor={
-                      'modified' in player.city && player.city.modified
-                        ? COLORS.SECONDARY_500
-                        : COLORS.BACKGROUND_50
-                    }
-                    trackColor={{
-                      false: COLORS.BACKGROUND_50,
-                      true: COLORS.BACKGROUND_800,
-                    }}
-                    value={
-                      'modified' in player.city ? player.city.modified : false
-                    }
-                    onValueChange={() => {
-                      player.city.toggleModified();
-                      player.shield.toggleModified();
-                    }}
-                  />
+                  <>
+                    <View />
+                    <Switch
+                      ios_backgroundColor={COLORS.BACKGROUND_800}
+                      thumbColor={
+                        'modified' in player.city && player.city.modified
+                          ? COLORS.SECONDARY_500
+                          : COLORS.BACKGROUND_50
+                      }
+                      trackColor={{
+                        false: COLORS.BACKGROUND_50,
+                        true: COLORS.BACKGROUND_800,
+                      }}
+                      value={
+                        'modified' in player.city ? player.city.modified : false
+                      }
+                      onValueChange={() => {
+                        player.city.toggleModified();
+                        player.shield.toggleModified();
+                      }}
+                    />
+                  </>
                 }
                 description={`${
                   isFinishGame

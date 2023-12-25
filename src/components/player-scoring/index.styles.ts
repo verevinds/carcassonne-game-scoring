@@ -41,14 +41,11 @@ export const styles = StyleSheet.create({
   leadboardContainer: {
     justifyContent: 'space-between',
     flex: 1,
-    paddingTop: SPACING.SPACING_6,
     paddingBottom: '50%',
     width: '100%',
     paddingHorizontal: SPACING.SPACING_6,
   },
-  leadboard: {
-    height: '50%',
-  },
+  leadboard: {},
   messageText: {
     ...TYPOGRAPHY.PARAGRAPH_2,
     textAlign: 'center',
@@ -70,5 +67,31 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width,
     paddingHorizontal: SPACING.SPACING_6,
+  },
+  listTitle: {
+    ...TYPOGRAPHY.SUBTITLE_1,
+    marginTop: SPACING.SPACING_4,
+  },
+  rowTitle: {
+    marginTop: SPACING.SPACING_3,
+    ...TYPOGRAPHY.PARAGRAPH_1,
+    width: '25%',
+  },
+  rowText: {
+    ...TYPOGRAPHY.PARAGRAPH_2,
+    width: '25%',
+  },
+  firstCell: {
+    width: '30%',
+  },
+  lastCell: {
+    width: '20%',
+    textAlign: 'right',
+  },
+  additionalButton: {
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
+    marginBottom: SPACING.SPACING_5,
   },
 });

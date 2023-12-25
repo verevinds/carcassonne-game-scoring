@@ -280,9 +280,11 @@ type BUTTON_SIZE_STYLE_SHEET = NamedStyles<{
 }>;
 export const BUTTON_SIZE: BUTTON_SIZE_STYLE_SHEET = {
   SMALL: {
-    height: 35,
     borderWidth: 2,
-    width: 50,
+    minWidth: 33,
+    minHeight: 30,
+    paddingHorizontal: SPACING.SPACING_3,
+    paddingVertical: SPACING.SPACING_2,
     borderColor: COLORS.TRANSPARENT,
   },
   MEDIUM: {

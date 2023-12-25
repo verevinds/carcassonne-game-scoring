@@ -11,7 +11,7 @@ import {
 } from './players-store';
 
 export class RootStore {
-  playersStore: CathedralsPlayersStore | PlayersStore = new PlayersStore();
+  playersStore: CathedralsPlayersStore | PlayersStore = new PlayersStore(this);
   expansionsStore = new ExpansionsStore();
   gameStore = new GameStore();
 
@@ -37,18 +37,18 @@ export class RootStore {
 
   addCathedralsPlayer() {
     const CathedralsPlayerStore = mixinCathedrals(PlayersStore);
-    this.playersStore = new CathedralsPlayerStore();
+    this.playersStore = new CathedralsPlayerStore(this);
   }
   restart() {
-    this.playersStore = new PlayersStore();
+    this.playersStore = new PlayersStore(this);
   }
   reset() {
-    this.playersStore = new PlayersStore();
+    this.playersStore = new PlayersStore(this);
     this.expansionsStore = new ExpansionsStore();
   }
 }
 
-const rootStore = new RootStore();
+export const rootStore = new RootStore();
 export type IRootStore = typeof rootStore;
 export const useStore = (): IRootStore => rootStore;
 export default RootStore;

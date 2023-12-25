@@ -18,6 +18,9 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   body: {
+    justifyContent: 'flex-end',
+    minHeight: height * 0.4,
+    maxHeight: height * 0.8,
     ...SHADOW_1,
   },
   contentContainer: {
@@ -26,17 +29,16 @@ export const styles = StyleSheet.create({
     overflow: 'hidden',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
-    minHeight: '40%',
+    minHeight: height * 0.4,
   },
   content: {
-    maxHeight: height,
     paddingTop: SPACING.SPACING_4,
     paddingHorizontal: SPACING.SPACING_6,
     paddingBottom: SPACING.SPACING_7,
     alignItems: 'center',
     justifyContent: 'flex-start',
     borderRadius: 30,
-    minHeight: '40%',
+    maxHeight: height * 0.8,
   },
   title: {
     ...TYPOGRAPHY.HEADER_2,

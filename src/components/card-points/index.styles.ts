@@ -57,7 +57,7 @@ export const styles = StyleSheet.create({
   },
   navigation: {
     alignItems: 'flex-end',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
     flexDirection: 'row',
   },
   indicator: {

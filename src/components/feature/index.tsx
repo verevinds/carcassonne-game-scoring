@@ -30,7 +30,7 @@ function Feature({
     <CardPoints
       buttons={
         <>
-          {optionButton}
+          <View>{optionButton}</View>
           <View style={styles.calculator}>
             <ButtonMinus onPress={onMinusPress} />
             <ButtonPlus onPress={onPlusPress} />

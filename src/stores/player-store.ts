@@ -1,5 +1,6 @@
 import { action, computed, makeObservable, observable } from 'mobx';
 
+import { type RootStore } from 'stores';
 import { PLAYER_COLOR_NAME } from 'themes/constants';
 
 import { FeatureStore, SwitchFeatureStore } from './feature-store';
@@ -24,7 +25,6 @@ export type Variant = {
   icon: JSX.Element;
   name: PLAYER_COLOR_NAME;
 };
-
 export class PlayerStore {
   name: string;
   options: Options;
@@ -35,8 +35,10 @@ export class PlayerStore {
   shield: FeatureStore;
   abbot: FeatureStore;
   fields: FeatureStore;
+  rootStore: RootStore;
 
-  constructor(name: string, options: Options) {
+  constructor(rootStore: RootStore, name: string, options: Options) {
+    this.rootStore = rootStore;
     this.name = name;
     this.options = options;
     this.road = new FeatureStore(options.price.road);
@@ -83,40 +85,85 @@ export class PlayerStore {
     );
   }
 
+  addHistory(
+    features: {
+      road?: number;
+      monastery?: number;
+      city?: number;
+      shield?: number;
+      abbot?: number;
+      fields?: number;
+    },
+    type: 'complete' | 'incomplete',
+  ) {
+    Object.entries(features).forEach(([key, value]) => {
+      if (value) {
+        this.rootStore.playersStore.addHistory(key, type, value, this.name);
+      }
+    });
+  }
+
   setPositon(position: number) {
     this.position = position;
   }
   mergeCounts(player: PlayerStore | null) {
     if (!player) return;
-    this.road.addTotal(player.road.count * player.road.price.complete);
-    this.monastery.addTotal(
-      player.monastery.count * player.monastery.price.complete,
+    const road = player.road.count * player.road.price.complete;
+    const monastery = player.monastery.count * player.monastery.price.complete;
+    const city = player.city.count * player.city.price.complete;
+    const shield = player.shield.count * player.shield.price.complete;
+    const abbot = player.abbot.count * player.abbot.price.complete;
+    const fields = player.fields.count * player.fields.price.complete;
+
+    this.road.addTotal(road);
+    this.monastery.addTotal(monastery);
+    this.city.addTotal(city);
+    this.shield.addTotal(shield);
+    this.abbot.addTotal(abbot);
+    this.fields.addTotal(fields);
+
+    this.addHistory(
+      {
+        road,
+        monastery,
+        city,
+        shield,
+        abbot,
+        fields,
+      },
+      'complete',
     );
-    this.city.addTotal(player.city.count * player.city.price.complete);
-    this.shield.addTotal(player.shield.count * player.shield.price.complete);
-    this.abbot.addTotal(player.abbot.count * player.abbot.price.complete);
-    this.fields.addTotal(player.fields.count * player.fields.price.complete);
   }
 
   mergeCountsIncomplete(player: PlayerStore | null) {
     if (!player) return;
-    this.road.addTotal(
-      player.road.countImcomplete * player.road.price.incomplete,
-    );
-    this.monastery.addTotal(
-      player.monastery.countImcomplete * player.monastery.price.incomplete,
-    );
-    this.city.addTotal(
-      player.city.countImcomplete * player.city.price.incomplete,
-    );
-    this.shield.addTotal(
-      player.shield.countImcomplete * player.shield.price.incomplete,
-    );
-    this.abbot.addTotal(
-      player.abbot.countImcomplete * player.abbot.price.incomplete,
-    );
-    this.fields.addTotal(
-      player.fields.countImcomplete * player.fields.price.incomplete,
+    const road = player.road.countImcomplete * player.road.price.incomplete;
+    const monastery =
+      player.monastery.countImcomplete * player.monastery.price.incomplete;
+    const city = player.city.countImcomplete * player.city.price.incomplete;
+    const shield =
+      player.shield.countImcomplete * player.shield.price.incomplete;
+    const abbot = player.abbot.countImcomplete * player.abbot.price.incomplete;
+    const fields =
+      player.fields.countImcomplete * player.fields.price.incomplete;
+
+    this.road.addTotal(road);
+    this.monastery.addTotal(monastery);
+    this.city.addTotal(city);
+    this.shield.addTotal(shield);
+    this.abbot.addTotal(abbot);
+    this.fields.addTotal(fields);
+
+    this.addHistory(
+      {
+        road,
+        monastery,
+        city,
+        shield,
+        abbot,
+        fields,
+      },
+      'incomplete',
     );
   }
 
@@ -141,8 +188,12 @@ export function mixinCathedralsPlayer(BaseClass: typeof PlayerStore) {
     markCathedral: true = true;
     city: SwitchFeatureStore;
     shield: SwitchFeatureStore;
-    constructor(name: string, options: OptionsCathedrals) {
-      super(name, options);
+    constructor(
+      rootStore: RootStore,
+      name: string,
+      options: OptionsCathedrals,
+    ) {
+      super(rootStore, name, options);
       this.city = new SwitchFeatureStore(
         options.price.city,
         options.price.cathedral,
@@ -162,14 +213,32 @@ export function mixinCathedralsPlayer(BaseClass: typeof PlayerStore) {
         ? player.shield.modifiedPrice.complete
         : player.shield.price.complete;
 
-      this.road.addTotal(player.road.count * player.road.price.complete);
-      this.monastery.addTotal(
-        player.monastery.count * player.monastery.price.complete,
+      const road = player.road.count * player.road.price.complete;
+      const monastery =
+        player.monastery.count * player.monastery.price.complete;
+      const city = player.city.count * cityPrice;
+      const shield = player.shield.count * shieldPrice;
+      const abbot = player.abbot.count * player.abbot.price.complete;
+      const fields = player.fields.count * player.fields.price.complete;
+
+      this.road.addTotal(road);
+      this.monastery.addTotal(monastery);
+      this.city.addTotal(city);
+      this.shield.addTotal(shield);
+      this.abbot.addTotal(abbot);
+      this.fields.addTotal(fields);
+
+      this.addHistory(
+        {
+          road,
+          monastery,
+          city,
+          shield,
+          abbot,
+          fields,
+        },
+        'complete',
       );
-      this.city.addTotal(player.city.count * cityPrice);
-      this.shield.addTotal(player.shield.count * shieldPrice);
-      this.abbot.addTotal(player.abbot.count * player.abbot.price.complete);
-      this.fields.addTotal(player.fields.count * player.fields.price.complete);
 
       this.city.resetModified();
       this.shield.resetModified();
@@ -184,20 +253,35 @@ export function mixinCathedralsPlayer(BaseClass: typeof PlayerStore) {
         ? player.shield.modifiedPrice.incomplete
         : player.shield.price.incomplete;
 
-      this.road.addTotal(
-        player.road.countImcomplete * player.road.price.incomplete,
+      const road = player.road.countImcomplete * player.road.price.incomplete;
+      const monastery =
+        player.monastery.countImcomplete * player.monastery.price.incomplete;
+      const city = player.city.countImcomplete * cityPrice;
+      const shield = player.shield.countImcomplete * shieldPrice;
+      const abbot =
+        player.abbot.countImcomplete * player.abbot.price.incomplete;
+      const fields =
+        player.fields.countImcomplete * player.fields.price.incomplete;
+
+      this.road.addTotal(road);
+      this.monastery.addTotal(monastery);
+      this.city.addTotal(city);
+      this.shield.addTotal(shield);
+      this.abbot.addTotal(abbot);
+      this.fields.addTotal(fields);
+
+      this.addHistory(
+        {
+          road,
+          monastery,
+          city,
+          shield,
+          abbot,
+          fields,
+        },
+        'incomplete',
       );
-      this.monastery.addTotal(
-        player.monastery.countImcomplete * player.monastery.price.incomplete,
-      );
-      this.city.addTotal(player.city.countImcomplete * cityPrice);
-      this.shield.addTotal(player.shield.countImcomplete * shieldPrice);
-      this.abbot.addTotal(
-        player.abbot.countImcomplete * player.abbot.price.incomplete,
-      );
-      this.fields.addTotal(
-        player.fields.countImcomplete * player.fields.price.incomplete,
-      );
+
       this.city.resetModified();
       this.shield.resetModified();
     }

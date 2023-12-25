@@ -17,6 +17,7 @@ import CustomExitButton from 'components/buttons/button-exit';
 import ButtonLongPress from 'components/buttons/button-long-press';
 import CardNavigation from 'components/card-navigation';
 import Features from 'components/features';
+import Modal from 'components/modal';
 import StickyContainer from 'components/sticky-container';
 import { useStore } from 'stores';
 import { PlayerStore, mixinCathedralsPlayer } from 'stores/player-store';
@@ -39,14 +40,17 @@ function PlayerScoring({
   const selectedPlayer = store.gameStore.selectedPlayer;
   const lastPoints = useRef<number>(0);
   const [player, setPlayer] = useState<PlayerStore | null>(null);
+  const [isOpenModal, setOpenModal] = useState(false);
   const createNewInstancePlayer = useCallback(() => {
     if (selectedPlayer) {
       if ('markCathedral' in selectedPlayer) {
         const NPlayer = mixinCathedralsPlayer(PlayerStore);
-        setPlayer(new NPlayer(selectedPlayer?.name, selectedPlayer?.options));
+        setPlayer(
+          new NPlayer(store, selectedPlayer?.name, selectedPlayer?.options),
+        );
       } else {
         setPlayer(
-          new PlayerStore(selectedPlayer?.name, selectedPlayer?.options),
+          new PlayerStore(store, selectedPlayer?.name, selectedPlayer?.options),
         );
       }
     }
@@ -111,6 +115,17 @@ function PlayerScoring({
           ) : (
             <View style={styles.leadboardContainer}>
               <View style={styles.leadboard}>
+                <View style={styles.additionalButton}>
+                  <Text style={styles.listTitle}>Leadboard</Text>
+                  <Button
+                    size={BUTTON_SIZES.SMALL}
+                    variant={BUTTON_VARIANTS.OUTLINE}
+                    onPress={() => setOpenModal(true)}
+                  >
+                    i
+                  </Button>
+                </View>
+
                 <FlatList
                   data={store.playersStore.leaderBoard}
                   renderItem={({ item }) => (
@@ -162,6 +177,46 @@ function PlayerScoring({
           <Button onPress={onConfirm}>{buttonText ?? 'Confirm'}</Button>
         )}
       </StickyContainer>
+      <Modal isOpen={isOpenModal} onClose={() => setOpenModal(false)}>
+        <Text style={styles.listTitle}>History</Text>
+        <View style={styles.row}>
+          <Text numberOfLines={1} style={[styles.rowTitle, styles.firstCell]}>
+            Player
+          </Text>
+          <Text numberOfLines={1} style={styles.rowTitle}>
+            Status
+          </Text>
+          <Text numberOfLines={1} style={styles.rowTitle}>
+            Feature
+          </Text>
+          <Text numberOfLines={1} style={[styles.rowTitle, styles.lastCell]}>
+            Points
+          </Text>
+        </View>
+        <FlatList
+          data={store.playersStore.history}
+          renderItem={({ item }) => (
+            <View style={styles.row}>
+              <Text
+                numberOfLines={1}
+                style={[styles.rowText, styles.firstCell]}
+              >
+                {capitalize(item.name)} player
+              </Text>
+              <Text numberOfLines={1} style={styles.rowText}>
+                {item.status}
+              </Text>
+              <Text numberOfLines={1} style={styles.rowText}>
+                {item.type}
+              </Text>
+              <Text numberOfLines={1} style={[styles.rowText, styles.lastCell]}>
+                {item.count}
+              </Text>
+            </View>
+          )}
+          showsVerticalScrollIndicator={false}
+        />
+      </Modal>
     </View>
   );
 }
