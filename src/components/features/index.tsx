@@ -71,6 +71,9 @@ function Features({ player, isFinishGame, ...props }: FeaturesProps) {
             />
             {'markCathedral' in player && 'markCathedral' in playerStore ? (
               <Feature
+                LayoutProps={{
+                  withoutScoring: true,
+                }}
                 buttons={
                   <Switch
                     ios_backgroundColor={COLORS.BACKGROUND_800}

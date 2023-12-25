@@ -14,6 +14,7 @@ function CardPoints({
   description,
   icon,
   isFinishGame,
+  LayoutProps,
   player,
   buttons,
 }: CardPointsProps) {
@@ -41,13 +42,19 @@ function CardPoints({
             bottom: -10,
           }}
         >
-          <Text style={styles.count}>
-            counts:{' '}
-            {isFinishGame ? feature?.countImcomplete ?? 0 : feature?.count ?? 0}
-          </Text>
-          <Text style={styles.points}>
-            points: {feature?.points.toString().padStart(3, '0') ?? 0}
-          </Text>
+          {LayoutProps?.withoutScoring ? null : (
+            <>
+              <Text style={styles.count}>
+                counts:{' '}
+                {isFinishGame
+                  ? feature?.countImcomplete ?? 0
+                  : feature?.count ?? 0}
+              </Text>
+              <Text style={styles.points}>
+                points: {feature?.points.toString().padStart(3, '0') ?? 0}
+              </Text>
+            </>
+          )}
         </View>
       </View>
       <View style={styles.divider} />
