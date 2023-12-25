@@ -1,0 +1,1 @@
+export const DURATION_ENTERING = 2000;
