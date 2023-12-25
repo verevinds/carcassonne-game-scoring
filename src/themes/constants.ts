@@ -262,12 +262,12 @@ export type BUTTON_VARIANT_STYLE_SHEET = NamedStyles<{
 }>;
 export const BUTTON_VARIANT: BUTTON_VARIANT_STYLE_SHEET = {
   OUTLINE: {
-    borderRadius: SPACING.SPACING_7,
+    borderRadius: SPACING.SPACING_5,
     borderColor: COLORS.SECONDARY_500,
     backgroundColor: COLORS.BACKGROUND_50,
   },
   PRIMARY: {
-    borderRadius: SPACING.SPACING_7,
+    borderRadius: SPACING.SPACING_5,
     backgroundColor: COLORS.SECONDARY_500,
     justifyContent: 'center',
     alignItems: 'center',
@@ -302,4 +302,5 @@ export const BUTTON_LAYOUT: ViewStyle | TextStyle | ImageStyle = {
   justifyContent: 'center',
   flexDirection: 'row',
   alignItems: 'center',
+  ...SHADOW_2,
 };

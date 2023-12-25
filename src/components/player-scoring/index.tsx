@@ -129,7 +129,7 @@ function PlayerScoring({
               TransitionProps={{
                 withBlick: true,
               }}
-              hint={`Earned ${lastPoints.current} points.`}
+              hint={`Added ${lastPoints.current} points`}
               size={BUTTON_SIZES.MEDIUM}
               variant={BUTTON_VARIANTS.OUTLINE}
               onPress={onAdd}

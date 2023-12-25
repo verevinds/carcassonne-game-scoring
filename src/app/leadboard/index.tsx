@@ -18,8 +18,8 @@ function PlayerLeadboard() {
     store.playersStore.updatePlayerPositions();
   }, []);
   function onRestart() {
-    store.restart();
-    router.replace('/players');
+    store.reset();
+    router.replace('/expansions');
   }
   return (
     <View style={styles.container}>

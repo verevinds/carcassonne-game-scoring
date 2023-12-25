@@ -29,7 +29,7 @@ function PlayersScreen() {
       <StickyContainer>
         <Button
           disabled={!store.playersStore.isPlayerSelected}
-          hint="Select players to begin."
+          hint="Select players to begin"
           href="/game"
         >
           Start Game

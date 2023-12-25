@@ -1,6 +1,15 @@
 import { StyleSheet } from 'react-native';
 
-import { COLORS, SHADOW_2, SPACING, TYPOGRAPHY } from 'themes/constants';
+import {
+  COLORS,
+  TYPOGRAPHY,
+  BUTTON_LAYOUT,
+  BUTTON_SIZE,
+  BUTTON_VARIANT,
+  SPACING,
+  BUTTON_SIZES,
+  BUTTON_VARIANTS,
+} from 'themes/constants';
 
 export const styles = StyleSheet.create({
   title: {
@@ -8,12 +17,9 @@ export const styles = StyleSheet.create({
     marginBottom: SPACING.SPACING_4,
   },
   button: {
-    width: 50,
-    height: 35,
-    borderRadius: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-    ...SHADOW_2,
+    ...BUTTON_LAYOUT,
+    ...BUTTON_SIZE[BUTTON_SIZES.SMALL],
+    ...BUTTON_VARIANT[BUTTON_VARIANTS.PRIMARY],
   },
   ellipsisButton: {
     backgroundColor: COLORS.SECONDARY_500,

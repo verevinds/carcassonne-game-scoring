@@ -13,10 +13,6 @@ import {
 } from 'themes/constants';
 
 export const styles = StyleSheet.create({
-  container: {
-    ...SHADOW_2,
-    shadowColor: COLORS.PRIMARY_500,
-  },
   text: {
     ...TYPOGRAPHY.BUTTON_LABEL,
   },
