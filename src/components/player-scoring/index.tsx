@@ -4,6 +4,12 @@ import { useRouter } from 'expo-router';
 import { observer } from 'mobx-react';
 import { Text, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
+import Animated, {
+  FadeIn,
+  FadeOut,
+  SlideInDown,
+  SlideOutDown,
+} from 'react-native-reanimated';
 
 import Button from 'components/buttons/button';
 import CustomBackButton from 'components/buttons/button-back';
@@ -93,13 +99,15 @@ function PlayerScoring({
         </View>
         <View style={styles.message}>
           {player && selectedPlayer ? (
-            <View>
+            <Animated.View entering={FadeIn} exiting={FadeOut}>
               <Text style={styles.points}>
                 {capitalize(selectedPlayer.name)}'s player points:{' '}
                 {selectedPlayer.points.toString().padStart(3, '0')}
               </Text>
-              <Features isFinishGame={isFinishGame} player={player} />
-            </View>
+              <Animated.View entering={SlideInDown} exiting={SlideOutDown}>
+                <Features isFinishGame={isFinishGame} player={player} />
+              </Animated.View>
+            </Animated.View>
           ) : (
             <View style={styles.leadboardContainer}>
               <View style={styles.leadboard}>
