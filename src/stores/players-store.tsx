@@ -109,12 +109,12 @@ export class PlayersStore {
   get leaderBoard() {
     return Array.from(this.players.entries())
       .sort((a, b) => {
-        return b[1].total - a[1].total;
+        return b[1].points - a[1].points;
       })
-      .map(([id, player]) => ({
+      .map(([id, player], index) => ({
         name: id,
         points: player.points,
-        position: player.position,
+        position: Number(index) + Number(1),
       }));
   }
 
