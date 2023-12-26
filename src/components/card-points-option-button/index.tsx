@@ -14,7 +14,7 @@ import { styles } from './index.styles';
 const CardPointsOptionButton = ({
   children,
 }: {
-  children: JSX.Element | (JSX.Element | null)[];
+  children: (JSX.Element | null) | (JSX.Element | null)[];
 }) => {
   const [isOpen, setOpen] = useState(false);
   function toggleOpen() {

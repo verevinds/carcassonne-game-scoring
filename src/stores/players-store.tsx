@@ -174,6 +174,7 @@ export class PlayersStore {
 export type OptionsCathedrals = Options & {
   price: {
     cathedral: FeaturePrice;
+    inn: FeaturePrice;
   };
 };
 export type CathedralsPlayersStore = PlayersStore & {
@@ -200,6 +201,7 @@ export function mixinCathedrals(BaseClass: typeof PlayersStore) {
           price: {
             ...this.options.price,
             cathedral: { complete: 3, incomplete: 0 },
+            inn: { complete: 2, incomplete: 0 },
           },
         };
       } else {

@@ -182,18 +182,22 @@ export type SwitchPlayerStore = PlayerStore & {
   options: OptionsCathedrals;
   city: SwitchFeatureStore;
   shield: SwitchFeatureStore;
+  road: SwitchFeatureStore;
 };
 export function mixinCathedralsPlayer(BaseClass: typeof PlayerStore) {
   return class extends BaseClass {
     markCathedral: true = true;
     city: SwitchFeatureStore;
     shield: SwitchFeatureStore;
+    road: SwitchFeatureStore;
     constructor(
       rootStore: RootStore,
       name: string,
       options: OptionsCathedrals,
     ) {
       super(rootStore, name, options);
+
+      this.road = new SwitchFeatureStore(options.price.road, options.price.inn);
       this.city = new SwitchFeatureStore(
         options.price.city,
         options.price.cathedral,
@@ -212,8 +216,11 @@ export function mixinCathedralsPlayer(BaseClass: typeof PlayerStore) {
       const shieldPrice = player.shield.modified
         ? player.shield.modifiedPrice.complete
         : player.shield.price.complete;
+      const roadPrice = player.road.modified
+        ? player.road.modifiedPrice.complete
+        : player.road.price.complete;
 
-      const road = player.road.count * player.road.price.complete;
+      const road = player.road.count * roadPrice;
       const monastery =
         player.monastery.count * player.monastery.price.complete;
       const city = player.city.count * cityPrice;
@@ -252,8 +259,11 @@ export function mixinCathedralsPlayer(BaseClass: typeof PlayerStore) {
       const shieldPrice = player.shield.modified
         ? player.shield.modifiedPrice.incomplete
         : player.shield.price.incomplete;
+      const roadPrice = player.road.modified
+        ? player.road.modifiedPrice.incomplete
+        : player.road.price.incomplete;
 
-      const road = player.road.countImcomplete * player.road.price.incomplete;
+      const road = player.road.count * roadPrice;
       const monastery =
         player.monastery.countImcomplete * player.monastery.price.incomplete;
       const city = player.city.countImcomplete * cityPrice;
