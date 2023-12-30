@@ -2,11 +2,11 @@ import { EXPANTIONS_NAME } from 'constants/expansions';
 
 import { ObservableMap, makeAutoObservable } from 'mobx';
 
-import BuilderAndTraderIcon from 'assets/icons/expansions/builder-and-trader';
+// import BuilderAndTraderIcon from 'assets/icons/expansions/builder-and-trader';
 import CastleIcon from 'assets/icons/expansions/castle';
 import CastleRiverIcon from 'assets/icons/expansions/castle-river';
 import CathedralIcon from 'assets/icons/expansions/cathedral';
-import DragonIcon from 'assets/icons/expansions/dragon';
+// import DragonIcon from 'assets/icons/expansions/dragon';
 
 import { PlayersStore } from './players-store';
 export type ExapnsionsVariant = {
@@ -37,18 +37,18 @@ export class ExpansionsStore {
       disabled: false,
       playerStore: PlayersStore,
     },
-    {
-      text: EXPANTIONS_NAME.TRADERS_AND_BUILDERS,
-      icon: <BuilderAndTraderIcon />,
-      disabled: true,
-      playerStore: PlayersStore,
-    },
-    {
-      text: EXPANTIONS_NAME.THE_PRINCESS_AND_THE_DRAGON,
-      icon: <DragonIcon />,
-      disabled: true,
-      playerStore: PlayersStore,
-    },
+    // {
+    //   text: EXPANTIONS_NAME.TRADERS_AND_BUILDERS,
+    //   icon: <BuilderAndTraderIcon />,
+    //   disabled: true,
+    //   playerStore: PlayersStore,
+    // },
+    // {
+    //   text: EXPANTIONS_NAME.THE_PRINCESS_AND_THE_DRAGON,
+    //   icon: <DragonIcon />,
+    //   disabled: true,
+    //   playerStore: PlayersStore,
+    // },
   ];
   constructor() {
     makeAutoObservable(this);

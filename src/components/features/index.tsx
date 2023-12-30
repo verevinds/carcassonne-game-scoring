@@ -38,53 +38,57 @@ function Features({ player, isFinishGame, ...props }: FeaturesProps) {
       } point per tile, when road is completed.`,
       feature: player.road,
       optionButton: (
-        <View>
-          <CardPointsOptionButton>
-            {'markCathedral' in player && 'markCathedral' in playerStore ? (
-              <Feature
-                LayoutProps={{
-                  withoutScoring: true,
-                }}
-                buttons={
-                  <>
-                    <View />
-                    <Switch
-                      ios_backgroundColor={COLORS.BACKGROUND_800}
-                      thumbColor={
-                        'modified' in player.road && player.road.modified
-                          ? COLORS.SECONDARY_500
-                          : COLORS.BACKGROUND_50
-                      }
-                      trackColor={{
-                        false: COLORS.BACKGROUND_50,
-                        true: COLORS.BACKGROUND_800,
-                      }}
-                      value={
-                        'modified' in player.road ? player.road.modified : false
-                      }
-                      onValueChange={() => {
-                        player.road.toggleModified();
-                      }}
-                    />
-                  </>
-                }
-                description={`${
-                  isFinishGame
-                    ? playerStore.options.price.inn.incomplete
-                    : playerStore.options.price.inn.complete
-                } points per tile of completed road (instead of ${
-                  isFinishGame
-                    ? playerStore.options.price.road.incomplete
-                    : playerStore.options.price.road.complete
-                } points).`}
-                icon={<RoadIcon height={50} width={50} />}
-                isFinishGame={isFinishGame}
-                player={player}
-                title="The Inns"
-              />
-            ) : null}
-          </CardPointsOptionButton>
-        </View>
+        <>
+          {'markCathedral' in player && 'markCathedral' in playerStore ? (
+            <View>
+              <CardPointsOptionButton>
+                <Feature
+                  LayoutProps={{
+                    withoutScoring: true,
+                  }}
+                  buttons={
+                    <>
+                      <View />
+                      <Switch
+                        ios_backgroundColor={COLORS.BACKGROUND_800}
+                        thumbColor={
+                          'modified' in player.road && player.road.modified
+                            ? COLORS.SECONDARY_500
+                            : COLORS.BACKGROUND_50
+                        }
+                        trackColor={{
+                          false: COLORS.BACKGROUND_50,
+                          true: COLORS.BACKGROUND_800,
+                        }}
+                        value={
+                          'modified' in player.road
+                            ? player.road.modified
+                            : false
+                        }
+                        onValueChange={() => {
+                          player.road.toggleModified();
+                        }}
+                      />
+                    </>
+                  }
+                  description={`${
+                    isFinishGame
+                      ? playerStore.options.price.inn.incomplete
+                      : playerStore.options.price.inn.complete
+                  } points per tile of completed road (instead of ${
+                    isFinishGame
+                      ? playerStore.options.price.road.incomplete
+                      : playerStore.options.price.road.complete
+                  } points).`}
+                  icon={<RoadIcon height={50} width={50} />}
+                  isFinishGame={isFinishGame}
+                  player={player}
+                  title="The Inns"
+                />
+              </CardPointsOptionButton>
+            </View>
+          ) : null}
+        </>
       ),
     },
     {
