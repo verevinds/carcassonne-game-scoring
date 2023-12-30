@@ -1,50 +1,55 @@
-import { Link } from 'expo-router';
-import { Text, View } from 'react-native';
+import { useCallback, useMemo } from 'react';
 
-import ArrowIcon from 'assets/icons/arrow';
+import * as Haptics from 'expo-haptics';
+import { observer } from 'mobx-react';
+import { View } from 'react-native';
+import { TouchableNativeFeedback } from 'react-native-gesture-handler';
+
 import PlayerIcon from 'assets/icons/player';
 import { useStore } from 'stores';
-import { COLORS, PLAYER_COLOR_NAME } from 'themes/constants';
+import { PLAYER_COLOR_NAME } from 'themes/constants';
 
 import { styles } from './index.styles';
 
 function CardNavigation({ name }: { name: PLAYER_COLOR_NAME }) {
   const store = useStore();
   const player = store.playersStore.getPlayer(name);
+  const hasSelectedPlayers = useMemo(
+    () => Boolean(store.gameStore.selectedPlayer),
+    [store.gameStore.selectedPlayer],
+  );
+  const onPress = useCallback(() => {
+    if (hasSelectedPlayers === false) {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
+      store.gameStore.setPlayer(player);
+    }
+  }, [player?.name, hasSelectedPlayers]);
+  const isSelected = useMemo(
+    () => store.gameStore.selectedPlayer?.name === player?.name,
+    [store.gameStore.selectedPlayer?.name, player?.name],
+  );
+
   return (
-    <Link
-      href={{
-        pathname: '/game/[name]',
-        params: { name },
-      }}
-      style={{
-        height: 50,
-        marginBottom: 10,
-        shadowColor: COLORS.BACKGROUND_85,
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 1,
-        shadowRadius: 4,
-        elevation: 10,
-      }}
+    <TouchableNativeFeedback
+      disabled={hasSelectedPlayers && !isSelected}
+      onPress={onPress}
     >
-      <View style={styles.container}>
-        <View style={styles.iconContainer}>
-          <PlayerIcon variant={name} />
-        </View>
-        <View style={styles.content}>
-          <View>
-            <Text style={styles.title}>{name} player</Text>
-            <View style={styles.pointsContainer}>
-              <Text style={styles.points}>points {player.points}</Text>
-            </View>
-          </View>
-        </View>
-        <View style={styles.navigation}>
-          <ArrowIcon mirror />
-        </View>
+      <View
+        style={[
+          styles.container,
+          isSelected && styles.selected,
+          hasSelectedPlayers && !isSelected ? styles.disabled : undefined,
+        ]}
+      >
+        <PlayerIcon
+          height={50}
+          opacity={hasSelectedPlayers && !isSelected ? 0.5 : 1}
+          variant={name}
+          width={50}
+        />
       </View>
-    </Link>
+    </TouchableNativeFeedback>
   );
 }
 
-export default CardNavigation;
+export default observer(CardNavigation);

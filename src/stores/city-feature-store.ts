@@ -27,10 +27,17 @@ export class CityFeatureStore extends FeatureStore {
   }
 
   setShield(shield: number) {
-    this.shield = shield;
+    this.shield = Number(shield);
   }
   setShieldIncomplete(shield: number) {
-    this.shieldIncomplete = shield;
+    this.shieldIncomplete = Number(shield);
+  }
+
+  mergeShield(shield: number) {
+    this.shield += Number(shield);
+  }
+  mergeShieldIncomplete(shield: number) {
+    this.shieldIncomplete += Number(shield);
   }
 }
 export type ICityFeatureStore = CityFeatureStore;

@@ -1,59 +1,38 @@
 import { StyleSheet } from 'react-native';
 
-import { TYPOGRAPHY, COLORS } from 'themes/constants';
+import {
+  TYPOGRAPHY,
+  SHADOW_2,
+  COLORS,
+  BASE_PADDING,
+  BASE_BORDER_RADIUS,
+  SPACING,
+} from 'themes/constants';
+
+export const HEIGHT_CONTAINER = 100;
+export const WIDTH_CONTAINER = 350;
+export const PADDING_CONTENT = 10;
 
 export const styles = StyleSheet.create({
-  disabled: { opacity: 0.5 },
-  cardTitle: {
-    ...TYPOGRAPHY.SUBTITLE_1,
-    maxWidth: 220,
-  },
-  cardContainerHighlight: {
-    backgroundColor: COLORS.SECONDARY_80,
-  },
-  cardContent: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  outerContainer: {
-    maxWidth: 350,
-    height: 50,
-    borderRadius: 10,
-    padding: 2,
-  },
-  innerContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'stretch',
-    backgroundColor: COLORS.BACKGROUND_95,
-    paddingHorizontal: 20,
-    borderRadius: 8,
-    padding: 4,
-  },
   container: {
-    backgroundColor: COLORS.BACKGROUND_95,
-    borderRadius: 10,
-    marginBottom: 10,
-    shadowColor: COLORS.BACKGROUND_85,
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 1,
-    shadowRadius: 4,
-    elevation: 10,
-  },
-  main: {
-    padding: 0,
-    margin: 0,
-  },
-  title: {
-    ...TYPOGRAPHY.HEADING_1,
-  },
-  subtitle: {
-    ...TYPOGRAPHY.HEADING_2,
-  },
-  svgContainer: {
+    borderRadius: BASE_BORDER_RADIUS,
+    margin: BASE_PADDING,
+    width: WIDTH_CONTAINER,
+    height: HEIGHT_CONTAINER,
     alignSelf: 'center',
-    marginTop: 50,
+    alignItems: 'center',
+    backgroundColor: COLORS.BACKGROUND_50,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: SPACING.SPACING_4,
+    paddingVertical: SPACING.SPACING_3,
+    ...SHADOW_2,
+  },
+  disabled: { opacity: 0.5 },
+  title: {
+    marginHorizontal: SPACING.SPACING_3,
+    ...TYPOGRAPHY.PARAGRAPH_1,
+    textAlign: 'left',
+    flex: 1,
   },
 });

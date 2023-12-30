@@ -1,10 +1,21 @@
+import { useCallback } from 'react';
+
 import { useFonts } from 'expo-font';
-import { StyleSheet, Text, View } from 'react-native';
+import * as SplashScreen from 'expo-splash-screen';
+import { StyleSheet, View } from 'react-native';
+import Animated, {
+  Easing,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
 
 import SvgComponent from 'assets/icons/farme';
-import Button from 'components/button-link';
+import Button from 'components/buttons/button-link';
 import StickyContainer from 'components/sticky-container';
-import { TYPOGRAPHY } from 'themes/constants';
+import { SPACING, TYPOGRAPHY } from 'themes/constants';
+
+SplashScreen.preventAutoHideAsync().catch(() => {});
 
 export default function Page() {
   const [fontReaded] = useFonts({
@@ -12,19 +23,43 @@ export default function Page() {
     'Roboto-Regular': require('assets/fonts/Roboto-Regular.ttf'),
     'Roboto-Medium': require('assets/fonts/Roboto-Medium.ttf'),
     'Roboto-Bold': require('assets/fonts/Roboto-Bold.ttf'),
+    'Roboto-Black': require('assets/fonts/Roboto-Black.ttf'),
+    'Roboto-Light': require('assets/fonts/Roboto-Light.ttf'),
   });
+  const opacity = useSharedValue(0);
+  const opacityStyle = useAnimatedStyle(() => {
+    return {
+      opacity: withTiming(opacity.value, {
+        duration: 2000,
+        easing: Easing.inOut(Easing.ease),
+      }),
+    };
+  });
+  const onLayoutRootView = useCallback(async () => {
+    if (fontReaded) {
+      opacity.value = 1;
+      // await SplashScreen.hideAsync();
+    }
+  }, [fontReaded]);
+
   if (!fontReaded) return null;
   return (
-    <View style={styles.container}>
+    <View style={styles.container} onLayout={onLayoutRootView}>
       <View style={styles.main}>
-        <Text style={styles.title}>Improve your game</Text>
-        <Text style={styles.subtitle}>Carcassonne</Text>
-        <View style={styles.svgContainer}>
+        <Animated.Text style={[styles.title, opacityStyle]}>
+          Improve your game
+        </Animated.Text>
+        <Animated.Text style={[styles.subtitle, opacityStyle]}>
+          Carcassonne
+        </Animated.Text>
+        <Animated.View style={[styles.svgContainer, opacityStyle]}>
           <SvgComponent />
-        </View>
+        </Animated.View>
       </View>
       <StickyContainer>
-        <Button href="/expansions" />
+        <Animated.View style={[opacityStyle]}>
+          <Button href="/expansions" />
+        </Animated.View>
       </StickyContainer>
     </View>
   );
@@ -36,7 +71,7 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 0,
     padding: 0,
-    paddingHorizontal: 20,
+    paddingHorizontal: SPACING.SPACING_6,
   },
   main: {
     top: 100,
@@ -44,13 +79,12 @@ const styles = StyleSheet.create({
     margin: 0,
   },
   title: {
-    ...TYPOGRAPHY.ACCENT_2,
-    fontSize: 40,
+    ...TYPOGRAPHY.TITLE_1,
     width: 240,
   },
   subtitle: {
-    ...TYPOGRAPHY.ACCENT_1,
-    fontSize: 45,
+    marginTop: 20,
+    ...TYPOGRAPHY.TITLE_2,
   },
   svgContainer: {
     alignSelf: 'center',

@@ -1,31 +1,33 @@
 import { Slot } from 'expo-router';
-import { Dimensions } from 'react-native';
+import { Dimensions, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import Img from 'assets/splash.png';
 import { LinearGradient } from 'components/gradient';
 import Pattern from 'components/pattern';
-import { COLORS } from 'themes/constants';
+
 const { height, width } = Dimensions.get('window');
 
 function Layout() {
   return (
     <>
-      <Pattern
+      <Image
+        source={Img}
         style={{
+          position: 'absolute',
+          zIndex: -2,
           height,
           width,
         }}
       />
-      <LinearGradient
-        endColor={COLORS.BACKGROUND_85}
-        startColor={COLORS.BACKGROUND_95}
-        viewBoxHeight={height}
-        viewBoxWidth={width}
-        x1={-0.2}
-        x2={0.45}
-        y1={0.25}
-        y2={0.9}
+      <Pattern
+        style={{
+          height,
+          width,
+          opacity: 0.7,
+        }}
       />
+      <LinearGradient style={{ opacity: 0.9 }} />
       <SafeAreaView style={{ height: '100%' }}>
         <Slot />
       </SafeAreaView>

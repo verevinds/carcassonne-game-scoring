@@ -1,19 +1,13 @@
-import { EXPANTIONS_NAME } from 'constants/expansions';
-
 import { observer } from 'mobx-react';
 import { StyleSheet, Text, View } from 'react-native';
+import Animated, { FadeInDown } from 'react-native-reanimated';
 
-import BuilderAndTraderIcon from 'assets/icons/expansions/builder-and-trader';
-import CastleIcon from 'assets/icons/expansions/castle';
-import CastleRiverIcon from 'assets/icons/expansions/castle-river';
-import CathedralIcon from 'assets/icons/expansions/cathedral';
-import DragonIcon from 'assets/icons/expansions/dragon';
-import Button from 'components/button-link';
+import Button from 'components/buttons/button-link';
 import CardSelectExpansions from 'components/card-select-expansions';
 import ShadeFlatList from 'components/shade-flat-list';
 import StickyContainer from 'components/sticky-container';
 import { useStore } from 'stores';
-import { TYPOGRAPHY } from 'themes/constants';
+import { SPACING, TYPOGRAPHY } from 'themes/constants';
 
 function ExpansionsScreen() {
   const store = useStore();
@@ -24,33 +18,12 @@ function ExpansionsScreen() {
         <Text style={styles.title}>Choose your</Text>
         <Text style={styles.subtitle}>Expansions</Text>
         <ShadeFlatList
-          data={[
-            {
-              text: EXPANTIONS_NAME.BASIC_VERSION_2,
-              icon: <CastleRiverIcon />,
-            },
-            {
-              text: EXPANTIONS_NAME.BASIC_VERSION,
-              icon: <CastleIcon />,
-              disabled: true,
-            },
-            {
-              text: EXPANTIONS_NAME.INNS_AND_CATHEDRALS,
-              icon: <CathedralIcon />,
-              disabled: true,
-            },
-            {
-              text: EXPANTIONS_NAME.TRADERS_AND_BUILDERS,
-              icon: <BuilderAndTraderIcon />,
-              disabled: true,
-            },
-            {
-              text: EXPANTIONS_NAME.THE_PRINCESS_AND_THE_DRAGON,
-              icon: <DragonIcon />,
-              disabled: true,
-            },
-          ]}
-          renderItem={({ item }) => <CardSelectExpansions {...item} />}
+          data={store.expansionsStore.variants}
+          renderItem={({ item, index }) => (
+            <Animated.View entering={FadeInDown.delay(100 * index)}>
+              <CardSelectExpansions {...item} />
+            </Animated.View>
+          )}
         />
       </View>
       <StickyContainer>
@@ -77,12 +50,12 @@ const styles = StyleSheet.create({
     margin: 0,
   },
   title: {
-    paddingHorizontal: 20,
-    ...TYPOGRAPHY.HEADING_1,
+    paddingHorizontal: SPACING.SPACING_6,
+    ...TYPOGRAPHY.SUBTITLE_2,
   },
   subtitle: {
-    paddingHorizontal: 20,
-    ...TYPOGRAPHY.HEADING_2,
+    paddingHorizontal: SPACING.SPACING_6,
+    ...TYPOGRAPHY.HEADER_1,
   },
   body: {
     marginTop: 50,

@@ -1,4 +1,6 @@
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Text, TouchableNativeFeedback, View } from 'react-native';
+
+import Check from 'assets/icons/check';
 
 import { styles } from './index.styles';
 import { CardSelectProps } from './index.types';
@@ -9,24 +11,13 @@ function CardSelect(props: CardSelectProps) {
   }
 
   return (
-    <View style={styles.container}>
-      <TouchableOpacity disabled={props.disabled} onPress={onPlayerSelect}>
-        <View
-          style={[
-            styles.outerContainer,
-            props.selected && styles.cardContainerHighlight,
-            props.disabled && styles.disabled,
-          ]}
-        >
-          <View style={styles.innerContainer}>
-            <View style={styles.cardContent}>
-              <Text style={styles.cardTitle}>{props.text}</Text>
-              {props.icon}
-            </View>
-          </View>
-        </View>
-      </TouchableOpacity>
-    </View>
+    <TouchableNativeFeedback disabled={props.disabled} onPress={onPlayerSelect}>
+      <View style={[styles.container, props.disabled && styles.disabled]}>
+        <Check checked={props.selected} />
+        <Text style={styles.title}>{props.text}</Text>
+        {props.icon}
+      </View>
+    </TouchableNativeFeedback>
   );
 }
 
