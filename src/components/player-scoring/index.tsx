@@ -122,7 +122,7 @@ function PlayerScoring({
                     variant={BUTTON_VARIANTS.OUTLINE}
                     onPress={() => setOpenModal(true)}
                   >
-                    i
+                    ?
                   </Button>
                 </View>
 
