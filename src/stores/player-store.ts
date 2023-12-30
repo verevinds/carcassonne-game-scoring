@@ -22,6 +22,7 @@ export type Options = {
 };
 export type Variant = {
   text: string;
+  description?: string;
   icon: JSX.Element;
   name: PLAYER_COLOR_NAME;
 };

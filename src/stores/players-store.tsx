@@ -50,26 +50,31 @@ export class PlayersStore {
   variants: Variant[] = [
     {
       text: 'Red player',
+      description: 'Add red player to the game',
       icon: <PlayerIcon variant={PLAYER_COLOR_NAME.RED} />,
       name: PLAYER_COLOR_NAME.RED,
     },
     {
       text: 'Blue player',
+      description: 'Add blue player to the game',
       icon: <PlayerIcon variant={PLAYER_COLOR_NAME.BLUE} />,
       name: PLAYER_COLOR_NAME.BLUE,
     },
     {
       text: 'Green player',
+      description: 'Add green player to the game',
       icon: <PlayerIcon variant={PLAYER_COLOR_NAME.GREEN} />,
       name: PLAYER_COLOR_NAME.GREEN,
     },
     {
       text: 'Yellow player',
+      description: 'Add yellow player to the game',
       icon: <PlayerIcon variant={PLAYER_COLOR_NAME.YELLOW} />,
       name: PLAYER_COLOR_NAME.YELLOW,
     },
     {
       text: 'Grey player',
+      description: 'Add grey player to the game',
       icon: <PlayerIcon variant={PLAYER_COLOR_NAME.GREY} />,
       name: PLAYER_COLOR_NAME.GREY,
     },

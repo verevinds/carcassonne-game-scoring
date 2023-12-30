@@ -26,13 +26,23 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: SPACING.SPACING_4,
     paddingVertical: SPACING.SPACING_3,
+    borderColor: COLORS.SECONDARY_50,
+    borderWidth: 2,
     ...SHADOW_2,
   },
+  selected: {
+    borderColor: COLORS.SECONDARY_300,
+  },
   disabled: { opacity: 0.5 },
-  title: {
+  titleContainer: {
+    flex: 1,
     marginHorizontal: SPACING.SPACING_3,
+  },
+  title: {
     ...TYPOGRAPHY.PARAGRAPH_1,
     textAlign: 'left',
-    flex: 1,
+  },
+  description: {
+    ...TYPOGRAPHY.CAPTION_2,
   },
 });

@@ -11,6 +11,7 @@ import CathedralIcon from 'assets/icons/expansions/cathedral';
 import { PlayersStore } from './players-store';
 export type ExapnsionsVariant = {
   text: string;
+  description?: string;
   icon: JSX.Element;
   disabled: boolean;
   playerStore: typeof PlayersStore;
@@ -21,18 +22,21 @@ export class ExpansionsStore {
   variants: ExapnsionsVariant[] = [
     {
       text: EXPANTIONS_NAME.BASIC_VERSION,
+      description: 'The original Carcassonne',
       icon: <CastleIcon />,
       disabled: true,
       playerStore: PlayersStore,
     },
     {
       text: EXPANTIONS_NAME.BASIC_VERSION_2,
+      description: 'Adds the River extension to the original version',
       icon: <CastleRiverIcon />,
       disabled: false,
       playerStore: PlayersStore,
     },
     {
       text: EXPANTIONS_NAME.INNS_AND_CATHEDRALS,
+      description: 'Adds the Inns and Cathedrals to the original version',
       icon: <CathedralIcon />,
       disabled: false,
       playerStore: PlayersStore,

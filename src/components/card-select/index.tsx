@@ -1,7 +1,5 @@
 import { Text, TouchableNativeFeedback, View } from 'react-native';
 
-import Check from 'assets/icons/check';
-
 import { styles } from './index.styles';
 import { CardSelectProps } from './index.types';
 
@@ -12,10 +10,18 @@ function CardSelect(props: CardSelectProps) {
 
   return (
     <TouchableNativeFeedback disabled={props.disabled} onPress={onPlayerSelect}>
-      <View style={[styles.container, props.disabled && styles.disabled]}>
+      <View
+        style={[
+          styles.container,
+          props.disabled && styles.disabled,
+          props.selected && styles.selected,
+        ]}
+      >
         {props.icon}
-        <Text style={styles.title}>{props.text}</Text>
-        <Check checked={props.selected} />
+        <View style={styles.titleContainer}>
+          <Text style={styles.title}>{props.text}</Text>
+          <Text style={styles.description}>{props.description}</Text>
+        </View>
       </View>
     </TouchableNativeFeedback>
   );
